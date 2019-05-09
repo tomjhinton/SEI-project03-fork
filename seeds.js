@@ -28,16 +28,8 @@ mongoose.connect(dbUri,(err,db) =>{
         minimumAge: 18,
         modifiedBy: user,
         createdBy: user
-
-
-
-
-
-
-
       })
     })
-
 
     .then(() => mongoose.connection.close()) // disconnect from the database
     .catch(err => {

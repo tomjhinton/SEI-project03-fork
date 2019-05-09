@@ -1,4 +1,4 @@
-const Event = require('./models/Event')
+const Event = require('../models/Event')
 
 function indexRoute(req, res, next) {
   Event.find()
