@@ -31,6 +31,12 @@ const userSchema =new mongoose.Schema({
   }
 })
 
+userSchema.virtual('events', {
+  localField: '_id',
+  foreignField: 'createdBy',
+  ref: 'Event'
+})
+
 
 userSchema.virtual('passwordConfirmation')
   .set(function setPasswordConfirmation(plaintext) {
