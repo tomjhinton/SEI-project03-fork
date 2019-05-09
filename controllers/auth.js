@@ -19,7 +19,7 @@ function loginRoute(req, res, next){
       // send it to the client
       res.json({ message: `Welcome to get wild, ${user.username}!`, token })
     })
-      .catch(next)
+    .catch(next)
 }
 module.exports = {
   register: registerRoute,
