@@ -6,7 +6,7 @@ class Register extends React.Component{
     super()
     this.state ={
       data: {},
-      error: {}
+      errors: {}
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
