@@ -2,9 +2,7 @@
 
 
 
- Ali Kurtulush
 
- Ali is not a twat
 
 Tom
 teamStu
