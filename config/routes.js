@@ -8,4 +8,5 @@ router.post('/events', eventsController.create)
 router.delete('/events/:id', eventsController.delete)
 
 router.get('/', (req, res) => res.json({ message: 'Welcome to the Events API' }))
+
 module.exports = router
