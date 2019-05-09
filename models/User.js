@@ -75,3 +75,4 @@ userSchema.methods.isPasswordValid = function isPasswordValid(plaintext) {
 
 userSchema.plugin(uniqueValidator) // this makes the unqiue error nicer...
 ///User model/
+module.exports = mongoose.model('User', userSchema)
