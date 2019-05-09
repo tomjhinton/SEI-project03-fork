@@ -31,12 +31,6 @@ const userSchema =new mongoose.Schema({
   }
 })
 
-userSchema.virtual('events', {
-  localField: '_id',
-  foreignField: 'createdBy',
-  ref: 'Event'
-})
-
 
 userSchema.virtual('passwordConfirmation')
   .set(function setPasswordConfirmation(plaintext) {
@@ -75,4 +69,5 @@ userSchema.methods.isPasswordValid = function isPasswordValid(plaintext) {
 
 userSchema.plugin(uniqueValidator) // this makes the unqiue error nicer...
 ///User model/
+
 module.exports = mongoose.model('User', userSchema)
