@@ -3,7 +3,7 @@ const {dbUri} =require('./config/environment')
 const User = require('./models/User')
 const Event = require('./models/Event')
 
-
+// Connect database
 mongoose.connect(dbUri,(err,db) =>{
   db.dropDatabase()
     .then(()=>{
