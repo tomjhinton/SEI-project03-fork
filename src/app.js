@@ -3,15 +3,15 @@ import ReactDOM from 'react-dom'
 import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 import 'bulma'
 
-import EventsShow from './components/events/Show'
+import Show from './components/events/Show'
 
 class App extends React.Component {
   render() {
     return (
       <Router>
-        <div>
-          <Route path="events/:id" component={EventsShow} />
-        </div>
+        <main>
+            <Route path="/events/:id" component={Show} />
+        </main>
       </Router>
     )
   }
