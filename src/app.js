@@ -1,18 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-//import { HashRouter as Router, Switch, Route } from 'react-router-dom'
+import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 import 'bulma'
 
-class App extends React.Component{
-  constructor(){
-    super()
-    this.state = {
-      venues: []
-    }
-  }
+import EventsShow from './components/events/Show'
+
+class App extends React.Component {
   render() {
-    return(
-      <h1 className="title is-1">Hello World</h1>
+    return (
+      <Router>
+        <div>
+          <Route path="events/:id" component={EventsShow} />
+        </div>
+      </Router>
     )
   }
 }
