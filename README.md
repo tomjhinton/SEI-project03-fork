@@ -1,6 +1,6 @@
 # project-03
 
 
- Ali
+ Ali Kurtulush
 Tom
 teamStu
