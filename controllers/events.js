@@ -1,4 +1,4 @@
-const Event = require('./models/Event')
+const Event = require('../models/Event')
 
 function indexRoute(req, res, next) {
   Event.find()
@@ -18,6 +18,14 @@ function createRoute(req, res, next) {
     .catch(next)
 }
 
+function updateRoute(req, res, next) {
+  Event.findById(req.params.id)
+    .then(event => event.set(req.body))
+    .then(event => event.save())
+    .then(event => res.json(event))
+    .catch(next)
+}
+
 function deleteRoute(req, res, next) {
   Event.findById(req.params.id)
     .then(event => event.remove())
@@ -30,5 +38,6 @@ module.exports = {
   index: indexRoute,
   show: showRoute,
   create: createRoute,
+  update: updateRoute,
   delete: deleteRoute
 }
