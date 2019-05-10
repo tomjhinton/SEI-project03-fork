@@ -17,15 +17,15 @@ class Show extends React.Component {
   }
 
   render () {
+    console.log(this.state)
     return (
       <div className="section">
         <div className="container">
-          <div className="columns">
 
+          <div className="columns">
             <div className="column">
               <img className="event-image" src={this.state.image}></img>
             </div>
-
             <div className="column">
               <h1  className="title is-1">{this.state.name}</h1>
 
@@ -38,29 +38,30 @@ class Show extends React.Component {
 
               <h2>{this.state.description}</h2>
             </div>
-
           </div>
 
           <div className="columns">
             <div className="column">
-              <div className="event-meta">
-                <span className="subtitle is-7">Organised by  <span className="has-text-weight-semibold">{this.state.createdBy}</span></span>
-              </div>
+              {!!this.state.createdBy &&
+                <div className="event-meta"><span>Organised by {this.state.createdBy.username}</span>
+                </div>
+              }
             </div>
 
             <div className="column">
               {!!this.state.artist &&
-                <div className="event-meta">
-                  {this.state.artist.map(artist => {
-                    return <div key={artist} >{artist}</div>
-                  })}
-                </div>
+                  <div className="event-meta">
+                    {this.state.artist.map(artist => {
+                      return <div key={artist} >{artist}</div>
+                    })}
+                  </div>
               }
             </div>
           </div>
 
         </div>
       </div>
+
     )
   }
 }
