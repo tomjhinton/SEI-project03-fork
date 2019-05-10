@@ -21,6 +21,7 @@ class Show extends React.Component {
       <div className="section">
         <div className="container">
           <div className="columns">
+
             <div className="column">
               <img className="event-image" src={this.state.image}></img>
             </div>
@@ -35,12 +36,29 @@ class Show extends React.Component {
                 <div className="subtitle is-7">Over {this.state.minimumAge}s only</div>
               </div>
 
-              <h2>{this.state.artist}</h2>
+              <h2>{this.state.description}</h2>
+            </div>
 
+          </div>
 
+          <div className="columns">
+            <div className="column">
+              <div className="event-meta">
+                <span className="subtitle is-7">Organised by  <span className="has-text-weight-semibold">{this.state.createdBy}</span></span>
+              </div>
+            </div>
 
+            <div className="column">
+              {!!this.state.artist &&
+                <div className="event-meta">
+                  {this.state.artist.map(artist => {
+                    return <div key={artist} >{artist}</div>
+                  })}
+                </div>
+              }
             </div>
           </div>
+
         </div>
       </div>
     )
@@ -48,9 +66,3 @@ class Show extends React.Component {
 }
 
 export default Show
-
-// <div className="event-meta">
-//   {this.state.artist.map(artist => {
-//     return <div key={artist} className="subtitle is-5">{artist}</div>
-//   })}
-// </div>
