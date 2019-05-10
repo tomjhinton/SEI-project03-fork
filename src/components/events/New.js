@@ -17,30 +17,59 @@ class New extends React.Component {
         artist: []
       },
       errors: {},
-      venues: {}
-
+      venues: {},
+      venue: {}
     }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.findVenue = this.findVenue.bind(this)
+    this.selectVenue = this.selectVenue.bind(this)
   }
 
 
   handleChange(e) {
     const data = { ...this.state.data, [e.target.name]: e.target.value }
     this.setState({ data })
-    console.log(this.state)
+
   }
 
 
+  addArtist(e){
+    e.preventDefault()
+  }
+
+  submitArtists(e){
+    e.preventDefault()
+
+  }
+
+  selectVenue(e){
+    //e.preventDefault()
+
+    //console.log(e.target.id)
+    //console.log(e.target.postcode)
+
+
+    this.setState({
+      venue: {
+        name: e.target.dataset.name,
+        postcode: e.target.dataset.postcode,
+        id: e.target.id
+      },
+      data: {
+        venue: e.target.dataset.name
+      }
+    })
+    console.log(this)
+  }
 
   findVenue(e){
     e.preventDefault()
     axios.get(`https://api.songkick.com/api/3.0/search/venues.json?query=${this.state.data.venue}&apikey=${process.env.SONG_KICK_KEY}`)
       .then(res => {
-        const venues = { ...this.state.venue, venue: res.data.resultsPage.results.venue }
-        this.setState({ venues })
+        const venues = { ...this.state.venues, venue: res.data.resultsPage.results.venue }
+        this.setState({ venues: venues })
         console.log(this.state)
       })
 
@@ -85,12 +114,12 @@ class New extends React.Component {
                 <button> Find Venue </button>
               </form>
 
-              {this.state.venues.venue &&<div className="columns is-multiline">
-                {console.log(this.state.venues.venue[0].displayName)}
+              {this.state.venues.venue && !this.state.venue.id &&<div className="columns is-multiline">
+
                 {this.state.venues.venue.map(venue =>{
 
-                  return <div key={venue.id} className="column is-one-quarter">
-                    {venue.displayName}
+                  return <div key={venue.id} className="column is-one-quarter" onClick={this.selectVenue} id={venue.id} data-name={venue.displayName} data-postcode={venue.zip}>
+                    {venue.displayName}, {venue.city.displayName}
                   </div>
                 })}
               </div>}
