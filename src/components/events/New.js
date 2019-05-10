@@ -4,7 +4,6 @@ import axios from 'axios'
 import Auth from '../../lib/Auth'
 
 
-console.log(process.env.SONG_KICK_KEY)
 
 
 
