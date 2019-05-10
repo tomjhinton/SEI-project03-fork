@@ -12,6 +12,10 @@ import Login from './components/auth/Login'
 import Navbar from './components/common/Navbar'
 import Register from './components/auth/Register'
 import New from './components/events/New'
+import EventIndex from './components/events/EventIndex'
+
+
+
 
 class App extends React.Component {
   render() {
@@ -29,6 +33,8 @@ class App extends React.Component {
             <Route path="/events/:id" component={Show} />
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
+            <Route path="/events" component={EventIndex} />
+
 
             <Route path="/new" component={New} />
 

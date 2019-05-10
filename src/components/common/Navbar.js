@@ -66,7 +66,7 @@ class Navbar extends React.Component{
               <div className="field has-addons">
                 <div className="control">
                   <input className="input is-rounded" type="text" placeholder="Events,Artist,Venues" />
-                   //  <FontAwesomeIcon icon={ fasFaSearch }/>
+                
                 </div>
 
               </div>
