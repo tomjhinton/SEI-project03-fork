@@ -5,6 +5,7 @@ import 'bulma'
 
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
+import New from './components/events/New'
 
 class App extends React.Component {
   render() {
@@ -14,6 +15,7 @@ class App extends React.Component {
           <Switch>
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
+            <Route path="/new" component={New} />
 
           </Switch>
         </Router>
