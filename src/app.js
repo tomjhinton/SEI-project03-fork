@@ -17,9 +17,11 @@ class App extends React.Component {
 
       <Router>
         <main>
-          <Route path="/events/:id" component={Show} />
-          <Route path="/register" component={Register} />
-          <Route path="/login" component={Login} />
+          <Switch>
+            <Route path="/events/:id" component={Show} />
+            <Route path="/register" component={Register} />
+            <Route path="/login" component={Login} />
+          </Switch>
         </main>
       </Router>
 
