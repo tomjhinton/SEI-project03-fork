@@ -7,7 +7,8 @@
 .column{
   display: flex;
   flex-direction: column;
-  justify-content: center
+  justify-content: center;
+  border: 1px solid black;
 }
 
 .title{
@@ -33,4 +34,16 @@
 
 .event-organiser{
   font-weight: bold;
+}
+
+.search-results{
+  background-color: white;
+  max-width: 60vw;
+  margin: 0 auto;
+}
+
+.search-result{
+  margin: 10px;
+  padding: 15px;
+  box-shadow: 0 0.5px 0 0 #ffffff inset, 0 1px 2px 0 #B3B3B3;
 }

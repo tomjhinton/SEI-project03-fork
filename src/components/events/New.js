@@ -33,14 +33,12 @@ class New extends React.Component {
     console.log(this.state)
   }
 
-
-
   findVenue(e){
     e.preventDefault()
     axios.get(`https://api.songkick.com/api/3.0/search/venues.json?query=${this.state.data.venue}&apikey=${process.env.SONG_KICK_KEY}`)
       .then(res => {
-        const venues = { ...this.state.venue, venue: res.data.resultsPage.results.venue }
-        this.setState({ venues })
+        const venues = { ...this.state.venues, venue: res.data.resultsPage.results.venue }
+        this.setState({ venues: venues })
         console.log(this.state)
       })
 
