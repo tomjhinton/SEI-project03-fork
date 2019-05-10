@@ -8,6 +8,7 @@ function indexRoute(req, res, next) {
 
 function showRoute(req, res, next) {
   Event.findById(req.params.id)
+    .poulate('createdBy')
     .then(resort => res.json(resort))
     .catch(next)
 }
