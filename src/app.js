@@ -5,12 +5,12 @@ import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 import 'bulma'
 import './style.scss'
 
-import Show from './components/events/Show'
+import EventsShow from './components/events/Show'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
-import New from './components/events/New'
-import Search from './components/venues/Search'
-import EventIndex from './components/events/EventIndex'
+import EventsNew from './components/events/New'
+import VenuesSearch from './components/venues/Search'
+import EventsIndex from './components/events/Index'
 import VenueShow from './components/venues/Show'
 import Navbar from './components/common/Navbar'
 
@@ -23,13 +23,13 @@ class App extends React.Component {
         <Navbar />
         <main>
           <Switch>
-            <Route path="/events/:id" component={Show} />
+            <Route path="/events/:id" component={EventsShow} />
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
-            <Route path="/events" component={EventIndex} />
+            <Route path="/events" component={EventsIndex} />
             <Route path="/venues/:id" component={VenueShow} />
-            <Route path="/new" component={New} />
-            <Route path="/venues" component={Search} />
+            <Route path="/new" component={EventsNew} />
+            <Route path="/venues" component={VenuesSearch} />
           </Switch>
         </main>
       </Router>

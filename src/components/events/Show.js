@@ -4,7 +4,7 @@ import axios from 'axios'
 
 
 
-class Show extends React.Component {
+class EventsShow extends React.Component {
   constructor() {
     super()
 
@@ -66,4 +66,4 @@ class Show extends React.Component {
   }
 }
 
-export default Show
+export default EventsShow

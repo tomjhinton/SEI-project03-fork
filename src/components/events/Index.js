@@ -1,7 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
-class EventIndex extends React.Component{
+
+class EventsIndex extends React.Component{
 
   constructor(){
     super()
@@ -49,4 +50,4 @@ class EventIndex extends React.Component{
   }
 
 }
-export default EventIndex
+export default EventsIndex

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 
-class Show extends React.Component{
+class VenuesShow extends React.Component{
   constructor(props){
     super(props)
     this.state ={
@@ -91,4 +91,4 @@ class Show extends React.Component{
   }
 }
 
-export default Show
+export default VenuesShow

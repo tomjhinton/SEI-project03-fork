@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
-class Search extends React.Component {
+class VenuesSearch extends React.Component {
   constructor() {
     super()
 
@@ -81,4 +81,4 @@ class Search extends React.Component {
   }
 }
 
-export default Search
+export default VenuesSearch
