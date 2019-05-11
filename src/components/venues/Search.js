@@ -37,7 +37,7 @@ class VenuesSearch extends React.Component {
     return (
       <div>
         <div className="section">
-          <div className="container">
+          <div className="container box-shadow">
             <form onSubmit={this.findVenue}>
               <div className="field">
                 <label className="label">Venue</label>
@@ -59,19 +59,22 @@ class VenuesSearch extends React.Component {
 
         {this.state.venues &&
           <div className="section">
-            <div className="search-results">
-              <div className="is-5 is-multiline">
-                {this.state.venues.map(venue => {
-                  return(
-                    <div className="search-result" key={venue.id}>
-                      <Link to={`/venues/${venue.id}`}>
-                        <div className="title is-5">{venue.displayName}</div>
-                        <span className="subtitle">{venue.city.displayName}  {venue.city.country.displayName}</span>
-                      </Link>
-                    </div>
-                  )
-                })}
+            <div className="container">
+              <div className="search-results">
+                <div className="is-5 is-multiline">
+                  {this.state.venues.map(venue => {
+                    return(
+                      <div className="index-card box-shadow" key={venue.id}>
+                        <Link to={`/venues/${venue.id}`}>
+                          <div className="title is-5">{venue.displayName}</div>
+                          <span className="subtitle">{venue.city.displayName}  {venue.city.country.displayName}</span>
+                        </Link>
+                      </div>
+                    )
+                  })}
+                </div>
               </div>
+
             </div>
           </div>
         }

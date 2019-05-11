@@ -31,7 +31,7 @@ class Navbar extends React.Component{
     console.log(this.props.location.pathname)
     return(
       <nav className="navbar">
-        <div className="container">
+        <div className="container box-shadow">
 
           <div className="navbar-brand">
             {/* Branding and burger menu */}
@@ -66,7 +66,7 @@ class Navbar extends React.Component{
               <div className="field has-addons">
                 <div className="control">
                   <input className="input is-rounded" type="text" placeholder="Events,Artist,Venues" />
-                
+
                 </div>
 
               </div>

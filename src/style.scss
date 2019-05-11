@@ -1,4 +1,4 @@
-.container{
+.box-shadow{
   background-color: hsl(0, 0%, 98%);
   padding: 15px;
   box-shadow: 0 0.5px 0 0 #ffffff inset, 0 1px 2px 0 #B3B3B3
@@ -8,15 +8,27 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border: 1px solid black;
 }
 
 .title{
   color: blue;
 }
 
+.index-card{
+  margin: 20px;
+}
+
+.event-index-card{
+  height: 200px;
+}
+
+.show-body{
+  max-height: 55vh;
+}
+
 .event-image{
   object-fit: cover;
+  max-height: 100%;
 }
 
 .event-meta{
@@ -59,10 +71,4 @@
   background-color: white;
   max-width: 60vw;
   margin: 0 auto;
-}
-
-.search-result{
-  margin: 10px;
-  padding: 15px;
-  box-shadow: 0 0.5px 0 0 #ffffff inset, 0 1px 2px 0 #B3B3B3;
 }

@@ -21,8 +21,8 @@ class EventsShow extends React.Component {
     return (
       <div className="section">
         <div className="container">
-
-          <div className="columns">
+        
+          <div className="columns show-body">
             <div className="column">
               <img className="event-image" src={this.state.image}></img>
             </div>

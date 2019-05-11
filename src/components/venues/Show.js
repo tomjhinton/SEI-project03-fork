@@ -29,7 +29,7 @@ class VenuesShow extends React.Component{
     return(
       <section className="section">
         <div className="container">
-          <div className="columns is-multiline">
+          <div className="columns show-body is-multiline">
             <div className="column is-one-quarter">
 
 
