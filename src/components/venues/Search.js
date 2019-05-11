@@ -22,7 +22,8 @@ class Search extends React.Component {
     this.setState({ searchName: data })
   }
 
-  handleSubmit() {
+  handleSubmit(e) {
+    e.preventDefault()
     axios.get('https://api.songkick.com/api/3.0/search/venues.json', {
       params: {
         query: this.state.searchName,

@@ -7,22 +7,17 @@ import './style.scss'
 
 import Show from './components/events/Show'
 import Login from './components/auth/Login'
-import Navbar from './components/common/Navbar'
 import Register from './components/auth/Register'
 import New from './components/events/New'
 import Search from './components/venues/Search'
 import EventIndex from './components/events/EventIndex'
 import VenueShow from './components/venues/Show'
+import Navbar from './components/common/Navbar'
 
 
 class App extends React.Component {
   render() {
     return (
-
-
-
-
-
 
       <Router>
         <Navbar />
@@ -32,14 +27,7 @@ class App extends React.Component {
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
             <Route path="/events" component={EventIndex} />
-
             <Route path="/venues/:id" component={VenueShow} />
-
-
-
-
-=======
->>>>>>> development
             <Route path="/new" component={New} />
             <Route path="/venues" component={Search} />
           </Switch>
