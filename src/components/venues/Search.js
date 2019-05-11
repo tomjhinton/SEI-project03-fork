@@ -64,8 +64,10 @@ class VenuesSearch extends React.Component {
                 {this.state.venues.map(venue => {
                   return(
                     <div className="search-result" key={venue.id}>
-                      <div className="title is-5">{venue.displayName}</div>
-                      <span className="subtitle">{venue.city.displayName}  {venue.city.country.displayName}</span>
+                      <Link to={`/venues/${venue.id}`}>
+                        <div className="title is-5">{venue.displayName}</div>
+                        <span className="subtitle">{venue.city.displayName}  {venue.city.country.displayName}</span>
+                      </Link>
                     </div>
                   )
                 })}
