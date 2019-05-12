@@ -28,11 +28,11 @@ class Navbar extends React.Component{
     }
   }
   render(){
+    console.log(this.props.location.pathname)
     return(
       <nav className="navbar">
         <div className="navbar-brand">
           <Link to="/" className="logo is-size-4">EvUp</Link>
-
           <a role="button"
             className={`navbar-burger${this.state.active ? ' is-active' : ''}`} onClick={this.toggleActive}>
             <span aria-hidden="true"></span>
@@ -43,7 +43,6 @@ class Navbar extends React.Component{
 
         <div className={`navbar-menu${this.state.active ? ' is-active' : ''}`}>
           <div className="navbar-start">
-            {/* Left-hand links */}
             <Link to="/events" className={`navbar-item ${this.state.active ? ' is-active' : ''} `}>Events</Link>
             <Link to="/venues" className={`navbar-item ${this.state.active ? ' is-active' : ''} `}>Venues</Link>
           </div>
@@ -62,7 +61,6 @@ class Navbar extends React.Component{
           </div>
         </div>
       </nav>
-
     )
   }
 }
