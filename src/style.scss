@@ -14,6 +14,19 @@
   color: blue;
 }
 
+.logo{
+  color: rgb(255, 255, 153);
+  padding: 0.5rem 0.75rem;
+}
+
+.navbar{
+  background-color: rgb(51, 0, 51);
+}
+
+.navbar-item{
+  color: white;
+}
+
 .index-card{
   margin: 20px;
 }
@@ -64,7 +77,9 @@
 
   background-repeat: no-repeat;
 }
-.fas{width: 40px;}
+.fas{
+  width: 40px;
+}
 
 
 .search-results{
