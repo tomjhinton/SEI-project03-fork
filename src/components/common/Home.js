@@ -15,8 +15,8 @@ class Home extends React.Component{
 
   getMetroCode(){
     axios.get(`https://api.songkick.com/api/3.0/search/locations.json?location=geo:${this.state.location.lat},${this.state.location.lon}&apikey=${process.env.SONG_KICK_KEY}`)
-      .then(res => axios.get(`https://api.songkick.com/api/3.0/metro_areas/${res.data.resultsPage.results.location[0].metroArea.id}/calendar.json?apikey=${process.env.SONG_KICK_KEY}`))
-        .then(res =>)
+      .then(res => axios.get(`https://api.songkick.com/api/3.0/metro_areas/${res.data.resultsPage.results.location[0].metroArea.id}/calendar.json?apikey=${process.env.SONG_KICK_KEY}&per_page=5`))
+      .then(res => console.log(res))
 
   }
 
