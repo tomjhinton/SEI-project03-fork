@@ -3,6 +3,13 @@ import React from 'react'
 import axios from 'axios'
 import Auth from '../../lib/Auth'
 
+import 'react-datepicker/dist/react-datepicker.css'
+
+const artistArray = []
+
+import CreatableSelect from 'react-select/lib/Creatable'
+import DatePicker from 'react-datepicker'
+
 
 
 
@@ -13,6 +20,7 @@ class New extends React.Component {
     super()
 
     this.state = {
+      test: {},
       data: {
         artist: []
       },
@@ -25,11 +33,14 @@ class New extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.findVenue = this.findVenue.bind(this)
     this.selectVenue = this.selectVenue.bind(this)
+    this.submitArtists = this.submitArtists.bind(this)
+    this.addArtist = this.addArtist.bind(this)
   }
 
 
   handleChange(e) {
     const data = { ...this.state.data, [e.target.name]: e.target.value }
+    console.log(data)
     this.setState({ data })
 
   }
@@ -37,11 +48,28 @@ class New extends React.Component {
 
   addArtist(e){
     e.preventDefault()
+    artistArray.push(this.state.data.artist)
+    console.log(artistArray)
+    this.setState({
+      data: {
+        artist: []
+      }
+    }
+
+    )
   }
 
   submitArtists(e){
     e.preventDefault()
+    console.log(artistArray)
+    this.setState({
+      data: {
+        artist: artistArray
+      }
+    }
 
+    )
+    console.log(this)
   }
 
   selectVenue(e){
@@ -86,6 +114,9 @@ class New extends React.Component {
     //  .then(() => this.props.history.push('/events'))
   }
 
+  handleInputChange(){
+    console.log('yeah')
+  }
 
 
 
@@ -128,21 +159,17 @@ class New extends React.Component {
 
                 <div className="field">
                   <label className="label">Artist</label>
-                  <div className="control">
-                    <input
-                      className="input"
-                      name="artist"
-                      placeholder="The artists playing your event!"
-                      onChange={this.handleChange}
-                      value={this.state.data.artist || ''}
-                    />
-                  </div>
-                  {this.state.errors.artist && <div className="help is-danger">{this.state.errors.artist}</div>}
+
+
                 </div>
 
+                < CreatableSelect
+                  onKeyDown={this.handleChange}
+                  isMulti
+                  onInputChange={this.handleInputChange}/>
 
-                <button> Add an artist</button>
-                <button> All artists added</button>
+
+
               </form>
 
 
@@ -175,15 +202,11 @@ class New extends React.Component {
                 </div>
                 <div className="field">
                   <label className="label">Date</label>
-                  <div className="control">
-                    <input
-                      className="input"
-                      name="date"
-                      placeholder="eg: The poster for your event!"
-                      onChange={this.handleChange}
-                      value={this.state.data.date || ''}
-                    />
-                  </div>
+                  <DatePicker
+                    selected={this.state.startDate}
+                    onChange={this.handleChange}
+                    name="date"
+                  />
                   {this.state.errors.image && <div className="help is-danger">{this.state.errors.image}</div>}
                 </div>
 
