@@ -10,8 +10,21 @@
   justify-content: center;
 }
 
+button{
+  background-color: rgb(51, 0, 51);
+  color: rgb(255, 255, 153);
+  border: none;
+  height: 30px;
+  width: 100px;
+}
+
+.input{
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
 .title{
-  color: blue;
+  color: rgb(51, 0, 51);
 }
 
 .logo{
@@ -59,6 +72,10 @@
 
 .event-organiser{
   font-weight: bold;
+}
+
+.event-show-artist{
+  color: rgb(51, 0, 51)
 }
 
 .upcoming{
