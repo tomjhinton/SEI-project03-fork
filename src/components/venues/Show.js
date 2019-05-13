@@ -1,34 +1,74 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+let index=0
+let eventsLength=0
 
-class VenuesShow extends React.Component{
+
+
+
+
+class Show extends React.Component{
   constructor(props){
     super(props)
     this.state ={
       venue: { },
-      upcoming: {}
+      upcoming: {},
+      currentEvent: {}
+
     }
+    this.nextEvent=this.nextEvent.bind(this)
+    this.previousEvent=this.previousEvent.bind(this)
   }
   componentDidMount(){
     axios.get(`https://api.songkick.com/api/3.0/venues/${this.props.match.params.id}.json?&apikey=${process.env.SONG_KICK_KEY}`)
       .then(res => this.setState({venue: res.data}))
     axios.get(`https://api.songkick.com/api/3.0/venues/${this.props.match.params.id}/calendar.json?&apikey=${process.env.SONG_KICK_KEY}`)
-      .then(res =>this.setState({upcoming: res.data}))
+      .then(res => {
+        this.setState({upcoming: res.data,currentEvent: res.data.resultsPage.results.event[0]})
+
+
+      } )
+
+
 
 
   }
-  previousUpEvent(){
+  nextEvent(){
+    index++
+    eventsLength=this.state.upcoming.resultsPage.results.event.length
+
+
+
+    this.setState({currentEvent: this.state.upcoming.resultsPage.results.event[index]})
+
+    console.log(this.state.currentEvent)
+    console.log(this.state)
+
+
+
+
 
   }
+
+  previousEvent(){
+    index--
+    eventsLength=this.state.upcoming.resultsPage.results.event.length
+    this.setState({currentEvent: this.state.upcoming.resultsPage.results.event[index]})
+
+
+  }
+
   render(){
-    console.log(this.state.venue.resultsPage)
-    console.log(this.state.upcoming.resultsPage)
+
+
+
+
 
     return(
       <section className="section">
         <div className="container">
-          <div className="columns show-body is-multiline">
+          <div className="columns is-multiline">
             <div className="column is-one-quarter">
 
 
@@ -36,58 +76,72 @@ class VenuesShow extends React.Component{
             <div className="column is-three-quarters">
 
               {!!this.state.venue.resultsPage &&
-                <div className="subtitle is-2"><span> {this.state.venue.resultsPage.results.venue.displayName}</span>
+                <div className="title is-1"><span> {this.state.venue.resultsPage.results.venue.displayName}</span>
                 </div>
               }
-              {!!this.state.venue.resultsPage &&
-                <div className="subtitle is-4"><span> Capacity:{this.state.venue.resultsPage.results.venue.capacity}</span>
+              <div className="event-meta">
+                {!!this.state.venue.resultsPage &&
+                <div className=" subtitle is-7 is-one-quarter"><span> Capacity:{this.state.venue.resultsPage.results.venue.capacity}</span>
                 </div>
-              }
-              {!!this.state.venue.resultsPage &&
-                <div className="subtitle is-4"><span>Address: {this.state.venue.resultsPage.results.venue.street} - {this.state.venue.resultsPage.results.venue.zip}</span>
+                }
+                {!!this.state.venue.resultsPage &&
+                <div className=" subtitle is-7 is-one-quarter"><span> {this.state.venue.resultsPage.results.venue.street} - {this.state.venue.resultsPage.results.venue.zip}</span>
                 </div>
-              }
-              {!!this.state.venue.resultsPage &&
-                <div className="subtitle is-4"><span>Phone: {this.state.venue.resultsPage.results.venue.phone}</span>
+                }
+                {!!this.state.venue.resultsPage &&
+                <div className=" subtitle is-7 is-one-quarter"><span> {this.state.venue.resultsPage.results.venue.phone}</span>
                 </div>
-              }
-              {!!this.state.venue.resultsPage &&
-                <div className="subtitle is-4"><span>Website:<a href={this.state.venue.resultsPage.results.venue.website}> {this.state.venue.resultsPage.results.venue.website}</a></span>
+                }
+                {!!this.state.venue.resultsPage &&
+                <div className=" subtitle is-7 is-one-quarter"><span><a href={this.state.venue.resultsPage.results.venue.website}> {this.state.venue.resultsPage.results.venue.website}</a></span>
                 </div>
-              }
+                }
 
+              </div>
+              {!!this.state.venue.resultsPage &&
+              <div className=" subtitle is-7 "><span> {this.state.venue.resultsPage.results.venue.description}</span>
+              </div>
+              }
             </div>
-
-
           </div>
+          <div className="upcoming">
+            <h1 className="title is-3">UpComing Events</h1>
 
+            <div className="columns upVevents is-multiline is-full-desktop ">
+              <div className="column is-one-quarter">
+                <button className="button  is-success is-large is-rounded" onClick={this.previousEvent} disabled={index === 0}> Previous
+                </button>
+              </div>
+              <div className="column is-one-half">
+                <Link to={`/events/external/${this.state.currentEvent.id}`}>
+                  <div  className="cards-slider">
+                    <div className="cards-slider-wrapper">
+                      {!!this.state.upcoming.resultsPage &&
+
+                    <div key={this.state.currentEvent.id} className="column card uevents ">
+
+                      <span className="subtitle is-4 has-text-light">{this.state.currentEvent.displayName}</span>
+
+                    </div>
+
+
+                      }
+                    </div>
+                  </div>
+                </Link>
+              </div>
+              <div className="column is-one-quarter">
+                <button className="button  is-success is-large is-rounded" onClick={this.nextEvent} disabled ={index === eventsLength-1}  > Next
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className=" upcoming">
-          <h1 className="title is-3">UpComing Events</h1>
-          <div className="columns upVevents is-multiline is-full-desktop">
 
-            <div className="backArrow">
-              <i className="fa fa-arrow-left fa-2x" aria-hidden="true"></i>
-            </div>
-            {!!this.state.upcoming.resultsPage &&
-              this.state.upcoming.resultsPage.results.event.map(upevent =>
-                <div key={upevent.id} className="column uevents is-one-quarter">
-                  <span className="subtitle is-4 has-text-light">{upevent.displayName}</span>
-                </div>
-              )
-            }
-
-
-            <div className="nextArrow">
-              <i className="fa fa-arrow-right fa-2x" aria-hidden="true"></i>
-            </div>
-
-          </div>
-        </div>
       </section>
     )
   }
 }
 
-export default VenuesShow
+export default Show
