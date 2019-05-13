@@ -45,6 +45,7 @@ class Navbar extends React.Component{
           <div className="navbar-start">
             <Link to="/events" className={`navbar-item ${this.state.active ? ' is-active' : ''} `}>Events</Link>
             <Link to="/venues" className={`navbar-item ${this.state.active ? ' is-active' : ''} `}>Venues</Link>
+            <Link to="/new" className={`navbar-item ${this.state.active ? ' is-active' : ''} `}>Add an Event!</Link>
           </div>
 
           <div className="navbar-end">

@@ -168,7 +168,7 @@ class EventsNew extends React.Component {
                 <button> Find Venue </button>
               </form>
 
-              {this.state.venues.venue && !this.state.venue.id &&<div className="columns is-multiline">
+              {this.state.venues.venue && !this.state.venue.skId &&<div className="columns is-multiline">
 
                 {this.state.venues.venue.map(venue =>{
 
