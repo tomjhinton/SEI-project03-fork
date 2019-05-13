@@ -7,19 +7,32 @@ class EventsIndex extends React.Component{
   constructor(){
     super()
     this.state={
-      events: []
+      events: [],
+      searchTerm: 'ren',
+      matches: []
     }
+    this.getMatches=this.getMatches.bind(this)
+  }
+
+
+  getMatches(){
+    console.log(this.state.events, 'getmatches events')
+    this.setState({matches: this.state.events.filter(event => event.name.match(/`${this.state.searchTerm}`/gi))})
+    console.log('getmatches', this.state.matches)
   }
 
   componentDidMount(){
     axios.get('/api/events')
-
       .then(res =>this.setState({ events: res.data }))
+      .then(this.getMatches)
+      .then(console.log('mdm', this.state.matches))
   }
   render(){
     return(
+
       <section className="section">
-        <div className="container">
+
+        {!this.state.searchTerm && <div className="container">
           {this.state.events.map(event =>
             <Link key={event._id} to={`/events/${event._id}`}>
               <div  className="columns index-card event-index-card box-shadow">
@@ -36,7 +49,16 @@ class EventsIndex extends React.Component{
               </div>
             </Link>
           )}
-        </div>
+        </div>}
+
+        {!!this.state.searchTerm && this.state.events.length>0 &&
+          <div className="container">
+            {this.state.matches.map(match => {
+              return <p key={match.id}>{match.name}</p>
+            })}
+          </div>
+        }
+
       </section>
 
     )
