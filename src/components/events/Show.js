@@ -4,7 +4,7 @@ import axios from 'axios'
 
 
 
-class Show extends React.Component {
+class EventsShow extends React.Component {
   constructor() {
     super()
 
@@ -22,7 +22,7 @@ class Show extends React.Component {
       <div className="section">
         <div className="container">
 
-          <div className="columns">
+          <div className="columns show-body">
             <div className="column">
               <img className="event-image" src={this.state.image}></img>
             </div>
@@ -52,7 +52,7 @@ class Show extends React.Component {
               {!!this.state.artist &&
                   <div className="event-meta">
                     {this.state.artist.map(artist => {
-                      return <div key={artist} >{artist}</div>
+                      return <div key={artist} className="event-show-artist" >{artist}</div>
                     })}
                   </div>
               }
@@ -66,4 +66,4 @@ class Show extends React.Component {
   }
 }
 
-export default Show
+export default EventsShow
