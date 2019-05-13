@@ -31,7 +31,7 @@ class Show extends React.Component {
 
               <div className="event-meta">
                 <div className="subtitle is-7">{this.state.date}</div>
-                <div className="subtitle is-7">{this.state.venue}</div>
+                <div className="subtitle is-7">{this.state.venue}, {this.state.postcode}</div>
                 <div className="subtitle is-7">£{this.state.price}</div>
                 <div className="subtitle is-7">Over {this.state.minimumAge}s only</div>
               </div>
@@ -52,7 +52,8 @@ class Show extends React.Component {
               {!!this.state.artist &&
                   <div className="event-meta">
                     {this.state.artist.map(artist => {
-                      return <div key={artist} className="event-show-artist" >{artist}</div>
+                      return <div key={artist.label} className="event-show-artist" >{artist.label}</div>
+
                     })}
                   </div>
               }

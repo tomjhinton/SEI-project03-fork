@@ -28,7 +28,6 @@ class Navbar extends React.Component{
     }
   }
   render(){
-    console.log(this.props.location.pathname)
     return(
       <nav className="navbar">
         <div className="navbar-brand">
@@ -45,6 +44,7 @@ class Navbar extends React.Component{
           <div className="navbar-start">
             <Link to="/events" className={`navbar-item ${this.state.active ? ' is-active' : ''} `}>Events</Link>
             <Link to="/venues" className={`navbar-item ${this.state.active ? ' is-active' : ''} `}>Venues</Link>
+            <Link to="/new" className={`navbar-item ${this.state.active ? ' is-active' : ''} `}>Add an Event!</Link>
           </div>
 
           <div className="navbar-end">
@@ -53,10 +53,8 @@ class Navbar extends React.Component{
             {Auth.isAuthenticated() && <a className="navbar-item" onClick={this.logout}>Logout</a>}
             {this.props.location.pathname!=='/' &&
             <div className="field has-addons">
-              <div className="control">
-                <input className="input is-rounded" type="text" placeholder="Events,Artist,Venues" />
+                <input className="input search-box" type="text" placeholder="Artist or Venue ..." />
               </div>
-            </div>
             }
           </div>
         </div>

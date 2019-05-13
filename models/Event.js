@@ -13,9 +13,21 @@ const eventSchema = new mongoose.Schema({
     type: String,
     required: 'Please enter a venue for the event'
   },
+  postcode: {
+    type: String
+  },
+  skId: {
+    type: String
+  },
   date: {
     type: Date,
     required: 'Please enter a date for the event'
+  },
+  start: {
+    type: String
+  },
+  finish: {
+    type: String
   },
   image: {
     type: String
