@@ -5,14 +5,8 @@ import Auth from '../../lib/Auth'
 
 import 'react-datepicker/dist/react-datepicker.css'
 
-const artistArray = []
-
 import CreatableSelect from 'react-select/lib/Creatable'
 import DatePicker from 'react-datepicker'
-
-
-
-
 
 class EventsNew extends React.Component {
 
@@ -22,7 +16,11 @@ class EventsNew extends React.Component {
     this.state = {
       test: {},
       data: {
-        artist: []
+        artist: [],
+        date: '',
+        start: '',
+        finish: ''
+
       },
       errors: {},
       venues: {},
@@ -33,10 +31,10 @@ class EventsNew extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.findVenue = this.findVenue.bind(this)
     this.selectVenue = this.selectVenue.bind(this)
-    this.submitArtists = this.submitArtists.bind(this)
-    this.addArtist = this.addArtist.bind(this)
     this.handleChangeDate = this.handleChangeDate.bind(this)
     this.handleSelectChange = this.handleSelectChange.bind(this)
+    this.handleStartTime = this.handleStartTime.bind(this)
+    this.handleFinishTime = this.handleFinishTime.bind(this)
 
 
   }
@@ -62,7 +60,7 @@ class EventsNew extends React.Component {
 
 
 
-  handleChangeDate(date, e) {
+  handleChangeDate(date) {
     console.log(date)
 
     this.setState({
@@ -73,35 +71,31 @@ class EventsNew extends React.Component {
     })
   }
 
+  handleStartTime(date) {
+    console.log(date)
 
-
-  addArtist(e){
-    e.preventDefault()
-    artistArray.push(this.state.data.artist)
-    console.log(artistArray)
     this.setState({
       data: {
-        artist: artistArray
+        ...this.state.data,
+        start: date.getHours() + ':' + date.getMinutes()
       }
+    })
+  }
 
+  handleFinishTime(date) {
+    console.log(date)
+
+    this.setState({
+      data: {
+        ...this.state.data,
+        finish: date.getHours() + ':' + date.getMinutes()
+      }
     })
   }
 
 
 
 
-  submitArtists(e){
-    e.preventDefault()
-    console.log(artistArray)
-    this.setState({
-      data: {
-        artist: artistArray
-      }
-    }
-
-    )
-    console.log(this)
-  }
 
   selectVenue(e){
     //e.preventDefault()
@@ -114,7 +108,7 @@ class EventsNew extends React.Component {
       venue: {
         name: e.target.dataset.name,
         postcode: e.target.dataset.postcode,
-        id: e.target.id
+        skId: e.target.id
       },
       data: {
         venue: e.target.dataset.name,
@@ -146,11 +140,6 @@ class EventsNew extends React.Component {
     })
       .then(() => this.props.history.push('/events'))
   }
-
-
-
-
-
 
 
 
@@ -235,13 +224,26 @@ class EventsNew extends React.Component {
                 </div>
                 <div className="field">
                   <label className="label">Date</label>
-
+                  {this.state.data.date &&  <h1>{this.state.data.date.toString() || ''}</h1>}
                   <DatePicker
-                    name="date"
-                    selected={this.state.date}
                     onChange={this.handleChangeDate}
+                    value={this.state.data.date || ''}
+                  />
+                  <label className="label">Start Time</label>
+                  {this.state.data.start && <h1>{this.state.data.start.toString() || ''}</h1>}
+                  <DatePicker
                     showTimeSelect
-
+                    showTimeSelectOnly
+                    onChange={this.handleStartTime}
+                    value={this.state.data.start || ''}
+                  />
+                  <label className="label">Finish Time</label>
+                  {this.state.data.finish && <h1>{this.state.data.finish.toString()}</h1>}
+                  <DatePicker
+                    showTimeSelect
+                    showTimeSelectOnly
+                    onChange={this.handleFinishTime}
+                    value={this.state.data.finish || ''}
                   />
                   {this.state.errors.date && <div className="help is-danger">{this.state.errors.date}</div>}
                 </div>
@@ -266,7 +268,7 @@ class EventsNew extends React.Component {
                   <label className="label">Description</label>
                   <div className="control">
                     <input
-                      className="input"
+                      className="textarea"
                       name="description"
                       placeholder="A description of your event"
                       onChange={this.handleChange}
