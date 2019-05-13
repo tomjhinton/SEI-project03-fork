@@ -35,6 +35,10 @@ class New extends React.Component {
     this.selectVenue = this.selectVenue.bind(this)
     this.submitArtists = this.submitArtists.bind(this)
     this.addArtist = this.addArtist.bind(this)
+    this.handleChangeDate = this.handleChangeDate.bind(this)
+    this.handleSelectChange = this.handleSelectChange.bind(this)
+
+
   }
 
 
@@ -46,18 +50,45 @@ class New extends React.Component {
   }
 
 
+
+  handleSelectChange(e) {
+    console.log(e)
+    const data = { ...this.state.data, artist: e }
+    //console.log(data)
+    this.setState({ data })
+    console.log(this)
+  }
+
+
+
+
+  handleChangeDate(date, e) {
+    console.log(date)
+
+    this.setState({
+      data: {
+        ...this.state.data,
+        date: date
+      }
+    })
+  }
+
+
+
   addArtist(e){
     e.preventDefault()
     artistArray.push(this.state.data.artist)
     console.log(artistArray)
     this.setState({
       data: {
-        artist: []
+        artist: artistArray
       }
-    }
 
-    )
+    })
   }
+
+
+
 
   submitArtists(e){
     e.preventDefault()
@@ -86,7 +117,9 @@ class New extends React.Component {
         id: e.target.id
       },
       data: {
-        venue: e.target.dataset.name
+        venue: e.target.dataset.name,
+        postcode: e.target.dataset.postcode,
+        id: e.target.id
       }
     })
     console.log(this)
@@ -111,12 +144,13 @@ class New extends React.Component {
     axios.post('/api/events', this.state.data, {
       headers: { 'Authorization': `Bearer ${token}` }
     })
-    //  .then(() => this.props.history.push('/events'))
+      .then(() => this.props.history.push('/events'))
   }
 
-  handleInputChange(){
-    console.log('yeah')
-  }
+
+
+
+
 
 
 
@@ -155,7 +189,7 @@ class New extends React.Component {
                 })}
               </div>}
 
-              <form onSubmit={this.findVenue}>
+              <form>
 
                 <div className="field">
                   <label className="label">Artist</label>
@@ -164,12 +198,11 @@ class New extends React.Component {
                 </div>
 
                 < CreatableSelect
-                  onKeyDown={this.handleChange}
+                  onChange={this.handleSelectChange}
                   isMulti
-                  onInputChange={this.handleInputChange}/>
 
 
-
+                />
               </form>
 
 
@@ -202,12 +235,15 @@ class New extends React.Component {
                 </div>
                 <div className="field">
                   <label className="label">Date</label>
+
                   <DatePicker
-                    selected={this.state.startDate}
-                    onChange={this.handleChange}
                     name="date"
+                    selected={this.state.date}
+                    onChange={this.handleChangeDate}
+                    showTimeSelect
+
                   />
-                  {this.state.errors.image && <div className="help is-danger">{this.state.errors.image}</div>}
+                  {this.state.errors.date && <div className="help is-danger">{this.state.errors.date}</div>}
                 </div>
 
 
