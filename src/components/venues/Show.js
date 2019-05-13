@@ -109,7 +109,7 @@ class Show extends React.Component{
 
             <div className="columns upVevents is-multiline is-full-desktop ">
               <div className="column is-one-quarter">
-                <button className="button  is-success is-large is-rounded" onClick={this.previousEvent} disabled={index === 0}> Previous
+                <button  onClick={this.previousEvent} disabled={index === 0}> Previous
                 </button>
               </div>
               <div className="column is-one-half">
@@ -131,7 +131,7 @@ class Show extends React.Component{
                 </Link>
               </div>
               <div className="column is-one-quarter">
-                <button className="button  is-success is-large is-rounded" onClick={this.nextEvent} disabled ={index === eventsLength-1}  > Next
+                <button onClick={this.nextEvent} disabled ={index === eventsLength-1}  > Next
                 </button>
               </div>
             </div>

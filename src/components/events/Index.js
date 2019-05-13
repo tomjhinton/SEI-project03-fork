@@ -8,18 +8,18 @@ class EventsIndex extends React.Component{
     super()
     this.state={
       events: [],
-      searchTerm: 'ren',
+      searchTerm: null,
       matches: []
     }
-    this.getMatches=this.getMatches.bind(this)
+    // this.getMatches=this.getMatches.bind(this)
   }
 
 
-  getMatches(){
-    console.log(this.state.events, 'getmatches events')
-    this.setState({matches: this.state.events.filter(event => event.name.match(/`${this.state.searchTerm}`/gi))})
-    console.log('getmatches', this.state.matches)
-  }
+  // getMatches(){
+  //   console.log(this.state.events, 'getmatches events')
+  //   this.setState({matches: this.state.events.filter(event => event.name.match(/`${this.state.searchTerm}`/gi))})
+  //   console.log('getmatches', this.state.matches)
+  // }
 
   componentDidMount(){
     axios.get('/api/events')

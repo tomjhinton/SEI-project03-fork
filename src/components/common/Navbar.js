@@ -53,7 +53,7 @@ class Navbar extends React.Component{
             {Auth.isAuthenticated() && <a className="navbar-item" onClick={this.logout}>Logout</a>}
             {this.props.location.pathname!=='/' &&
             <div className="field has-addons">
-                <input className="input search-box" type="text" placeholder="Artist or Venue ..." />
+                <input className="input" type="text" placeholder="Artist or Venue ..." />
               </div>
             }
           </div>
