@@ -14,6 +14,7 @@ import EventsIndex from './components/events/Index'
 import VenuesShow from './components/venues/Show'
 import Navbar from './components/common/Navbar'
 import Home from './components/common/Home'
+import SEventsShow from './components/events/external/Show'
 
 
 class App extends React.Component {
@@ -36,14 +37,22 @@ class App extends React.Component {
         <Navbar />
         <main>
           <Switch>
+            <Route path="/events/external/:id" component={SEventsShow}/>
             <Route path="/events/:id" component={EventsShow} />
+
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
+
             <Route path="/events" component={EventsIndex} />
             <Route path="/venues/:id" component={VenuesShow} />
             <Route path="/new" component={EventsNew} />
             <Route path="/venues" component={VenuesSearch} />
             <Route path="/" render={() => <Home location={this.state.location} />} />
+
+
+
+
+
           </Switch>
         </main>
       </Router>
