@@ -1,8 +1,15 @@
+
 *{
   font-family: 'Roboto', sans-serif;
 }
 
+
 .box-shadow{
+
+
+
+.container{
+
   background-color: hsl(0, 0%, 98%);
   padding: 15px;
   box-shadow: 0 0.5px 0 0 #ffffff inset, 0 1px 2px 0 #B3B3B3
@@ -12,6 +19,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+
 }
 
 button{
@@ -143,8 +151,28 @@ button{
   color: rgb(51, 0, 51)
 }
 
+
+.fas{
+  width: 40px;
+}
+
+
+.search-results{
+  background-color: white;
+  max-width: 60vw;
+  margin: 0 auto;
+}
+
+.search-result{
+  margin: 10px;
+  padding: 15px;
+  box-shadow: 0 0.5px 0 0 #ffffff inset, 0 1px 2px 0 #B3B3B3;
+}
+
+}
+
 .upcoming{
-  margin-top: 80px;
+  margin-top: 50px;
 
 }
 .upVevents{
@@ -159,13 +187,28 @@ button{
 
   background-repeat: no-repeat;
 }
-.fas{
-  width: 40px;
+.cards-slider-wrapper{
+  display: flex;
+
+  .card{
+    flex:1;
+    min-width: 400px;
+  }
 }
+.cards-slider {
+  position:relative;
+  max-width: 800px;
+  margin :0 auto;
 
-
-.search-results{
-  background-color: white;
-  max-width: 60vw;
-  margin: 0 auto;
+  //border for active property
+  &:after{
+    content: '';
+    display: block;
+    width: 100%;
+    height: 200px;
+    outline:5px solid #61DAFE;
+    position: absolute;
+    top:0;
+    left:0;
+  }
 }

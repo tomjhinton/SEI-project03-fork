@@ -4,7 +4,7 @@ import axios from 'axios'
 
 
 
-class EventsShow extends React.Component {
+class Show extends React.Component {
   constructor() {
     super()
 
@@ -12,7 +12,7 @@ class EventsShow extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`api/events/${this.props.match.params.id}`)
+    axios.get(`/api/events/${this.props.match.params.id}`)
       .then(res => this.setState(res.data))
   }
 
@@ -31,9 +31,9 @@ class EventsShow extends React.Component {
 
               <div className="event-meta">
                 <div className="subtitle is-7">{this.state.date}</div>
-                <div className="subtitle is-7">{this.state.venue}, {this.state.postcode}</div>
+                <Link to={`/venues/${this.state.skId}`}>  <div className="subtitle is-7">{this.state.venue}, {this.state.postcode}</div> </Link>
                 <div className="subtitle is-7">£{this.state.price}</div>
-                <div className="subtitle is-7">Over {this.state.minimumAge}s only</div>
+                <div className="subtitle is-7">Over {this.state.minimumAge}s only</div>{this.state.start} - {this.state.finish}
               </div>
 
               <h2>{this.state.description}</h2>
@@ -67,4 +67,4 @@ class EventsShow extends React.Component {
   }
 }
 
-export default EventsShow
+export default Show
