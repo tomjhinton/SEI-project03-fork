@@ -28,7 +28,6 @@ class Navbar extends React.Component{
     }
   }
   render(){
-    console.log(this.props.location.pathname)
     return(
       <nav className="navbar">
         <div className="navbar-brand">

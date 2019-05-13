@@ -1,3 +1,7 @@
+*{
+  font-family: 'Roboto', sans-serif;
+}
+
 .box-shadow{
   background-color: hsl(0, 0%, 98%);
   padding: 15px;
@@ -23,13 +27,43 @@ button{
   border-radius: 0;
   box-shadow: none;
 }
+
 .title{
   color: rgb(51, 0, 51);
+}
+
+.home-main{
+  height: 90vh;
+  background-image:url('images/hero-0.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
+.home-main-overlay{
+  height: 100%;
+  width: 100%;
+  background-color: rgba(255,255,255,0.7);
+  margin: 0;
+}
+
+.home-main-overlay>.column{
+  align-items: center;
+}
+
+.home-main-overlay>.column>h1{
+  color: rgb(51, 0, 51);
+  font-family: 'Revalia', cursive;
+  font-size: 100px;
+}
+
+.home-main-overlay>.column>form{
+  width: 60%;
 }
 
 .logo{
   color: rgb(255, 255, 153);
   padding: 0.5rem 0.75rem;
+  font-family: 'Revalia', cursive;
 }
 
 .search-box{
@@ -38,6 +72,8 @@ button{
 
 .navbar{
   background-color: rgb(51, 0, 51);
+  position:sticky;
+  top: 0;
 }
 
 .navbar-item{
