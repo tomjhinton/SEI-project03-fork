@@ -27,10 +27,8 @@ class Home extends React.Component{
             recEventsId.push(recEvent.id)
           }
         }
-
         this.setState( {recEvents} )
       })
-
   }
 
   getLocation(){
@@ -70,7 +68,7 @@ class Home extends React.Component{
 
           <div className="home-rec-events">
             {this.state.recEvents.map(recEvent => {
-              return <div key={recEvent.id} className="home-rec-event">{recEvent.displayName}</div>
+              return <Link to={`/events/external/${recEvent.id}`} key={recEvent.id} className="home-rec-event">{recEvent.displayName}</Link>
             })}
           </div>
 
