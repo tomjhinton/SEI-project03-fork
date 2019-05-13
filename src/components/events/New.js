@@ -113,7 +113,7 @@ class EventsNew extends React.Component {
       data: {
         venue: e.target.dataset.name,
         postcode: e.target.dataset.postcode,
-        id: e.target.id
+        skId: e.target.id
       }
     })
     console.log(this)
