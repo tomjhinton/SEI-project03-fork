@@ -27,10 +27,8 @@ class Home extends React.Component{
             recEventsId.push(recEvent.id)
           }
         }
-
-        console.log(recEvents)
+        this.setState( {recEvents} )
       })
-
   }
 
   getLocation(){
@@ -50,19 +48,30 @@ class Home extends React.Component{
   render() {
     return(
       <main className="home-main">
-        <div className="home-main-overlay columns">
-          <div className="column is-half">
-            <h1 className="logo">EventUp</h1>
-            <p>Helping you find your music...</p>
+        <div className="home-main-overlay">
+
+          <div className="columns ">
+            <div className="column is-half">
+              <h1 className="logo">EventUp</h1>
+              <p>Connecting you with music in your area.  </p>
+            </div>
+            <div className="column is-half">
+              <form className="level is-half">
+                <input
+                  className="input home-main-form-item"
+                  placeholder="What you looking for?"
+                />
+                <button className="home-main-form-item">Find it</button>
+              </form>
+            </div>
           </div>
-          <div className="column is-half">
-            <form>
-              <input
-                className="input"
-                placeholder="What you looking for?"
-              />
-            </form>
+
+          <div className="home-rec-events">
+            {this.state.recEvents.map(recEvent => {
+              return <Link to={`/events/external/${recEvent.id}`} key={recEvent.id} className="home-rec-event">{recEvent.displayName}</Link>
+            })}
           </div>
+
         </div>
       </main>
     )

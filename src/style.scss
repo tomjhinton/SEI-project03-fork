@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Revalia|Roboto');
+
 *{
   font-family: 'Roboto', sans-serif;
 }
 
-.box-shadow{
+.container{
+
   background-color: hsl(0, 0%, 98%);
   padding: 15px;
   box-shadow: 0 0.5px 0 0 #ffffff inset, 0 1px 2px 0 #B3B3B3
@@ -12,6 +15,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+
 }
 
 button{
@@ -20,6 +24,7 @@ button{
   border: none;
   height: 30px;
   width: 100px;
+  font-size: 20px;
 }
 
 .input{
@@ -44,20 +49,45 @@ button{
   width: 100%;
   background-color: rgba(255,255,255,0.7);
   margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 
-.home-main-overlay>.column{
+.home-main-overlay>.columns{
+  height: 100%;
+}
+
+.home-main-overlay>.columns>.column{
   align-items: center;
 }
 
-.home-main-overlay>.column>h1{
+.home-main-overlay>.columns>.column>h1{
   color: rgb(51, 0, 51);
   font-family: 'Revalia', cursive;
   font-size: 100px;
 }
 
-.home-main-overlay>.column>form{
-  width: 60%;
+.home-main-overlay>.columns>.column>form{
+  width: 70%;
+}
+
+.home-main-form-item{
+  height: 50px;
+}
+
+.home-rec-events{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 5px;
+  background-color: rgba(0,0,0,0.6);
+}
+
+.home-rec-event{
+  margin: 5px 0;
+  color: rgb(255, 255, 153);
+  font-weight: bold;
+  width: 28%;
 }
 
 .logo{
@@ -118,8 +148,26 @@ button{
   color: rgb(51, 0, 51)
 }
 
+
+.fas{
+  width: 40px;
+}
+
+
+.search-results{
+  background-color: white;
+  max-width: 60vw;
+  margin: 0 auto;
+}
+
+.search-result{
+  margin: 10px;
+  padding: 15px;
+  box-shadow: 0 0.5px 0 0 #ffffff inset, 0 1px 2px 0 #B3B3B3;
+}
+
 .upcoming{
-  margin-top: 80px;
+  margin-top: 50px;
 
 }
 .upVevents{
@@ -134,15 +182,30 @@ button{
 
   background-repeat: no-repeat;
 }
-.fas{
-  width: 40px;
+.cards-slider-wrapper{
+  display: flex;
+
+  .card{
+    flex:1;
+    min-width: 400px;
+  }
 }
+.cards-slider {
+  position:relative;
+  max-width: 800px;
+  margin :0 auto;
 
-
-.search-results{
-  background-color: white;
-  max-width: 60vw;
-  margin: 0 auto;
+  //border for active property
+  &:after{
+    content: '';
+    display: block;
+    width: 100%;
+    height: 200px;
+    outline:5px solid #61DAFE;
+    position: absolute;
+    top:0;
+    left:0;
+  }
 }
 
 #map { position:absolute; ; top:0; bottom:0; width: 25%; height:100% }

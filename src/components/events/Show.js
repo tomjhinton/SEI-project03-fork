@@ -6,7 +6,7 @@ import mapboxgl from 'mapbox-gl'
 
 mapboxgl.accessToken = process.env.MAPBOX
 
-class EventsShow extends React.Component {
+class Show extends React.Component {
   constructor() {
     super()
 
@@ -41,7 +41,7 @@ class EventsShow extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`api/events/${this.props.match.params.id}`)
+    axios.get(`/api/events/${this.props.match.params.id}`)
       .then(res => this.setState(res.data))
       .then(this.getMap)
 
@@ -102,4 +102,4 @@ class EventsShow extends React.Component {
   }
 }
 
-export default EventsShow
+export default Show
