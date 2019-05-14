@@ -126,7 +126,7 @@ class EventsNew extends React.Component {
     })
       .then(() => this.props.history.push('/events'))
       .catch(err => this.setState({ errors: err.response.data.errors }))
-  
+
   }
 
 
