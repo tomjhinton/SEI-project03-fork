@@ -43,13 +43,15 @@ class EventsIndex extends React.Component{
           )}
         </div>}
 
-        {!!this.state.searchTerm && this.state.events.length>0 &&
-          <div className="container">
-            {this.state.matches.map(match => {
-              return <p key={match.id}>{match.name}</p>
-            })}
-          </div>
-        }
+        {!!this.state.searchTerm && this.state.events.length>0 && <div>
+          {this.state.matches.map(event =>
+            <div key={event._id} className="index-card container">
+              <Link  to={`/events/${event._id}`}>
+                <EventsCard {...event}/>
+              </Link>
+            </div>
+          )}
+        </div>}
 
       </section>
 
