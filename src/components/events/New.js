@@ -154,7 +154,7 @@ class EventsNew extends React.Component {
               <form onSubmit={this.findVenue}>
                 <div className="field">
                   <label className="label">Venue</label>
-                  <div className="control">
+                  <div className="control level">
                     <input
                       className="input"
                       name="venue"
@@ -162,10 +162,11 @@ class EventsNew extends React.Component {
                       onChange={this.handleChange}
                       value={this.state.data.venue || ''}
                     />
+                    <button className="find-button">Find</button>
                   </div>
                   {this.state.errors.name && <div className="help is-danger">{this.state.errors.name}</div>}
                 </div>
-                <button> Find Venue </button>
+
               </form>
 
               {this.state.venues.venue && !this.state.venue.skId &&<div className="columns is-multiline">
@@ -294,7 +295,7 @@ class EventsNew extends React.Component {
 
 
 
-                <button className="button is-primary">Submit</button>
+                <button>Submit</button>
               </form>
 
             </div>

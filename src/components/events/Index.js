@@ -8,10 +8,10 @@ class EventsIndex extends React.Component{
     super()
     this.state={
       events: [],
-      searchTerm: 'ren',
+      searchTerm: null,
       matches: []
     }
-    this.getMatches=this.getMatches.bind(this)
+    // this.getMatches=this.getMatches.bind(this)
   }
 
 

@@ -22,7 +22,6 @@ class App extends React.Component {
     super()
 
     this.state = {
-
     }
   }
 
@@ -48,10 +47,6 @@ class App extends React.Component {
             <Route path="/new" component={EventsNew} />
             <Route path="/venues" component={VenuesSearch} />
             <Route path="/" render={() => <Home location={this.state.location} />} />
-
-
-
-
 
           </Switch>
         </main>
