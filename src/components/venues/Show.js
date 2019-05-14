@@ -41,6 +41,7 @@ class VenuesShow extends React.Component{
     this.setState({currentEvent: this.state.upcoming.resultsPage.results.event[index]})
     console.log(this.state.currentEvent)
     console.log(this.state)
+
   }
 
   previousEvent(){
@@ -50,6 +51,8 @@ class VenuesShow extends React.Component{
   }
 
   render(){
+
+
     return(
       <section className="section">
         <div className="container">

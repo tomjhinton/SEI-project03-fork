@@ -19,7 +19,7 @@ function loginRoute(req, res, next) {
       // create a token
       const token = jwt.sign({ sub: user._id }, secret, { expiresIn: '6h' })
       // send it to the client
-      res.json({ message: `Valr morghulis, ${user.username}!`, token })
+      res.json({ message: `Be ready to get wild, ${user.username}!`, token })
     })
     .catch(next)
 }
