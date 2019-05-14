@@ -17,7 +17,8 @@ class Register extends React.Component{
     // merge data on state with new data from the form
     const data = { ...this.state.data, [e.target.name]: e.target.value }
     // set the data back on state
-    this.setState({ data }) // equivalent to { data: data }
+
+    this.setState({  data })
   }
 
   handleSubmit(e) {
@@ -29,8 +30,11 @@ class Register extends React.Component{
   }
 
   render(){
+
     return(
+
       <section className="section">
+  
         <div className="container">
           <div className="columns is-centered">
             <div className="column is-half-desktop is-two-thirds-tablet">
@@ -88,7 +92,9 @@ class Register extends React.Component{
             </div>
           </div>
         </div>
+
       </section>
+
     )
   }
 }

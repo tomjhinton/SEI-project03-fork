@@ -1,10 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { HashRouter as Router, Switch, Route } from 'react-router-dom'
-
 import 'bulma'
 import './style.scss'
-
 import EventsShow from './components/events/Show'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
@@ -15,6 +13,8 @@ import VenuesShow from './components/venues/Show'
 import Navbar from './components/common/Navbar'
 import Home from './components/common/Home'
 import SEventsShow from './components/events/external/Show'
+import SecureRoute from './components/common/SecureRoute'
+import FlashMessages from './components/common/FlashMessages'
 
 
 class App extends React.Component {
@@ -34,8 +34,10 @@ class App extends React.Component {
     return (
 
       <Router>
-        <Navbar />
         <main>
+          <Navbar />
+          <FlashMessages />
+
           <Switch>
             <Route path="/events/external/:id" component={SEventsShow}/>
             <Route path="/events/:id" component={EventsShow} />
@@ -45,7 +47,7 @@ class App extends React.Component {
 
             <Route path="/events" component={EventsIndex} />
             <Route path="/venues/:id" component={VenuesShow} />
-            <Route path="/new" component={EventsNew} />
+            <SecureRoute path="/new" component={EventsNew} />
             <Route path="/venues" component={VenuesSearch} />
             <Route path="/" render={() => <Home location={this.state.location} />} />
 

@@ -1,13 +1,13 @@
 const router = require('express').Router()
-
+const secureRoute = require('../lib/secureRoute')
 const eventsController = require('../controllers/events')
-const authController =require('../controllers/auth')
+const authController = require('../controllers/auth')
 
 router.get('/events', eventsController.index)
 router.get('/events/:id', eventsController.show)
-router.post('/events', eventsController.create)
-router.put('/events/:id', eventsController.update)
-router.delete('/events/:id', eventsController.delete)
+router.post('/events',secureRoute,eventsController.create)
+router.put('/events/:id', secureRoute,eventsController.update)
+router.delete('/events/:id', secureRoute,eventsController.delete)
 
 router.get('/', (req, res) => res.json({ message: 'Welcome to the Events API' }))
 

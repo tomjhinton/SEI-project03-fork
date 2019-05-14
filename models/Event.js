@@ -57,7 +57,17 @@ const eventSchema = new mongoose.Schema({
     type: mongoose.Schema.ObjectId,
     ref: 'User'
   }
+
+}, {
+  toJSON: {
+    // whenever the user is converted to JSON
+    transform(doc, json) {
+      delete json.__v
+      return json
+    }
+  }
 })
+
 
 eventSchema.plugin(uniqueValidator) // this makes the unqiue error nicer...
 
