@@ -268,7 +268,7 @@ class EventsNew extends React.Component {
                 <div className="field">
                   <label className="label">Description</label>
                   <div className="control">
-                    <input
+                    <textarea
                       className="textarea"
                       name="description"
                       placeholder="A description of your event"

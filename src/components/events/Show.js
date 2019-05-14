@@ -33,10 +33,10 @@ class Show extends React.Component {
 
   makeMap(){
     var map = new mapboxgl.Map({
-      container: 'map', // container id
-      style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
-      center: [this.state.data.long, this.state.data.lat], // starting position [lng, lat]
-      zoom: 15 // starting zoom
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [this.state.data.long, this.state.data.lat],
+      zoom: 15
     })
   }
 
@@ -58,7 +58,9 @@ class Show extends React.Component {
           <div className="columns show-body">
             <div className="column">
               <img className="event-image" src={this.state.image}></img>
+              <div id="map"></div>
             </div>
+
             <div className="column">
               <h1  className="title is-1">{this.state.name}</h1>
 
@@ -70,30 +72,37 @@ class Show extends React.Component {
               </div>
 
               <h2>{this.state.description}</h2>
+              <div className="column">
+                {!!this.state.artist &&
+                    <div className="event-meta">
+                      {this.state.artist.map(artist => {
+                        return <div key={artist.label} className="event-show-artist" >{artist.label}
+
+                        </div>
+
+                      })}
+                    </div>
+                }
+
+              </div>
             </div>
+
           </div>
 
           <div className="columns">
             <div className="column">
               {!!this.state.createdBy &&
                 <div className="event-meta"><span>Organised by {this.state.createdBy.username}</span>
+
                 </div>
               }
-            </div>
-
-            <div className="column">
-              {!!this.state.artist &&
-                  <div className="event-meta">
-                    {this.state.artist.map(artist => {
-                      return <div key={artist.label} className="event-show-artist" >{artist.label}</div>
-
-                    })}
-                  </div>
-              }
 
             </div>
+
+
+
           </div>
-          <div id="map">hi </div>
+
         </div>
 
       </div>
