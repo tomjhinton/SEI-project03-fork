@@ -45,13 +45,13 @@ class VenuesSearch extends React.Component {
                   <input
                     className="input"
                     name="venue"
-                    placeholder="The venue of your event!"
+                    placeholder="What venue you looking for?"
                     onChange={this.handleChange}
                   />
                 </div>
                 {this.state.errors.name && <div className="help is-danger">{this.state.errors.name}</div>}
               </div>
-              <button onClick={this.handleSubmit}> Find Venue </button>
+              <button onClick={this.handleSubmit}>Find</button>
             </form>
           </div>
         </div>

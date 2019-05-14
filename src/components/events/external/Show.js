@@ -68,7 +68,7 @@ class Show extends React.Component {
           <div className="columns">
             <div className="column">
 
-              <div className="event-meta"><span>Organised by Songkick</span>
+              <div className="event-meta"><span>Courtesy of Songkick</span>
               </div>
 
             </div>
