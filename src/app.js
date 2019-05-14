@@ -38,15 +38,15 @@ class App extends React.Component {
           <FlashMessages />
 
           <Switch>
+            <SecureRoute path="/events/new" component={EventsNew} />
             <Route path="/events/external/:id" component={SEventsShow}/>
             <Route path="/events/:id" component={EventsShow} />
+            <Route path="/events" component={EventsIndex} />
 
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
 
-            <Route path="/events" component={EventsIndex} />
             <Route path="/venues/:id" component={VenuesShow} />
-            <SecureRoute path="/new" component={EventsNew} />
             <Route path="/venues" component={VenuesSearch} />
             <Route path="/" render={() => <Home location={this.state.location} />} />
 

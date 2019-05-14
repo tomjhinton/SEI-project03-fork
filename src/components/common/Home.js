@@ -5,31 +5,55 @@ import axios from 'axios'
 class Home extends React.Component{
   constructor(){
     super()
+
     this.state = {
-      recEvents: []
+      recEvents: [],
+      searchTerm: []
     }
 
     this.getMetroCode=this.getMetroEvents.bind(this)
     this.getLocation=this.getLocation.bind(this)
+    // this.handleChange=this.handleChange.bind(this)
   }
 
   getMetroEvents(){
-    axios.get(`https://api.songkick.com/api/3.0/search/locations.json?location=geo:${this.state.location.lat},${this.state.location.lon}&apikey=${process.env.SONG_KICK_KEY}`)
-      .then(res => axios.get(`https://api.songkick.com/api/3.0/metro_areas/${res.data.resultsPage.results.location[0].metroArea.id}/calendar.json?apikey=${process.env.SONG_KICK_KEY}&per_page=30`))
+    axios.get('https://api.songkick.com/api/3.0/search/locations.json', {
+      params: {
+        location: `geo:${this.state.location.lat},${this.state.location.lon}`,
+        apikey: process.env.SONG_KICK_KEY
+      }
+    })
       .then(res => {
-        const recEvents = []
-        const recEventsId = []
-
-        while (recEvents.length<3) {
-          const recEvent =  res.data.resultsPage.results.event[Math.floor(Math.random() * 30)]
-          if (!recEventsId.includes(recEvent.id) && recEvent.status!=='cancelled'){
-            recEvents.push(recEvent)
-            recEventsId.push(recEvent.id)
+        const [{ metroArea }] = res.data.resultsPage.results.location
+        console.log(metroArea)
+        return axios.get(`https://api.songkick.com/api/3.0/metro_areas/${metroArea.id}/calendar.json`, {
+          params: {
+            apikey: process.env.SONG_KICK_KEY,
+            per_page: 30
           }
+        })
+      })
+      .then(res => {
+        const { event } = res.data.resultsPage.results
+        console.log(event, 'event')
+        const recEvents = []
+
+        const activeEvents = event.filter(event => event.status !== 'cancelled')
+
+        let randomEvent = activeEvents[Math.floor(Math.random() * activeEvents.length)]
+        while(recEvents.length < 3 && !recEvents.includes(randomEvent)) {
+          recEvents.push(randomEvent)
+          randomEvent = activeEvents[Math.floor(Math.random() * activeEvents.length)]
         }
-        this.setState( {recEvents} )
+
+        this.setState({ recEvents })
       })
   }
+
+  // handleChange(){
+  //   e.preventDefault
+  //   const searchTerm = e.target
+  // }
 
   getLocation(){
     navigator.geolocation.getCurrentPosition((position) => {
@@ -60,6 +84,7 @@ class Home extends React.Component{
                 <input
                   className="input home-main-form-item"
                   placeholder="What you looking for?"
+                  onChange={this.handleChange}
                 />
                 <button className="home-main-form-item">Find it</button>
               </form>
