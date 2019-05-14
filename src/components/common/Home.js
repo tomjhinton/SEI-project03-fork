@@ -1,19 +1,22 @@
 import React from 'react'
-import { Link, withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
+
+import SearchBar from './SearchBar'
 
 class Home extends React.Component{
   constructor(){
     super()
 
     this.state = {
-      recEvents: [],
-      searchTerm: []
+      recEvents: []
+      // searchTerm: []
     }
 
     this.getMetroCode=this.getMetroEvents.bind(this)
     this.getLocation=this.getLocation.bind(this)
     // this.handleChange=this.handleChange.bind(this)
+    // this.handleSubmit=this.handleSubmit.bind(this)
   }
 
   getMetroEvents(){
@@ -50,10 +53,6 @@ class Home extends React.Component{
       })
   }
 
-  // handleChange(){
-  //   e.preventDefault
-  //   const searchTerm = e.target
-  // }
 
   getLocation(){
     navigator.geolocation.getCurrentPosition((position) => {
@@ -64,6 +63,17 @@ class Home extends React.Component{
       }}, this.getMetroEvents)
     })
   }
+
+  // handleChange(e){
+  //   e.preventDefault
+  //   this.setState( { searchTerm: e.target.value } )
+  //   console.log(this.state)
+  // }
+  //
+  // handleSubmit(e){
+  //   e.preventDefault
+  //   this.props.history.push('/events?search=' + this.state.searchTerm)
+  // }
 
   componentDidMount() {
     this.getLocation()
@@ -80,6 +90,7 @@ class Home extends React.Component{
               <p className="subtitle is-5">Connecting you with music in your area.  </p>
             </div>
             <div className="column is-half">
+
               <form className="level is-half ">
                 <input
                   className="input home-main-form-item "
@@ -88,6 +99,9 @@ class Home extends React.Component{
                 />
                 <button className="home-main-form-item ">Find it</button>
               </form>
+
+              <SearchBar />
+
             </div>
           </div>
 
@@ -104,3 +118,13 @@ class Home extends React.Component{
 }
 
 export default Home
+
+
+// <form className="level is-half" onSubmit={this.handleSubmit}>
+//   <input
+//     className="input home-main-form-item"
+//     placeholder="What you looking for?"
+//     onChange={this.handleChange}
+//   />
+//   <button className="home-main-form-item">Find it</button>
+// </form>

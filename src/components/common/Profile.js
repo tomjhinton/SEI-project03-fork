@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import Auth from '../../lib/Auth'
 import axios from 'axios'
-import EventsCard from '../events/Card'
+
 
 
 class Profile extends React.Component{
@@ -50,7 +50,7 @@ class Profile extends React.Component{
 
               {this.state.data.events && <div>
                 <h2 className="title is-2">My Events</h2>
-              
+
                 {this.state.data.events.map(event =>
                   <div key={event._id} className="index-card box wrapper">
                     <Link  to={`/events/${event._id}`}>

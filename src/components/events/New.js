@@ -118,9 +118,7 @@ class EventsNew extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
-
     const token = Auth.getToken()
-
     axios.post('/api/events', this.state.data, {
       headers: { 'Authorization': `Bearer ${token}` }
     })
@@ -128,10 +126,6 @@ class EventsNew extends React.Component {
       .catch(err => this.setState({ errors: err.response.data.errors }))
 
   }
-
-
-
-
 
   render() {
     console.log(this.state.data)
