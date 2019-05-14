@@ -1,57 +1,45 @@
 import React from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
+import qs from 'query-string'
 
 import EventsCard from './Card'
 
 class EventsIndex extends React.Component{
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
+
+    this.props.match.query = qs.parse(this.props.location.search)
+    this.getMatches=this.getMatches.bind(this)
+
     this.state={
       events: [],
-      searchTerm: null,
-      matches: []
+      searchTerm: this.props.match.query.search || ''
     }
-    this.getMatches=this.getMatches.bind(this)
   }
 
   getMatches(){
-    console.log(this.state.events, 'getmatches events')
-    this.setState({ matches: this.state.events.filter(event => event.name.toLowerCase().includes(this.state.searchTerm)) })
+    const re = new RegExp(this.state.searchTerm, 'i')
+    return this.state.events.filter(event => re.test(event.name))
   }
 
   componentDidMount(){
     axios.get('/api/events')
-      .then(res =>this.setState({ events: res.data }))
-      .then(this.getMatches)
+      .then(res => this.setState({ events: res.data }))
   }
 
   render(){
-    console.log('MATCHES', this.state.matches)
+    console.log(this.props)
     return(
 
       <section className="section">
-
-        {!this.state.searchTerm && <div>
-          {this.state.events.map(event =>
-            <div key={event._id} className="index-card container">
-              <Link  to={`/events/${event._id}`}>
-                <EventsCard {...event}/>
-              </Link>
-            </div>
-          )}
-        </div>}
-
-        {!!this.state.searchTerm && this.state.events.length>0 && <div>
-          {this.state.matches.map(event =>
-            <div key={event._id} className="index-card container">
-              <Link  to={`/events/${event._id}`}>
-                <EventsCard {...event}/>
-              </Link>
-            </div>
-          )}
-        </div>}
-
+        {this.getMatches().map(event =>
+          <div key={event._id} className="container index-card">
+            <Link to={`/events/${event._id}`}>
+              <EventsCard {...event}/>
+            </Link>
+          </div>
+        )}
       </section>
 
     )

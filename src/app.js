@@ -48,7 +48,7 @@ class App extends React.Component {
 
             <Route path="/venues/:id" component={VenuesShow} />
             <Route path="/venues" component={VenuesSearch} />
-            <Route path="/" render={() => <Home location={this.state.location} />} />
+            <Route path="/" render={(props) => <Home location={this.state.location} {...props} />} />
 
           </Switch>
         </main>

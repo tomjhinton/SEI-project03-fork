@@ -118,20 +118,13 @@ class EventsNew extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
-
     const token = Auth.getToken()
-
     axios.post('/api/events', this.state.data, {
       headers: { 'Authorization': `Bearer ${token}` }
     })
       .then(() => this.props.history.push('/events'))
       .catch(err => this.setState({ errors: err.response.data.errors }))
-  
   }
-
-
-
-
 
   render() {
     console.log(this.state.data)
