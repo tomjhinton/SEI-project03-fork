@@ -48,15 +48,15 @@ class Show extends React.Component {
     console.log('render', this.state)
     return (
       <div className="section">
-        <div className="container">
+        <div className="container box">
 
           <div className="columns show-body">
-            <div className="column">
-              <img className="event-image" src={this.state.image}></img>
+            <div className="column ">
+              <img className="event-image box" src={this.state.image} />
               <div id="map"></div>
             </div>
 
-            <div className="column">
+            <div className="column external-event">
               <h1  className="title is-1">{this.state.name}</h1>
 
               <div className="event-meta">
@@ -70,13 +70,15 @@ class Show extends React.Component {
               </div>
 
               <h2>{this.state.description}</h2>
-              <div className="column">
-                {!!this.state.artist &&
-                    <div className="event-meta">
-                      {this.state.artist.map(artist => {
-                        return <div key={artist.label} className="event-show-artist" >{artist.label}
 
-                        </div>
+              <div className="subtitle is-5">
+                {!!this.state.artist &&
+
+                    <div ><strong>Artists:</strong>
+                      {this.state.artist.map(artist => {
+                        return <span key={artist.label} className="event-show-artist" >{artist.label}
+
+                        </span>
 
                       })}
                     </div>
@@ -97,7 +99,7 @@ class Show extends React.Component {
 
             </div>
 
-          
+
           </div>
           <div id="map" />
         </div>

@@ -16,6 +16,10 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: 'Please provide a password'
+  },
+  image: {
+    type: String,
+    required: 'Please provide a profile photo'
   }
 }, {
   toJSON: {

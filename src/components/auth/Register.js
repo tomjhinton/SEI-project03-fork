@@ -34,7 +34,7 @@ class Register extends React.Component{
     return(
 
       <section className="section">
-  
+
         <div className="container">
           <div className="columns is-centered">
             <div className="column is-half-desktop is-two-thirds-tablet">
@@ -60,6 +60,19 @@ class Register extends React.Component{
                     />
                   </div>
                   {this.state.errors.email && <div className="help is-danger">{this.state.errors.email}</div>}
+                </div>
+                <div className="field">
+                  <label className="label">Profile Image</label>
+                  <div className="control">
+                    <input
+                      className="input"
+                      name="image"
+                      type="text"
+                      placeholder="eg: https:myimages.com"
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                  {this.state.errors.image && <div className="help is-danger">{this.state.errors.image}</div>}
                 </div>
                 <div className="field">
                   <label className="label">Password</label>

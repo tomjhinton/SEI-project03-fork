@@ -11,6 +11,8 @@ import VenuesSearch from './components/venues/Search'
 import EventsIndex from './components/events/Index'
 import VenuesShow from './components/venues/Show'
 import Navbar from './components/common/Navbar'
+import Profile from './components/common/Profile'
+
 import Home from './components/common/Home'
 import SEventsShow from './components/events/external/Show'
 import SecureRoute from './components/common/SecureRoute'
@@ -45,6 +47,8 @@ class App extends React.Component {
 
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
+            <SecureRoute path="/myprofile" component={Profile} />
+
 
             <Route path="/venues/:id" component={VenuesShow} />
             <Route path="/venues" component={VenuesSearch} />

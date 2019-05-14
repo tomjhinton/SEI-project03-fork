@@ -77,16 +77,16 @@ class Home extends React.Component{
           <div className="columns ">
             <div className="column is-half">
               <h1 className="logo">EventUp</h1>
-              <p>Connecting you with music in your area.  </p>
+              <p className="subtitle is-5">Connecting you with music in your area.  </p>
             </div>
             <div className="column is-half">
-              <form className="level is-half">
+              <form className="level is-half ">
                 <input
-                  className="input home-main-form-item"
+                  className="input home-main-form-item "
                   placeholder="What you looking for?"
                   onChange={this.handleChange}
                 />
-                <button className="home-main-form-item">Find it</button>
+                <button className="home-main-form-item ">Find it</button>
               </form>
             </div>
           </div>
