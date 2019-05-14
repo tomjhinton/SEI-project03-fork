@@ -1,14 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import Promise from 'bluebird'
+
 let index=0
 let eventsLength=0
 
-
-
-
-
-class Show extends React.Component{
+class VenuesShow extends React.Component{
   constructor(props){
     super(props)
     this.state ={
@@ -20,34 +18,29 @@ class Show extends React.Component{
     this.nextEvent=this.nextEvent.bind(this)
     this.previousEvent=this.previousEvent.bind(this)
   }
+
   componentDidMount(){
-    axios.get(`https://api.songkick.com/api/3.0/venues/${this.props.match.params.id}.json?&apikey=${process.env.SONG_KICK_KEY}`)
-      .then(res => this.setState({venue: res.data}))
-    axios.get(`https://api.songkick.com/api/3.0/venues/${this.props.match.params.id}/calendar.json?&apikey=${process.env.SONG_KICK_KEY}`)
-      .then(res => {
-        this.setState({upcoming: res.data,currentEvent: res.data.resultsPage.results.event[0]})
-
-
-      } )
-
-
-
-
+    Promise.props({
+      venue: axios.get(`https://api.songkick.com/api/3.0/venues/${this.props.match.params.id}.json`, {
+        params: {
+          apikey: process.env.SONG_KICK_KEY
+        }
+      }).then(res => res.data),
+      upcoming: axios.get(`https://api.songkick.com/api/3.0/venues/${this.props.match.params.id}/calendar.json`, {
+        params: {
+          apikey: process.env.SONG_KICK_KEY
+        }
+      }).then(res => res.data)
+    })
+      .then(res => this.setState({ venue: res.venue, upcoming: res.upcoming}))
   }
+
   nextEvent(){
     index++
     eventsLength=this.state.upcoming.resultsPage.results.event.length
-
-
-
     this.setState({currentEvent: this.state.upcoming.resultsPage.results.event[index]})
-
     console.log(this.state.currentEvent)
     console.log(this.state)
-
-
-
-
 
   }
 
@@ -55,14 +48,9 @@ class Show extends React.Component{
     index--
     eventsLength=this.state.upcoming.resultsPage.results.event.length
     this.setState({currentEvent: this.state.upcoming.resultsPage.results.event[index]})
-
-
   }
 
   render(){
-
-
-
 
 
     return(
@@ -144,4 +132,4 @@ class Show extends React.Component{
   }
 }
 
-export default Show
+export default VenuesShow

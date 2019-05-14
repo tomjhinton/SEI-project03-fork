@@ -17,18 +17,17 @@ class EventsIndex extends React.Component{
 
   getMatches(){
     console.log(this.state.events, 'getmatches events')
-    this.setState({matches: this.state.events.filter(event => event.name.toLowerCase().includes(`${this.state.searchTerm}`))})
-    console.log('getmatches', this.state.matches)
+    this.setState({ matches: this.state.events.filter(event => event.name.toLowerCase().includes(this.state.searchTerm)) })
   }
 
   componentDidMount(){
     axios.get('/api/events')
       .then(res =>this.setState({ events: res.data }))
       .then(this.getMatches)
-      .then(console.log('mdm', this.state.matches))
   }
 
   render(){
+    console.log('MATCHES', this.state.matches)
     return(
 
       <section className="section">
