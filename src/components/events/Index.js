@@ -8,16 +8,16 @@ class EventsIndex extends React.Component{
     super()
     this.state={
       events: [],
-      searchTerm: null,
+      searchTerm: 'ren',
       matches: []
     }
-    // this.getMatches=this.getMatches.bind(this)
+    this.getMatches=this.getMatches.bind(this)
   }
 
 
   getMatches(){
     console.log(this.state.events, 'getmatches events')
-    this.setState({matches: this.state.events.filter(event => event.name.match(/ren/gi))})
+    this.setState({matches: this.state.events.filter(event => event.name.toLowerCase().includes(`${this.state.searchTerm}`))})
     console.log('getmatches', this.state.matches)
   }
 
