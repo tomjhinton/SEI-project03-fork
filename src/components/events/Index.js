@@ -2,8 +2,9 @@ import React from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 
-class EventsIndex extends React.Component{
+import EventsCard from './Card'
 
+class EventsIndex extends React.Component{
   constructor(){
     super()
     this.state={
@@ -11,43 +12,33 @@ class EventsIndex extends React.Component{
       searchTerm: null,
       matches: []
     }
-    // this.getMatches=this.getMatches.bind(this)
+    this.getMatches=this.getMatches.bind(this)
   }
 
-
-  // getMatches(){
-  //   console.log(this.state.events, 'getmatches events')
-  //   this.setState({matches: this.state.events.filter(event => event.name.match(/`${this.state.searchTerm}`/gi))})
-  //   console.log('getmatches', this.state.matches)
-  // }
+  getMatches(){
+    console.log(this.state.events, 'getmatches events')
+    this.setState({ matches: this.state.events.filter(event => event.name.toLowerCase().includes(this.state.searchTerm)) })
+  }
 
   componentDidMount(){
     axios.get('/api/events')
       .then(res =>this.setState({ events: res.data }))
       .then(this.getMatches)
-      .then(console.log('mdm', this.state.matches))
   }
+
   render(){
+    console.log('MATCHES', this.state.matches)
     return(
 
       <section className="section">
 
-        {!this.state.searchTerm && <div className="container">
+        {!this.state.searchTerm && <div>
           {this.state.events.map(event =>
-            <Link key={event._id} to={`/events/${event._id}`}>
-              <div  className="columns index-card event-index-card box-shadow">
-                <div className="column">
-                  <img className="event-image" src={event.image}></img>
-                </div>
-                <div className="column">
-                  <h1  className="title is-1">{event.name}</h1>
-                  <div className="event-meta">
-                    <div className="subtitle is-7">{event.date}</div>
-                    <div className="subtitle is-7">{event.venue}</div>
-                  </div>
-                </div>
-              </div>
-            </Link>
+            <div key={event._id} className="index-card container">
+              <Link  to={`/events/${event._id}`}>
+                <EventsCard {...event}/>
+              </Link>
+            </div>
           )}
         </div>}
 

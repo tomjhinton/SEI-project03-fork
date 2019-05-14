@@ -2,8 +2,7 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const uniqueValidator = require('mongoose-unique-validator')
 
-
-const userSchema =new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: 'Please provide a username',
@@ -11,15 +10,14 @@ const userSchema =new mongoose.Schema({
   },
   email: {
     type: String,
-    required: 'Please provide a email',
+    required: 'Please provide and email address',
     unique: 'That email is already registered'
-
   },
   password: {
     type: String,
-    password: 'Please provide a password'
+    required: 'Please provide a password'
   }
-},{
+}, {
   toJSON: {
     virtuals: true, // add virtals to the JSON
     // whenever the user is converted to JSON
@@ -44,6 +42,7 @@ userSchema.virtual('passwordConfirmation')
     this._passwordConfirmation = plaintext
   })
 
+// LIFECYCLE HOOKS
 userSchema.pre('validate', function checkPasswords(next) {
   // if the password has changed, and it doesn't match the password confirmation
   if(this.isModified('password') && this._passwordConfirmation !== this.password) {
@@ -54,6 +53,7 @@ userSchema.pre('validate', function checkPasswords(next) {
   // ok, we're done here move on to the NEXT step (validation)
   next()
 })
+
 userSchema.pre('save', function hashPassword(next) {
   if(this.isModified('password')) {
     // if the password has changed, we need to hash it before storing it in the database
@@ -73,6 +73,5 @@ userSchema.methods.isPasswordValid = function isPasswordValid(plaintext) {
 }
 
 userSchema.plugin(uniqueValidator) // this makes the unqiue error nicer...
-///User model/
 
 module.exports = mongoose.model('User', userSchema)
