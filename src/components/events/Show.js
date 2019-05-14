@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 import mapboxgl from 'mapbox-gl'
-
 mapboxgl.accessToken = process.env.MAPBOX
 
 class Show extends React.Component {
@@ -45,7 +44,7 @@ class Show extends React.Component {
   }
 
   render () {
-    console.log('render', this.state)
+    if(!this.state.name) return null
     return (
       <div className="section">
         <div className="container">
@@ -69,7 +68,9 @@ class Show extends React.Component {
                 {this.state.start} - {this.state.finish}
               </div>
 
-              <h2>{this.state.description}</h2>
+              {this.state.description.split('\n').map((paragraph, i) =>
+                <p key={i}><br />{paragraph}</p>
+              )}
               <div className="column">
                 {!!this.state.artist &&
                     <div className="event-meta">
@@ -97,7 +98,7 @@ class Show extends React.Component {
 
             </div>
 
-          
+
           </div>
           <div id="map" />
         </div>
