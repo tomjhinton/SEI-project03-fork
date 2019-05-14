@@ -59,22 +59,17 @@ class VenuesSearch extends React.Component {
 
         {this.state.venues &&
           <div className="section">
-            <div className="container">
-              <div className="search-results">
-                <div className="is-5 is-multiline">
-                  {this.state.venues.map(venue => {
-                    return(
-                      <div className="index-card box-shadow" key={venue.id}>
-                        <Link to={`/venues/${venue.id}`}>
-                          <div className="title is-5">{venue.displayName}</div>
-                          <span className="subtitle">{venue.city.displayName}  {venue.city.country.displayName}</span>
-                        </Link>
-                      </div>
-                    )
-                  })}
-                </div>
+            <div >
+              <div className="columns is-multiline">
+                {this.state.venues.map(venue =>
+                  <div className="column is-one-third" key={venue.id}>
+                    <Link className="venue-index-card index-card" to={`/venues/${venue.id}`}>
+                      <div className="title is-5">{venue.displayName}</div>
+                      <span className="subtitle">{venue.city.displayName}  {venue.city.country.displayName}</span>
+                    </Link>
+                  </div>
+                )}
               </div>
-
             </div>
           </div>
         }

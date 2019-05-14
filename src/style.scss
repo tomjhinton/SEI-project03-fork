@@ -37,6 +37,12 @@ button{
   padding: 6px 0;
 }
 
+button:active{
+  background-color: white;
+  color:rgb(51, 0, 51);
+  border: none;
+}
+
 .input{
   border: none;
   border-radius: 0;
@@ -48,7 +54,7 @@ button{
 }
 
 .home-main{
-  height: 90vh;
+  height: 100vh;
   background-image:url('images/hero-0.jpg');
   background-position: center;
   background-size: cover;
@@ -122,6 +128,27 @@ button{
 
 .index-card{
   margin-top: 20px;
+  box-shadow: 0 0.5px 0 0 #ffffff inset, 0 1px 2px 0 #B3B3B3;
+}
+
+.venue-index-card{
+  width:70%;
+  padding: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+}
+
+.venue-search-modal{
+  background-color: white;
+  display: inline-block;
+  position: relative;
+  z-index: 40;
+  margin: auto;
+}
+
+.index-card:active{
+  box-shadow: 0 0.3px 0.3px 0 #B3B3B3;
 }
 
 .event-index-card{
@@ -158,16 +185,8 @@ button{
   color: rgb(51, 0, 51)
 }
 
-
 .fas{
   width: 40px;
-}
-
-
-.search-results{
-  background-color: white;
-  max-width: 60vw;
-  margin: 0 auto;
 }
 
 .search-result{
@@ -191,7 +210,6 @@ button{
 .uevents{
   background-image: url("https://images.unsplash.com/photo-1478147427282-58a87a120781?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60");
   background-size: cover;
-  border:1px solid lightblue;
   height:200px;
 
   background-repeat: no-repeat;
@@ -214,7 +232,7 @@ button{
   max-width: 800px;
   margin :0 auto;
 
-  //border for active property
+  border for active property
   &:after{
     content: '';
     display: block;

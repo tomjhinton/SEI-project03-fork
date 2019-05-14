@@ -29,9 +29,7 @@ class EventsIndex extends React.Component{
   }
 
   render(){
-    console.log(this.props)
     return(
-
       <section className="section">
         {this.getMatches().map(event =>
           <div key={event._id} className="container index-card">
@@ -41,7 +39,6 @@ class EventsIndex extends React.Component{
           </div>
         )}
       </section>
-
     )
   }
 
