@@ -1,9 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-const ReactMarkdown = require('react-markdown')
-import mapboxgl from 'mapbox-gl'
 
+import mapboxgl from 'mapbox-gl'
 mapboxgl.accessToken = process.env.MAPBOX
 
 class Show extends React.Component {
@@ -45,7 +44,7 @@ class Show extends React.Component {
   }
 
   render () {
-    console.log('render', this.state)
+    if(!this.state.name) return null
     return (
       <div className="section">
         <div className="container">
@@ -68,7 +67,10 @@ class Show extends React.Component {
                 <div className="subtitle is-7">Over {this.state.minimumAge}s only</div>
                 {this.state.start} - {this.state.finish}
               </div>
-              <ReactMarkdown source={this.state.description}/>
+
+              {this.state.description.split('\n').map((paragraph, i) =>
+                <p key={i}><br />{paragraph}</p>
+              )}
               <div className="column">
                 {!!this.state.artist &&
                     <div className="event-meta">
