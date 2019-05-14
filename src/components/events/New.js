@@ -139,6 +139,8 @@ class EventsNew extends React.Component {
       headers: { 'Authorization': `Bearer ${token}` }
     })
       .then(() => this.props.history.push('/events'))
+      .catch(err => this.setState({ errors: err.response.data.errors }))
+  
   }
 
 

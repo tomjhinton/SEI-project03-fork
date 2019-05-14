@@ -32,7 +32,7 @@ class Show extends React.Component {
   }
 
   makeMap(){
-    var map = new mapboxgl.Map({
+    const map = new mapboxgl.Map({
       container: 'map', // container id
       style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
       center: [this.state.data.long, this.state.data.lat], // starting position [lng, lat]

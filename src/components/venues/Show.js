@@ -37,17 +37,9 @@ class Show extends React.Component{
   nextEvent(){
     index++
     eventsLength=this.state.upcoming.resultsPage.results.event.length
-
-
-
     this.setState({currentEvent: this.state.upcoming.resultsPage.results.event[index]})
-
     console.log(this.state.currentEvent)
     console.log(this.state)
-
-
-
-
 
   }
 
@@ -55,15 +47,9 @@ class Show extends React.Component{
     index--
     eventsLength=this.state.upcoming.resultsPage.results.event.length
     this.setState({currentEvent: this.state.upcoming.resultsPage.results.event[index]})
-
-
   }
 
   render(){
-
-
-
-
 
     return(
       <section className="section">
