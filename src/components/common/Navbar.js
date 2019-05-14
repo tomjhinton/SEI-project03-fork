@@ -44,7 +44,7 @@ class Navbar extends React.Component{
           <div className="navbar-start">
             <Link to="/events" className={`navbar-item ${this.state.active ? ' is-active' : ''} `}>Events</Link>
             <Link to="/venues" className={`navbar-item ${this.state.active ? ' is-active' : ''} `}>Venues</Link>
-            <Link to="/new" className={`navbar-item ${this.state.active ? ' is-active' : ''} `}>Add an Event!</Link>
+            {Auth.isAuthenticated() && <Link to="/new" className={`navbar-item ${this.state.active ? ' is-active' : ''} `}>Add an Event!</Link>}
           </div>
 
           <div className="navbar-end">
@@ -53,8 +53,8 @@ class Navbar extends React.Component{
             {Auth.isAuthenticated() && <a className="navbar-item" onClick={this.logout}>Logout</a>}
             {this.props.location.pathname!=='/' &&
             <div className="field has-addons">
-                <input className="input" type="text" placeholder="Artist or Venue ..." />
-              </div>
+              <input className="input search-box" type="text" placeholder="Artist or Venue ..." />
+            </div>
             }
           </div>
         </div>
