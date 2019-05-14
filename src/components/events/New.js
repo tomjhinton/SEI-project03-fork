@@ -14,7 +14,6 @@ class EventsNew extends React.Component {
     super()
 
     this.state = {
-      test: {},
       data: {
         artist: [],
         date: '',
@@ -23,7 +22,7 @@ class EventsNew extends React.Component {
 
       },
       errors: {},
-      venues: {},
+      venues: [],
       venue: {}
     }
 
@@ -66,7 +65,7 @@ class EventsNew extends React.Component {
     this.setState({
       data: {
         ...this.state.data,
-        date: date
+        date: date.toLocaleDateString()
       }
     })
   }
@@ -77,7 +76,7 @@ class EventsNew extends React.Component {
     this.setState({
       data: {
         ...this.state.data,
-        start: date.getHours() + ':' + date.getMinutes()
+        start: date.toLocaleTimeString()
       }
     })
   }
@@ -88,7 +87,7 @@ class EventsNew extends React.Component {
     this.setState({
       data: {
         ...this.state.data,
-        finish: date.getHours() + ':' + date.getMinutes()
+        finish: date.toLocaleTimeString()
       }
     })
   }
@@ -97,36 +96,23 @@ class EventsNew extends React.Component {
 
 
 
-  selectVenue(e){
-    //e.preventDefault()
+  selectVenue(venue){
 
-    //console.log(e.target.id)
-    //console.log(e.target.postcode)
+    const { displayName: name, zip: postcode, id: skId } = venue
+    const data = { ...this.state.data, venue: name, postcode, skId }
 
-
-    this.setState({
-      venue: {
-        name: e.target.dataset.name,
-        postcode: e.target.dataset.postcode,
-        skId: e.target.id
-      },
-      data: {
-        venue: e.target.dataset.name,
-        postcode: e.target.dataset.postcode,
-        skId: e.target.id
-      }
-    })
-    console.log(this)
+    this.setState({ data })
   }
 
   findVenue(e){
     e.preventDefault()
-    axios.get(`https://api.songkick.com/api/3.0/search/venues.json?query=${this.state.data.venue}&apikey=${process.env.SONG_KICK_KEY}`)
-      .then(res => {
-        const venues = { ...this.state.venues, venue: res.data.resultsPage.results.venue }
-        this.setState({ venues: venues })
-        console.log(this.state)
-      })
+    axios.get('https://api.songkick.com/api/3.0/search/venues.json', {
+      params: {
+        query: this.state.data.venue,
+        apikey: process.env.SONG_KICK_KEY
+      }
+    })
+      .then(res => this.setState({ venues: res.data.resultsPage.results.venue }))
 
   }
 
@@ -146,6 +132,7 @@ class EventsNew extends React.Component {
 
 
   render() {
+    console.log(this.state.data)
     return (
       <section className="section">
         <div className="container">
@@ -169,14 +156,18 @@ class EventsNew extends React.Component {
 
               </form>
 
-              {this.state.venues.venue && !this.state.venue.skId &&<div className="columns is-multiline">
+              {this.state.data.venue && !this.state.data.skId &&<div className="columns is-multiline">
 
-                {this.state.venues.venue.map(venue =>{
+                {this.state.venues.map(venue =>
 
-                  return <div key={venue.id} className="column is-one-quarter" onClick={this.selectVenue} id={venue.id} data-name={venue.displayName} data-postcode={venue.zip}>
+                  <div
+                    key={venue.id}
+                    className="column is-one-quarter"
+                    onClick={() => this.selectVenue(venue)}
+                  >
                     {venue.displayName}, {venue.city.displayName}
                   </div>
-                })}
+                )}
               </div>}
 
               <form>
@@ -187,7 +178,7 @@ class EventsNew extends React.Component {
 
                 </div>
 
-                < CreatableSelect
+                <CreatableSelect
                   onChange={this.handleSelectChange}
                   isMulti
 
@@ -225,13 +216,13 @@ class EventsNew extends React.Component {
                 </div>
                 <div className="field">
                   <label className="label">Date</label>
-                  {this.state.data.date &&  <h1>{this.state.data.date.toString() || ''}</h1>}
+                  {this.state.data.date &&  <h1>{this.state.data.date || ''}</h1>}
                   <DatePicker
                     onChange={this.handleChangeDate}
                     value={this.state.data.date || ''}
                   />
                   <label className="label">Start Time</label>
-                  {this.state.data.start && <h1>{this.state.data.start.toString() || ''}</h1>}
+                  {this.state.data.start && <h1>{this.state.data.start || ''}</h1>}
                   <DatePicker
                     showTimeSelect
                     showTimeSelectOnly
@@ -239,7 +230,7 @@ class EventsNew extends React.Component {
                     value={this.state.data.start || ''}
                   />
                   <label className="label">Finish Time</label>
-                  {this.state.data.finish && <h1>{this.state.data.finish.toString()}</h1>}
+                  {this.state.data.finish && <h1>{this.state.data.finish}</h1>}
                   <DatePicker
                     showTimeSelect
                     showTimeSelectOnly

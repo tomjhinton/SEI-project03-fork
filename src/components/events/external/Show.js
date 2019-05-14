@@ -15,11 +15,13 @@ class Show extends React.Component {
   componentDidMount() {
     console.log(this.props.match.params.id)
 
-    axios.get(`https://api.songkick.com/api/3.0/events/${this.props.match.params.id}.json?apikey=${process.env.SONG_KICK_KEY}`)
+    axios.get(`https://api.songkick.com/api/3.0/events/${this.props.match.params.id}.json`, {
+      params: { apikey: process.env.SONG_KICK_KEY }
+    })
       .then(res => {
         console.log(res.data)
         this.setState(res.data)
-      } )
+      })
 
   }
 
@@ -31,13 +33,13 @@ class Show extends React.Component {
 
           <div className="columns show-body">
             <div className="column">
-              {!!this.state.resultsPage &&
-              <figure  className="image is-640x640 ">
-                <img  src={`https://images.sk-static.com/images/media/profile_images/artists/${this.state.resultsPage.results.event.performance[0].artist.id}/huge_avatar`} />
-              </figure>
+              {this.state.resultsPage &&
+                <figure  className="image is-640x640 ">
+                  <img  src={`https://images.sk-static.com/images/media/profile_images/artists/${this.state.resultsPage.results.event.performance[0].artist.id}/huge_avatar`} />
+                </figure>
               }
             </div>
-            {!!this.state.resultsPage &&
+            {this.state.resultsPage &&
 
             <div className="column">
 
