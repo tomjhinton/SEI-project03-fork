@@ -11,6 +11,10 @@ mapboxgl.accessToken = process.env.MAPBOX
 let index=0
 let eventsLength=0
 
+
+
+
+
 class VenuesShow extends React.Component{
   constructor(props){
     super(props)
@@ -64,6 +68,9 @@ class VenuesShow extends React.Component{
       center: [this.state.venue.resultsPage.results.venue.lng, this.state.venue.resultsPage.results.venue.lat], // starting position [lng, lat]
       zoom: 15 // starting zoom
     })
+    const marker = new mapboxgl.Marker()
+      .setLngLat([this.state.venue.resultsPage.results.venue.lng, this.state.venue.resultsPage.results.venue.lat])
+      .addTo(this.map)
   }
 
   render(){
