@@ -47,10 +47,6 @@ class Navbar extends React.Component{
             <Link to="/venues" className={`navbar-item ${this.state.active ? ' is-active' : ''} `}><strong>Venues</strong></Link>
             {Auth.isAuthenticated() && <Link to="/events/new" className={`navbar-item ${this.state.active ? ' is-active' : ''} `}><strong>Add an Event!</strong></Link>}
 
-            <Link to="/events" className={`navbar-item ${this.state.active ? ' is-active' : ''} `}>Events</Link>
-            <Link to="/venues" className={`navbar-item ${this.state.active ? ' is-active' : ''} `}>Venues</Link>
-            {Auth.isAuthenticated() && <Link to="/events/new" className={`navbar-item ${this.state.active ? ' is-active' : ''} `}>Add an Event!</Link>}
-
           </div>
 
           <div className="navbar-end">
