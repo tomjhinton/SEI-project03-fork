@@ -28,15 +28,20 @@ class Show extends React.Component {
       }))
       .then(this.makeMap)
 
+
   }
 
   makeMap(){
+    console.log(this)
     this.map = new mapboxgl.Map({
       container: 'map', // container id
       style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
       center: [this.state.long, this.state.lat], // starting position [lng, lat]
       zoom: 15 // starting zoom
     })
+    this.marker = new mapboxgl.Marker()
+      .setLngLat([this.state.long, this.state.lat])
+      .addTo(this.map)
   }
 
   componentDidMount() {
@@ -69,14 +74,16 @@ class Show extends React.Component {
                 {this.state.start} - {this.state.finish}
               </div>
 
-              <h2>{this.state.description}</h2>
+              {this.state.description && this.state.description.split('\n').map((paragraph, i) =>
+                <p key={i}><br />{paragraph}</p>
+              )}
 
               <div className="subtitle is-5">
                 {!!this.state.artist &&
 
                     <div ><strong>Artists:</strong>
                       {this.state.artist.map(artist => {
-                        return <span key={artist.label} className="event-show-artist" >{artist.label}
+                        return <span key={artist.label} className="event-show-artist" >{artist.label }
 
                         </span>
 
