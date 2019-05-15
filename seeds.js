@@ -11,7 +11,8 @@ mongoose.connect(dbUri,(err,db) =>{
         username: 'alikurtulus',
         email: 'alikurtulus-92@hotmai.com',
         password: 'sda',
-        passwordConfirmation: 'sda'
+        passwordConfirmation: 'sda',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSE26X-Shf8Rf-eSWvy_K5ZtnW6E3IV4WJb235y96HS3CIMAsW2RQ'
       })
     })
 

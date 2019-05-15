@@ -118,9 +118,7 @@ class EventsNew extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
-
     const token = Auth.getToken()
-
     axios.post('/api/events', this.state.data, {
       headers: { 'Authorization': `Bearer ${token}` }
     })
@@ -129,15 +127,11 @@ class EventsNew extends React.Component {
 
   }
 
-
-
-
-
   render() {
     console.log(this.state.data)
     return (
       <section className="section">
-        <div className="container">
+        <div className="container box">
           <div className="columns is-centered">
             <div className="column is-half-desktop is-two-thirds-tablet">
               <form onSubmit={this.findVenue}>
@@ -145,9 +139,9 @@ class EventsNew extends React.Component {
                   <label className="label">Venue</label>
                   <div className="control level">
                     <input
-                      className="input"
+                      className="input "
                       name="venue"
-                      placeholder="The venue of your event!"
+                      placeholder="Type the name of the venue to find it"
                       onChange={this.handleChange}
                       value={this.state.data.venue || ''}
                     />
@@ -158,16 +152,17 @@ class EventsNew extends React.Component {
 
               </form>
 
-              {this.state.data.venue && !this.state.data.skId &&<div className="columns is-multiline">
+              {this.state.data.venue && !this.state.data.skId &&<div className="venue-search-modal">
 
                 {this.state.venues.map(venue =>
-
-                  <div
-                    key={venue.id}
-                    className="column is-one-quarter"
-                    onClick={() => this.selectVenue(venue)}
-                  >
-                    {venue.displayName}, {venue.city.displayName}
+                  <div key={venue.id}>
+                    <div
+                      className="venue-index-card index-card"
+                      onClick={() => this.selectVenue(venue)}
+                    >
+                      <span className="title is-5">{venue.displayName}</span>
+                      <span className="subtitle"> {venue.city.displayName}  {venue.city.country.displayName}</span>
+                    </div>
                   </div>
                 )}
               </div>}

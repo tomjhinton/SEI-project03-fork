@@ -37,13 +37,13 @@ class VenuesSearch extends React.Component {
     return (
       <div>
         <div className="section">
-          <div className="container box-shadow">
+          <div className="container box-shadow box">
             <form onSubmit={this.findVenue}>
               <div className="field">
-                <label className="label">Venue</label>
+                <label className="label title is-4">Venue</label>
                 <div className="control">
                   <input
-                    className="input"
+                    className="input is-medium "
                     name="venue"
                     placeholder="What venue you looking for?"
                     onChange={this.handleChange}
@@ -51,7 +51,7 @@ class VenuesSearch extends React.Component {
                 </div>
                 {this.state.errors.name && <div className="help is-danger">{this.state.errors.name}</div>}
               </div>
-              <button onClick={this.handleSubmit}>Find</button>
+              <button  onClick={this.handleSubmit}>Find</button>
             </form>
           </div>
         </div>
@@ -59,12 +59,12 @@ class VenuesSearch extends React.Component {
 
         {this.state.venues &&
           <div className="section">
-            <div className="container">
+            <div className="container box">
               <div className="search-results">
                 <div className="is-5 is-multiline">
                   {this.state.venues.map(venue => {
                     return(
-                      <div className="index-card box-shadow" key={venue.id}>
+                      <div className="index-card  box" key={venue.id}>
                         <Link to={`/venues/${venue.id}`}>
                           <div className="title is-5">{venue.displayName}</div>
                           <span className="subtitle">{venue.city.displayName}  {venue.city.country.displayName}</span>
@@ -74,7 +74,6 @@ class VenuesSearch extends React.Component {
                   })}
                 </div>
               </div>
-
             </div>
           </div>
         }

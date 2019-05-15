@@ -27,14 +27,12 @@ class EventsIndex extends React.Component{
   }
 
   render(){
-    console.log('MATCHES', this.state.matches)
     return(
-
       <section className="section">
 
         {!this.state.searchTerm && <div>
           {this.state.events.map(event =>
-            <div key={event._id} className="index-card container">
+            <div key={event._id} className="index-card container box">
               <Link  to={`/events/${event._id}`}>
                 <EventsCard {...event}/>
               </Link>
@@ -51,7 +49,6 @@ class EventsIndex extends React.Component{
         }
 
       </section>
-
     )
   }
 

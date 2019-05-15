@@ -12,6 +12,6 @@ router.delete('/events/:id', secureRoute,eventsController.delete)
 router.post('/login', authController.login)
 router.post('/register', authController.register)
 
-
+router.get('/myprofile', secureRoute, authController.profile)
 
 module.exports = router
