@@ -54,7 +54,7 @@ class Show extends React.Component {
       <div className="section">
         <div className="container box">
 
-          <div className="columns show-body">
+          <div className="columns">
             <div className="column ">
               <img className="event-image box" src={this.state.image} />
               <div id="map"></div>
@@ -76,21 +76,6 @@ class Show extends React.Component {
               {this.state.description && this.state.description.split('\n').map((paragraph, i) =>
                 <p key={i}><br />{paragraph}</p>
               )}
-
-              <div className="subtitle is-5">
-                {!!this.state.artist &&
-
-                    <div ><strong>Artists:</strong>
-                      {this.state.artist.map(artist => {
-                        return <span key={artist.label} className="event-show-artist" >{artist.label }
-
-                        </span>
-
-                      })}
-                    </div>
-                }
-
-              </div>
             </div>
 
           </div>
@@ -102,11 +87,25 @@ class Show extends React.Component {
                   <span>Organised by {this.state.createdBy.username}</span>
                 </div>
               }
+            </div>
 
+            <div className="column">
+              {!!this.state.artist &&
+                <div className="event-show-artists">
+                  <div className="columns">
+                    {this.state.artist.map(artist =>
+                      <span key={artist.label} className="column is-one-quarter event-show-artist" >{artist.label}</span>
+                    )}
+                  </div>
+                </div>
+              }
             </div>
 
 
+
+
           </div>
+
           <div id="map" />
         </div>
 
