@@ -2,9 +2,9 @@ import React from 'react'
 
 const EventsCard = ({ image, name, date, venue }) => {
   return(
-    <div  className="columns event-index-card box-shadow  ">
+    <div  className="columns event-index-card box-shadow">
       <div className="column">
-        <img className="event-image box " src={image}></img>
+        <img className="event-image" src={image}></img>
       </div>
       <div className="column">
         <h1  className="title is-3">{name}</h1>

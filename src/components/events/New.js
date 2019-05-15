@@ -106,6 +106,7 @@ class EventsNew extends React.Component {
 
   findVenue(e){
     e.preventDefault()
+
     if(this.state.data.skId ){
       this.setState({
         data: {
@@ -116,6 +117,7 @@ class EventsNew extends React.Component {
         }
       })
     }
+
     axios.get('https://api.songkick.com/api/3.0/search/venues.json', {
       params: {
         query: this.state.data.venue,
@@ -151,7 +153,7 @@ class EventsNew extends React.Component {
                     <input
                       className="input "
                       name="venue"
-                      placeholder="The venue of your event!"
+                      placeholder="Type the name of the venue to find it"
                       onChange={this.handleChange}
                       value={this.state.data.venue || ''}
                     />
@@ -162,16 +164,17 @@ class EventsNew extends React.Component {
 
               </form>
 
-              {this.state.data.venue && !this.state.data.skId &&<div className="columns is-multiline">
+              {this.state.data.venue && !this.state.data.skId &&<div className="venue-search-modal">
 
                 {this.state.venues.map(venue =>
-
-                  <div
-                    key={venue.id}
-                    className="column is-one-quarter"
-                    onClick={() => this.selectVenue(venue)}
-                  >
-                    {venue.displayName}, {venue.city.displayName}
+                  <div key={venue.id}>
+                    <div
+                      className="venue-index-card index-card"
+                      onClick={() => this.selectVenue(venue)}
+                    >
+                      <span className="title is-5">{venue.displayName}</span>
+                      <span className="subtitle"> {venue.city.displayName}  {venue.city.country.displayName}</span>
+                    </div>
                   </div>
                 )}
               </div>}

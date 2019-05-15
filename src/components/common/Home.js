@@ -15,8 +15,7 @@ class Home extends React.Component{
 
     this.getMetroCode=this.getMetroEvents.bind(this)
     this.getLocation=this.getLocation.bind(this)
-    // this.handleChange=this.handleChange.bind(this)
-    // this.handleSubmit=this.handleSubmit.bind(this)
+
   }
 
   getMetroEvents(){
@@ -64,17 +63,6 @@ class Home extends React.Component{
     })
   }
 
-  // handleChange(e){
-  //   e.preventDefault
-  //   this.setState( { searchTerm: e.target.value } )
-  //   console.log(this.state)
-  // }
-  //
-  // handleSubmit(e){
-  //   e.preventDefault
-  //   this.props.history.push('/events?search=' + this.state.searchTerm)
-  // }
-
   componentDidMount() {
     this.getLocation()
   }
@@ -90,10 +78,12 @@ class Home extends React.Component{
               <p className="subtitle is-5">Connecting you with music in your area.  </p>
             </div>
             <div className="column is-half">
+<<<<<<< HEAD
 
           
+=======
+>>>>>>> development
               <SearchBar />
-
             </div>
           </div>
 

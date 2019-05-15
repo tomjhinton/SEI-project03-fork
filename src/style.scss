@@ -41,6 +41,22 @@ button{
   padding: 6px 0;
 }
 
+button:hover{
+  background-color: white;
+  color:rgb(51, 0, 51);
+}
+
+button:active{
+  background-color: white;
+  color:rgb(51, 0, 51);
+
+}
+
+button:focus{
+  border: 2px solid rgb(51, 0, 51);
+  outline: 0;
+}
+
 .input{
   border: none;
   border-radius: 0;
@@ -52,7 +68,7 @@ button{
 }
 
 .home-main{
-  height: 90vh;
+  height: 100vh;
   background-image:url('images/hero-0.jpg');
   background-position: center;
   background-size: cover;
@@ -104,6 +120,21 @@ button{
   width: 28%;
 }
 
+#no-event{
+  width:60%;
+}
+
+#no-event>.columns>.column{
+  align-items: center;
+  font-size: 20px;
+}
+
+#no-event>.columns>.column>a>button{
+  font-size: 15px;
+  padding: 0px;
+  width:110px;
+}
+
 .logo{
   color: rgb(255, 255, 153);
   padding: 0.5rem 0.75rem;
@@ -126,15 +157,37 @@ button{
 
 .index-card{
   margin-top: 20px;
+  box-shadow: 0 0.5px 0 0 #ffffff inset, 0 1px 2px 0 #B3B3B3;
+}
+
+.venue-index-card{
+  width:70%;
+  padding: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+}
+
+.venue-search-modal{
+  background-color: white;
+  display: inline-block;
+  position: relative;
+  z-index: 40;
+  margin: auto;
+}
+
+.index-card:active{
+  box-shadow: 0 0.3px 0.3px 0 #B3B3B3;
 }
 
 .event-index-card{
+  border-radius: 6px;
   height: 200px;
 }
 
-.show-body{
-  max-height: 75vh;
-}
+// .show-body{
+//   min-height: 75vh;
+// }
 
 .event-image{
   object-fit: cover;
@@ -159,27 +212,40 @@ button{
 }
 
 .event-show-artist{
-  color: rgb(51, 0, 51)
+  color: rgb(51, 0, 51);
+  font-size: 15px;
+  text-align: center;
+  font-weight: bold;
 }
-
 
 .fas{
   width: 40px;
 }
+
+.navbar-end>.search-bar>button{
+  display: none;
+}
+
+.navbar-end>.search-bar>input{
+  height: 70%;
+  margin: 0 10px;
+  width: 300px;
+}
+
 
 .profile-left{
   display: flex;
  justify-content: flex-start;
   flex-direction: column;
 }
+
 .external-event{
   display: flex;
  justify-content: flex-start;
   flex-direction: column;
-
 }
-.search-results{
 
+.search-results{
   max-width: 60vw;
   margin: 0 auto;
 }
@@ -205,7 +271,6 @@ button{
 .uevents{
   background-image: url("https://images.unsplash.com/photo-1478147427282-58a87a120781?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60");
   background-size: cover;
-  border:1px solid lightblue;
   height:200px;
 
   background-repeat: no-repeat;
@@ -228,7 +293,7 @@ button{
   max-width: 800px;
   margin :0 auto;
 
-  //border for active property
+  border for active property
   &:after{
     content: '';
     display: block;
@@ -243,5 +308,9 @@ button{
 
 #map {
   padding-top: 10px;
-   position:static; ;
-    width: 100%; height:100%; }
+  position:static;
+  width: 100%;
+  height:100%;
+  position: relative;
+
+}

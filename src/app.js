@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { HashRouter as Router, Switch, Route } from 'react-router-dom'
+import 'mapbox-gl/dist/mapbox-gl.css'
 import 'bulma'
 import './style.scss'
 import EventsShow from './components/events/Show'

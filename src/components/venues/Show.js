@@ -3,8 +3,17 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Promise from 'bluebird'
 
+import mapboxgl from 'mapbox-gl'
+
+mapboxgl.accessToken = process.env.MAPBOX
+
+
 let index=0
 let eventsLength=0
+
+
+
+
 
 class VenuesShow extends React.Component{
   constructor(props){
@@ -17,6 +26,7 @@ class VenuesShow extends React.Component{
     }
     this.nextEvent=this.nextEvent.bind(this)
     this.previousEvent=this.previousEvent.bind(this)
+    this.makeMap=this.makeMap.bind(this)
   }
 
   componentDidMount(){
@@ -33,6 +43,7 @@ class VenuesShow extends React.Component{
       }).then(res => res.data)
     })
       .then(res => this.setState({ venue: res.venue, upcoming: res.upcoming}))
+      .then(this.makeMap)
   }
 
   nextEvent(){
@@ -50,8 +61,21 @@ class VenuesShow extends React.Component{
     this.setState({currentEvent: this.state.upcoming.resultsPage.results.event[index]})
   }
 
+  makeMap(){
+    this.map = new mapboxgl.Map({
+      container: 'map', // container id
+      style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
+      center: [this.state.venue.resultsPage.results.venue.lng, this.state.venue.resultsPage.results.venue.lat], // starting position [lng, lat]
+      zoom: 15 // starting zoom
+    })
+    const marker = new mapboxgl.Marker()
+      .setLngLat([this.state.venue.resultsPage.results.venue.lng, this.state.venue.resultsPage.results.venue.lat])
+      .addTo(this.map)
+  }
+
   render(){
 
+    console.log(this)
 
     return(
       <section className="section">
@@ -59,9 +83,10 @@ class VenuesShow extends React.Component{
           <div className="columns is-multiline">
             <div className="column is-one-quarter">
 
-
+              <div id="map" />
             </div>
             <div className="column is-three-quarters">
+
 
               {!!this.state.venue.resultsPage &&
                 <div className="title is-1"><span> {this.state.venue.resultsPage.results.venue.displayName}</span>

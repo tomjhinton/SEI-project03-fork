@@ -37,10 +37,11 @@ class VenuesSearch extends React.Component {
     return (
       <div>
         <div className="section">
+          <div className="title">Venues</div>
           <div className="container box-shadow box">
             <form onSubmit={this.findVenue}>
               <div className="field">
-                <label className="label title is-4">Venue</label>
+                <label className="label title is-4">Search</label>
                 <div className="control">
                   <input
                     className="input is-medium "
@@ -74,7 +75,6 @@ class VenuesSearch extends React.Component {
                   })}
                 </div>
               </div>
-
             </div>
           </div>
         }

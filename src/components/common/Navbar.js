@@ -2,8 +2,7 @@ import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import Auth from '../../lib/Auth'
 
-
-
+import SearchBar from './SearchBar'
 
 class Navbar extends React.Component{
 
@@ -43,12 +42,12 @@ class Navbar extends React.Component{
         <div className={`navbar-menu${this.state.active ? ' is-active' : ''}`}>
           <div className="navbar-start">
 
-            <Link to="/events" className={`navbar-item ${this.state.active ? ' is-active' : ''} `}><strong>Events</strong></Link>
-            <Link to="/venues" className={`navbar-item ${this.state.active ? ' is-active' : ''} `}><strong>Venues</strong></Link>
+            {((this.props.location.search!=='' && this.props.location.pathname==='/events')||(this.props.location.pathname!=='/events')) && <Link to="/events" className={`navbar-item ${this.state.active ? ' is-active' : ''} `}><strong>Events</strong></Link>}
+
+
+            {this.props.location.pathname!=='/venues' && <Link to="/venues" className={`navbar-item ${this.state.active ? ' is-active' : ''} `}><strong>Venues</strong></Link>}
             {Auth.isAuthenticated() && <Link to="/events/new" className={`navbar-item ${this.state.active ? ' is-active' : ''} `}><strong>Add an Event!</strong></Link>}
 
-
-            
 
           </div>
 
@@ -58,9 +57,7 @@ class Navbar extends React.Component{
             {Auth.isAuthenticated() && <a className="navbar-item" onClick={this.logout}><strong>Logout</strong></a>}
             {Auth.isAuthenticated() && <Link to="/myprofile" className={`navbar-item ${this.state.active ? ' is-active' : ''} `}><strong>Profile</strong></Link>}
             {this.props.location.pathname!=='/' &&
-            <div className="field has-addons">
-              <input className="input search-box " type="text" placeholder="Artist or Venue ..." />
-            </div>
+              <SearchBar />
             }
           </div>
         </div>
@@ -70,3 +67,7 @@ class Navbar extends React.Component{
 }
 
 export default withRouter(Navbar)
+
+// <div className="field has-addons">
+//   <input className="input search-box " type="text" placeholder="Artist or Venue ..." />
+// </div>

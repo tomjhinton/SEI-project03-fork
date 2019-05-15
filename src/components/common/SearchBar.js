@@ -14,22 +14,21 @@ class SearchBar extends React.Component {
   }
 
   handleChange(e){
-    e.preventDefault
     this.setState( { searchTerm: e.target.value } )
     console.log(this.state)
   }
 
   handleSubmit(e){
-    e.preventDefault
+    e.preventDefault()
     this.props.history.push('/events?search=' + this.state.searchTerm)
   }
 
   render(){
     return(
-      <form className="level is-half" onSubmit={this.handleSubmit}>
+      <form className="level is-half search-bar" onSubmit={this.handleSubmit}>
         <input
           className="input home-main-form-item"
-          placeholder="What you looking for?"
+          placeholder="What event you looking for?"
           onChange={this.handleChange}
         />
         <button className="home-main-form-item">Find it</button>
