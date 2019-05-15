@@ -9,17 +9,15 @@ class EventsIndex extends React.Component{
   constructor(props){
     super(props)
 
-    this.props.match.query = qs.parse(this.props.location.search)
     this.getMatches=this.getMatches.bind(this)
 
     this.state={
-      events: [],
-      searchTerm: this.props.match.query.search || ''
+      events: []
     }
   }
 
   getMatches(){
-    const re = new RegExp(this.state.searchTerm, 'i')
+    const re = new RegExp(this.props.match.query.search, 'i')
     return this.state.events.filter(event => re.test(event.name))
   }
 
@@ -29,7 +27,7 @@ class EventsIndex extends React.Component{
   }
 
   render(){
-    console.log(this.props)
+    this.props.match.query = qs.parse(this.props.location.search)
     return(
 
       <section className="section">

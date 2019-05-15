@@ -14,13 +14,12 @@ class SearchBar extends React.Component {
   }
 
   handleChange(e){
-    e.preventDefault
     this.setState( { searchTerm: e.target.value } )
     console.log(this.state)
   }
 
   handleSubmit(e){
-    e.preventDefault
+    e.preventDefault()
     this.props.history.push('/events?search=' + this.state.searchTerm)
   }
 
