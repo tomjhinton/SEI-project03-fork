@@ -55,7 +55,7 @@ class VenuesShow extends React.Component{
 
     return(
       <section className="section">
-        <div className="container">
+        <div className="container box">
           <div className="columns is-multiline">
             <div className="column is-one-quarter">
 
@@ -103,7 +103,7 @@ class VenuesShow extends React.Component{
               <div className="column is-one-half">
                 <Link to={`/events/external/${this.state.currentEvent.id}`}>
                   <div  className="cards-slider">
-                    <div className="cards-slider-wrapper">
+                    <div className="cards-slider-wrapper ">
                       {!!this.state.upcoming.resultsPage &&
 
                     <div key={this.state.currentEvent.id} className="column card uevents ">

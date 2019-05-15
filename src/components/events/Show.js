@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 import mapboxgl from 'mapbox-gl'
+
 mapboxgl.accessToken = process.env.MAPBOX
 
 class Show extends React.Component {
@@ -44,18 +45,18 @@ class Show extends React.Component {
   }
 
   render () {
-    if(!this.state.name) return null
+    console.log('render', this.state)
     return (
       <div className="section">
-        <div className="container">
+        <div className="container box">
 
           <div className="columns show-body">
-            <div className="column">
-              <img className="event-image" src={this.state.image}></img>
+            <div className="column ">
+              <img className="event-image box" src={this.state.image} />
               <div id="map"></div>
             </div>
 
-            <div className="column">
+            <div className="column external-event">
               <h1  className="title is-1">{this.state.name}</h1>
 
               <div className="event-meta">
@@ -68,16 +69,16 @@ class Show extends React.Component {
                 {this.state.start} - {this.state.finish}
               </div>
 
-              {this.state.description.split('\n').map((paragraph, i) =>
-                <p key={i}><br />{paragraph}</p>
-              )}
-              <div className="column">
-                {!!this.state.artist &&
-                    <div className="event-meta">
-                      {this.state.artist.map(artist => {
-                        return <div key={artist.label} className="event-show-artist" >{artist.label}
+              <h2>{this.state.description}</h2>
 
-                        </div>
+              <div className="subtitle is-5">
+                {!!this.state.artist &&
+
+                    <div ><strong>Artists:</strong>
+                      {this.state.artist.map(artist => {
+                        return <span key={artist.label} className="event-show-artist" >{artist.label}
+
+                        </span>
 
                       })}
                     </div>

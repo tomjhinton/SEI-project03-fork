@@ -1,43 +1,53 @@
 import React from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
-import qs from 'query-string'
 
 import EventsCard from './Card'
 
 class EventsIndex extends React.Component{
-  constructor(props){
-    super(props)
-
-    this.props.match.query = qs.parse(this.props.location.search)
-    this.getMatches=this.getMatches.bind(this)
-
+  constructor(){
+    super()
     this.state={
       events: [],
-      searchTerm: this.props.match.query.search || ''
+      searchTerm: null,
+      matches: []
     }
+    this.getMatches=this.getMatches.bind(this)
   }
 
   getMatches(){
-    const re = new RegExp(this.state.searchTerm, 'i')
-    return this.state.events.filter(event => re.test(event.name))
+    console.log(this.state.events, 'getmatches events')
+    this.setState({ matches: this.state.events.filter(event => event.name.toLowerCase().includes(this.state.searchTerm)) })
   }
 
   componentDidMount(){
     axios.get('/api/events')
-      .then(res => this.setState({ events: res.data }))
+      .then(res =>this.setState({ events: res.data }))
+      .then(this.getMatches)
   }
 
   render(){
     return(
       <section className="section">
-        {this.getMatches().map(event =>
-          <div key={event._id} className="container index-card">
-            <Link to={`/events/${event._id}`}>
-              <EventsCard {...event}/>
-            </Link>
+
+        {!this.state.searchTerm && <div>
+          {this.state.events.map(event =>
+            <div key={event._id} className="index-card container box">
+              <Link  to={`/events/${event._id}`}>
+                <EventsCard {...event}/>
+              </Link>
+            </div>
+          )}
+        </div>}
+
+        {!!this.state.searchTerm && this.state.events.length>0 &&
+          <div className="container">
+            {this.state.matches.map(match => {
+              return <p key={match.id}>{match.name}</p>
+            })}
           </div>
-        )}
+        }
+
       </section>
     )
   }
