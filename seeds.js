@@ -63,7 +63,7 @@ mongoose.connect(dbUri,(err,db) =>{
           start: '23:30',
           finish: '05:00',
           price: 12,
-          description: 'Virgil Abloh makes a rare Farringdon stop-off to play Room One. Known best as the brains behind the dominant Milan fashion house Off-White, Abloh is arguably one of the world’s most influential creative minds today. With his career highlights including collaborations with Kanye West and his ongoing position shaping Louis Vuitton’s artistic direction, in recent years Abloh has begun to focus on another of his talents, DJing. Behind the decks, he typically spins supreme deep house via classic 90s records, mixed with high-energy party fare. Benji B also makes a special guest appearance. As both a DJ and longstanding radio host, the London artist is one of the UK’s most highly respected selectors. Over the last 15 years of his career his record collection has spanned soulful house, modern hip-hop, muddy UK bass and experimental electronica, something he showcases in his regular broadcasts and DJ appearances. As the founder of long-running club night Deviation he’s been an integral piece of the capitals electronic music landscape, introducing the city to newer artists long before they’d broken through. Also joining the Room One bill is Detroit artist Jay Daniel, whose deep style of house can be found on labels like Watusi High and Technicolour. Bone Soda founder and NTS Radio host Skinny Macho also lands.',
+          description: 'Virgil Abloh makes a rare Farringdon stop-off to play Room One. Known best as the brains behind the dominant Milan fashion house Off-White, Abloh is arguably one of the world’s most influential creative minds today. With his career highlights including collaborations with Kanye West and his ongoing position shaping Louis Vuitton’s artistic direction, in recent years Abloh has begun to focus on another of his talents, DJing. Behind the decks, he typically spins supreme deep house via classic 90s records, mixed with high-energy party fare.\n Benji B also makes a special guest appearance. As both a DJ and longstanding radio host, the London artist is one of the UK’s most highly respected selectors. Over the last 15 years of his career his record collection has spanned soulful house, modern hip-hop, muddy UK bass and experimental electronica, something he showcases in his regular broadcasts and DJ appearances. As the founder of long-running club night Deviation he’s been an integral piece of the capitals electronic music landscape, introducing the city to newer artists long before they’d broken through.\n Also joining the Room One bill is Detroit artist Jay Daniel, whose deep style of house can be found on labels like Watusi High and Technicolour. Bone Soda founder and NTS Radio host Skinny Macho also lands.',
           minimumAge: 19,
           modifiedBy: user,
           createdBy: user,
@@ -83,6 +83,41 @@ mongoose.connect(dbUri,(err,db) =>{
             {
               label: 'Skinny Macho',
               value: 'Skinny Macho'
+            }]
+
+
+        },
+        {
+
+          venue: 'XOYO',
+          postcode: 'E9 5LN',
+          skId: '1005531',
+          name: 'Bradley Zero XOYO Residency w. Mala',
+          image: 'https://xoyo.co.uk/wp-content/uploads/2019/03/FB_LONG_COVER_web_banner-895x300.jpg',
+          date: '2019-06-21T23:00:00.000Z',
+          start: '22:30',
+          finish: '04:00',
+          price: 8,
+          description: 'In our most ambitious residency ever, we welcome the multi-faceted Bradley Zero to curate 12 weeks of club nights and live shows from Friday 5th April to Friday 21st June. \n He’ll be reaching around the globe as he invites 80+ artists covering Syrian dabke to Detroit techno via Angolan kuduro, London jazz and literally everything else in between. \nWith an enormous passion for music, discovery, dancing and community, Bradley epitomises what we are looking for in our next resident. Often described as ‘the tastemaker of his generation’, Bradley’s influence on the London scene is unparalleled, and we couldn’t be more proud to become the next part of his journey. \n The world is coming to London.',
+          minimumAge: 20,
+          modifiedBy: user,
+          createdBy: user,
+          artist: [
+            {
+              label: 'Mala',
+              value: 'Mala'
+            },
+            {
+              label: 'Cosmic Slop',
+              value: 'Cosmic Slop'
+            },
+            {
+              label: 'Iration Steppas',
+              value: 'Iration Steppas'
+            },
+            {
+              label: 'Bradley Zero',
+              value: 'Bradley Zero'
             }]
 
 
