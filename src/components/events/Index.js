@@ -26,17 +26,28 @@ class EventsIndex extends React.Component{
       .then(res => this.setState({ events: res.data }))
   }
 
+
+
   render(){
     this.props.match.query = qs.parse(this.props.location.search)
     return(
-
       <section className="section">
-        {this.getMatches().map(event =>
-          <div key={event._id} className="container index-card">
-            <Link to={`/events/${event._id}`}>
-              <EventsCard {...event}/>
-            </Link>
+        <div className="title">Events</div>
+        { (this.getMatches().length===0) ? (
+          <div id="no-event" className="container box index-card">
+            <div className="columns">
+              <div className="column">Sorry, we have no events matching that name. Try another search!</div>
+              <div className="column is-one-fifth"><Link to="/events"><button>See all events</button></Link></div>
+            </div>
           </div>
+        ):(
+          this.getMatches().map(event =>
+            <div key={event._id} className="container index-card">
+              <Link to={`/events/${event._id}`}>
+                <EventsCard {...event}/>
+              </Link>
+            </div>
+          )
         )}
       </section>
 

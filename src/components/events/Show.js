@@ -45,7 +45,6 @@ class Show extends React.Component {
   }
 
   render () {
-    console.log('render', this.state)
     return (
       <div className="section">
         <div className="container box">
