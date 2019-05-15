@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import Auth from '../../lib/Auth'
 
 import mapboxgl from 'mapbox-gl'
 
@@ -10,21 +11,24 @@ class Show extends React.Component {
   constructor() {
     super()
 
-    this.state = {
-
-    }
+    this.state = null
     this.getMap = this.getMap.bind(this)
     this.makeMap = this.makeMap.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
+    this.canModify= this.canModify.bind(this)
+
   }
 
   getMap(data){
-    console.log(data)
+    console.log('hi there',data)
+    console.log(data.skId)
     // SORT IT AAAAAAAAT!
     axios.get(`https://api.songkick.com/api/3.0/venues/${data.skId}.json?&apikey=${process.env.SONG_KICK_KEY}`)
       .then(res => this.setState({
         ...data,
         lat: res.data.resultsPage.results.venue.lat,
         long: res.data.resultsPage.results.venue.lng
+
       }))
       .then(this.makeMap)
 
@@ -43,9 +47,25 @@ class Show extends React.Component {
     axios.get(`/api/events/${this.props.match.params.id}`)
       .then(res => this.getMap(res.data))
   }
+  handleDelete() {
+    const token = Auth.getToken()
+    axios.delete(`/api/events/${this.props.match.params.id}`, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
+      .then(() => this.props.history.push('/events'))
+  }
+
+  canModify() {
+    console.log('I am running')
+
+    console.log(this.state)
+    // if the user is logged in AND the user's id matches the characters' user's id return true
+    return Auth.isAuthenticated() && Auth.getPayload().sub === this.state.createdBy._id
+  }
 
   render () {
-    console.log('render', this.state)
+    if(!this.state) return null
+    console.log(this.state,'eeee')
     return (
       <div className="section">
         <div className="container box">
@@ -85,6 +105,16 @@ class Show extends React.Component {
                 }
 
               </div>
+              <div>
+                {this.canModify() &&
+                  <div>
+                    <Link to={`/events/${this.state._id}/edit`} className="button is-primary">Edit</Link>
+                    <button className="button is-danger" onClick={this.handleDelete}>Delete</button>
+                  </div>
+                }
+              </div>
+
+
             </div>
 
           </div>

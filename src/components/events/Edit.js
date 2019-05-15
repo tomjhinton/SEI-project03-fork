@@ -8,7 +8,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 import CreatableSelect from 'react-select/lib/Creatable'
 import DatePicker from 'react-datepicker'
 
-class EventsNew extends React.Component {
+class Edit extends React.Component {
 
   constructor() {
     super()
@@ -38,10 +38,15 @@ class EventsNew extends React.Component {
 
   }
 
+  componentDidMount(){
+    console.log(this.props.match.params.id)
 
+    axios.get(`/api/events/${this.props.match.params.id}`)
+      .then(res=> this.setState({data: res.data}) )
+  }
   handleChange(e) {
     const data = { ...this.state.data, [e.target.name]: e.target.value }
-    console.log(data)
+
     this.setState({ data })
 
   }
@@ -51,7 +56,7 @@ class EventsNew extends React.Component {
   handleSelectChange(e) {
     console.log(e)
     const data = { ...this.state.data, artist: e }
-    //console.log(data)
+    console.log('hi there',data)
     this.setState({ data })
     console.log(this)
   }
@@ -106,6 +111,16 @@ class EventsNew extends React.Component {
 
   findVenue(e){
     e.preventDefault()
+    if(this.state.data.skId ){
+      this.setState({
+        data: {
+          ...this.state.data,
+          skId: ''
+
+
+        }
+      })
+    }
     axios.get('https://api.songkick.com/api/3.0/search/venues.json', {
       params: {
         query: this.state.data.venue,
@@ -119,7 +134,7 @@ class EventsNew extends React.Component {
   handleSubmit(e) {
     e.preventDefault()
     const token = Auth.getToken()
-    axios.post('/api/events', this.state.data, {
+    axios.put(`/api/events/${this.state.data.id}`, this.state.data, {
       headers: { 'Authorization': `Bearer ${token}` }
     })
       .then(() => this.props.history.push('/events'))
@@ -127,8 +142,9 @@ class EventsNew extends React.Component {
 
   }
 
+
   render() {
-    console.log(this.state.data)
+    console.log(this.state.data,'hi there mate')
     return (
       <section className="section">
         <div className="container box">
@@ -177,6 +193,7 @@ class EventsNew extends React.Component {
                 <CreatableSelect
                   onChange={this.handleSelectChange}
                   isMulti
+                  value={this.state.data.artist}
 
 
                 />
@@ -293,4 +310,4 @@ class EventsNew extends React.Component {
   }
 }
 
-export default EventsNew
+export default Edit

@@ -14,13 +14,14 @@ function showRoute(req, res, next) {
 }
 
 function createRoute(req, res, next) {
-  req.body.createdBy = req.currentUser 
+  req.body.createdBy = req.currentUser
   Event.create(req.body)
     .then(event => res.status(201).json(event))
     .catch(next)
 }
 
 function updateRoute(req, res, next) {
+  req.body.modifiedBy = req.currentUser
   Event.findById(req.params.id)
     .then(event => event.set(req.body))
     .then(event => event.save())

@@ -106,6 +106,16 @@ class EventsNew extends React.Component {
 
   findVenue(e){
     e.preventDefault()
+    if(this.state.data.skId ){
+      this.setState({
+        data: {
+          ...this.state.data,
+          skId: ''
+
+
+        }
+      })
+    }
     axios.get('https://api.songkick.com/api/3.0/search/venues.json', {
       params: {
         query: this.state.data.venue,
