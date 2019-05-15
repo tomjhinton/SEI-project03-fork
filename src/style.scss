@@ -203,6 +203,15 @@ button:focus{
   width: 40px;
 }
 
+.navbar-end>.search-bar>button{
+  display: none;
+}
+
+.navbar-end>.search-bar>input{
+  height: 70%;
+  margin: 0 10px;
+  width: 300px;
+}
 
 
 .profile-left{

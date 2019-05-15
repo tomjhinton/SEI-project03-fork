@@ -2,8 +2,7 @@ import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import Auth from '../../lib/Auth'
 
-
-
+import SearchBar from './SearchBar'
 
 class Navbar extends React.Component{
 
@@ -55,9 +54,7 @@ class Navbar extends React.Component{
             {Auth.isAuthenticated() && <a className="navbar-item" onClick={this.logout}><strong>Logout</strong></a>}
             {Auth.isAuthenticated() && <Link to="/myprofile" className={`navbar-item ${this.state.active ? ' is-active' : ''} `}><strong>Profile</strong></Link>}
             {this.props.location.pathname!=='/' &&
-            <div className="field has-addons">
-              <input className="input search-box " type="text" placeholder="Artist or Venue ..." />
-            </div>
+              <SearchBar />
             }
           </div>
         </div>
@@ -67,3 +64,7 @@ class Navbar extends React.Component{
 }
 
 export default withRouter(Navbar)
+
+// <div className="field has-addons">
+//   <input className="input search-box " type="text" placeholder="Artist or Venue ..." />
+// </div>

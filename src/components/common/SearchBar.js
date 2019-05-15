@@ -26,10 +26,10 @@ class SearchBar extends React.Component {
 
   render(){
     return(
-      <form className="level is-half" onSubmit={this.handleSubmit}>
+      <form className="level is-half search-bar" onSubmit={this.handleSubmit}>
         <input
           className="input home-main-form-item"
-          placeholder="What you looking for?"
+          placeholder="What event you looking for?"
           onChange={this.handleChange}
         />
         <button className="home-main-form-item">Find it</button>
