@@ -68,7 +68,7 @@ class VenuesShow extends React.Component{
       center: [this.state.venue.resultsPage.results.venue.lng, this.state.venue.resultsPage.results.venue.lat], // starting position [lng, lat]
       zoom: 15 // starting zoom
     })
-    var marker = new mapboxgl.Marker()
+    const marker = new mapboxgl.Marker()
       .setLngLat([this.state.venue.resultsPage.results.venue.lng, this.state.venue.resultsPage.results.venue.lat])
       .addTo(this.map)
   }
