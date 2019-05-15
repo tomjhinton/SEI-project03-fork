@@ -91,15 +91,7 @@ class Home extends React.Component{
             </div>
             <div className="column is-half">
 
-              <form className="level is-half ">
-                <input
-                  className="input home-main-form-item "
-                  placeholder="What you looking for?"
-                  onChange={this.handleChange}
-                />
-                <button className="home-main-form-item ">Find it</button>
-              </form>
-
+          
               <SearchBar />
 
             </div>
