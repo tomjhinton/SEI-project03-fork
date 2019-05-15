@@ -54,15 +54,14 @@ class Show extends React.Component {
       <div className="section">
         <div className="container box">
 
-          <div className="columns">
-            <div className="column ">
+          <div className="columns ">
+            <div className="column">
               <img className="event-image box" src={this.state.image} />
               <div id="map"></div>
             </div>
 
             <div className="column external-event">
               <h1  className="title is-1">{this.state.name}</h1>
-
               <div className="event-meta">
                 <div className="subtitle is-7">{this.state.date}</div>
                 <Link to={`/venues/${this.state.skId}`}>
@@ -72,12 +71,10 @@ class Show extends React.Component {
                 <div className="subtitle is-7">Over {this.state.minimumAge}s only</div>
                 {this.state.start} - {this.state.finish}
               </div>
-
               {this.state.description && this.state.description.split('\n').map((paragraph, i) =>
                 <p key={i}><br />{paragraph}</p>
               )}
             </div>
-
           </div>
 
           <div className="columns">
@@ -100,17 +97,9 @@ class Show extends React.Component {
                 </div>
               }
             </div>
-
-
-
-
           </div>
-
-          <div id="map" />
         </div>
-
       </div>
-
     )
   }
 }

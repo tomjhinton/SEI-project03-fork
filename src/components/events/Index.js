@@ -42,7 +42,7 @@ class EventsIndex extends React.Component{
           </div>
         ):(
           this.getMatches().map(event =>
-            <div key={event._id} className="container index-card">
+            <div key={event._id} className="container index-card event-index-card">
               <Link to={`/events/${event._id}`}>
                 <EventsCard {...event}/>
               </Link>
