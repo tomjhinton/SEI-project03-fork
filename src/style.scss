@@ -185,9 +185,13 @@ button:focus{
   height: 200px;
 }
 
-// .show-body{
-//   min-height: 75vh;
-// }
+.flash-message{
+  background-color:rgb(255, 255, 153);
+  color: rgb(51, 0, 51);
+  text-align: center;
+  font-size: 30px;
+  padding: 15px;
+}
 
 .event-image{
   object-fit: cover;
