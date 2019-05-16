@@ -58,7 +58,11 @@ class VenuesSearch extends React.Component {
           </div>
         </div>
 
-        {this.state.venues !== null && !this.state.venues &&   <div className="search-results">Sorry, we have no venues matching that name. Try another search!</div>}
+        {this.state.venues !== null && !this.state.venues &&
+          <div className="zero-result container box index-card">Sorry, we have no venues matching that name. Try another search!</div>
+        }
+
+
         {this.state.venues &&
           <div className="section">
             <div className="container box">
