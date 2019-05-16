@@ -143,6 +143,7 @@ class EventsNew extends React.Component {
     console.log(this.state.data)
     return (
       <section className="section">
+        <div className="title">Enter Event Details</div>
         <div className="container box">
           <div className="columns is-centered">
             <div className="column is-half-desktop is-two-thirds-tablet">
