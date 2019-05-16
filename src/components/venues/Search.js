@@ -35,6 +35,7 @@ class VenuesSearch extends React.Component {
 
   render() {
     return (
+
       <div>
         <div className="section">
           <div className="title">Venues</div>
@@ -57,7 +58,7 @@ class VenuesSearch extends React.Component {
           </div>
         </div>
 
-
+        {this.state.venues !== null && !this.state.venues &&   <div className="search-results">Sorry, we have no venues matching that name. Try another search!</div>}
         {this.state.venues &&
           <div className="section">
             <div className="container box">
