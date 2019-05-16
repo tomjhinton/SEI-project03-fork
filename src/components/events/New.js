@@ -134,7 +134,7 @@ class EventsNew extends React.Component {
     axios.post('/api/events', this.state.data, {
       headers: { 'Authorization': `Bearer ${token}` }
     })
-      .then(() => this.props.history.push('/events?search=' + this.state.data.name))
+      .then(res  => this.props.history.push(`/events/${res.data._id}`))
       .catch(err => this.setState({ errors: err.response.data.errors }))
 
   }
@@ -256,6 +256,7 @@ class EventsNew extends React.Component {
                   <div className="control">
                     <input
                       className="input"
+                      type="number"
                       name="price"
                       placeholder="the price of your event"
                       onChange={this.handleChange}
@@ -285,6 +286,7 @@ class EventsNew extends React.Component {
                   <div className="control">
                     <input
                       className="input"
+                      type="number"
                       name="minimumAge"
                       placeholder="Minimum Age for the event"
                       onChange={this.handleChange}
