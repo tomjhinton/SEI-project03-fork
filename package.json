@@ -7,7 +7,7 @@
     "run:client": "webpack-dev-server",
     "run:server": "nodemon",
     "seed": "node seeds",
-    "build": "webpack -p",
+    "run:build": "webpack -p",
     "start": "node index"
   },
   "repository": "git+https://github.com/stuartmees/project-03.git",
@@ -30,6 +30,7 @@
     "bluebird": "^3.5.4",
     "body-parser": "^1.19.0",
     "bulma": "^0.7.4",
+    "copy-webpack-plugin": "^5.0.3",
     "css-loader": "^2.1.1",
     "dotenv": "^8.0.0",
     "dotenv-webpack": "^1.7.0",
