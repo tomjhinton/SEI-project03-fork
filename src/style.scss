@@ -109,15 +109,22 @@ button:focus{
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  padding: 5px;
+  // padding: 5px;
   background-color: rgba(0,0,0,0.6);
 }
 
 .home-rec-event{
+  padding: 10px;
   margin: 5px 0;
   color: rgb(255, 255, 153);
   font-weight: bold;
-  width: 28%;
+  width: 32%;
+  text-align: center;
+}
+
+.home-rec-event:hover{
+  background-color: rgba(0,0,0,0.3);
+  color: white;
 }
 
 #no-event{
