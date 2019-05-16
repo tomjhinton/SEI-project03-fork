@@ -134,7 +134,7 @@ class EventsNew extends React.Component {
     axios.post('/api/events', this.state.data, {
       headers: { 'Authorization': `Bearer ${token}` }
     })
-      .then(() => this.props.history.push('/events'))
+      .then(() => this.props.history.push('/events?search=' + this.state.data.name))
       .catch(err => this.setState({ errors: err.response.data.errors }))
 
   }
