@@ -50,7 +50,7 @@ class Profile extends React.Component{
 
               {this.state.data.events && <div>
                 <h2 className="title is-2">My Events</h2>
-                {this.state.data.events.length === 0 && <div className="index-card box wrapper">You have not create new event yet</div>}
+                {this.state.data.events.length === 0 && <div className="index-card box wrapper">You have not created new event yet</div>}
                 {this.state.data.events.map(event =>
                   <div key={event._id} className="index-card box wrapper">
                     <Link  to={`/events/${event._id}`}>

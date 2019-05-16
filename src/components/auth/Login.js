@@ -37,7 +37,7 @@ class Login extends React.Component{
     console.log(this.state)
     return (
       <section className="section">
-      <div className="title">Login</div>
+        <div className="title">Login</div>
         <div className="container">
           <div className="columns is-centered">
             <div className="column is-half-desktop is-two-thirds-tablet">

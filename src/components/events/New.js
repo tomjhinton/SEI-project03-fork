@@ -151,7 +151,7 @@ class EventsNew extends React.Component {
                   <label className="label">Venue</label>
                   <div className="control level">
                     <input
-                      className="input "
+                      className="input"
                       name="venue"
                       placeholder="Type the name of the venue to find it"
                       onChange={this.handleChange}
@@ -221,7 +221,7 @@ class EventsNew extends React.Component {
                       value={this.state.data.image || ''}
                     />
                   </div>
-                  {this.state.errors.image && <div className="help is-danger">{this.state.errors.image}</div>}
+                  {this.state.errors.image && <div className="help is-danger">Please enter a url address</div>}
                 </div>
                 <div className="field">
                   <label className="label">Date</label>
@@ -261,7 +261,7 @@ class EventsNew extends React.Component {
                       value={this.state.data.price || ''}
                     />
                   </div>
-                  {this.state.errors.date && <div className="help is-danger">{this.state.errors.price}</div>}
+                  {this.state.errors.date && <div className="help is-danger">Please enter a number</div>}
                 </div>
 
 
@@ -290,7 +290,7 @@ class EventsNew extends React.Component {
                       value={this.state.data.minimumAge || ''}
                     />
                   </div>
-                  {this.state.errors.minimumAge && <div className="help is-danger">{this.state.errors.minimumAge}</div>}
+                  {this.state.errors.minimumAge && <div className="help is-danger">Please enter a number</div>}
                 </div>
 
 

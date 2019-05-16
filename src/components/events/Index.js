@@ -35,6 +35,7 @@ class EventsIndex extends React.Component{
         <div className="title">Events</div>
         { (this.getMatches().length===0) ? (
           <div id="no-event" className="container box index-card">
+
             <div className="columns">
               <div className="column">Sorry, we have no events matching that name. Try another search!</div>
               <div className="column is-one-fifth"><Link to="/events"><button>See all events</button></Link></div>
