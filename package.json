@@ -7,7 +7,7 @@
     "run:client": "webpack-dev-server",
     "run:server": "nodemon",
     "seed": "node seeds",
-    "build": "webpack -p",
+    "run:build": "webpack -p",
     "start": "node index"
   },
   "repository": "git+https://github.com/stuartmees/project-03.git",
