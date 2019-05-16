@@ -47,10 +47,10 @@ class Navbar extends React.Component{
           </div>
 
           <div className="navbar-end">
-            {!Auth.isAuthenticated() && <Link to="/register" className="navbar-item"><strong>Register</strong></Link>}
-            {!Auth.isAuthenticated() && <Link to="/login" className="navbar-item"><strong>Login</strong></Link>}
+            {!Auth.isAuthenticated() && <Link to="/register" className="navbar-item">Register</Link>}
+            {!Auth.isAuthenticated() && <Link to="/login" className="navbar-item">Login</Link>}
             {Auth.isAuthenticated() && <a className="navbar-item" onClick={this.logout}><strong>Logout</strong></a>}
-            {Auth.isAuthenticated() && <Link to="/myprofile" className={`navbar-item ${this.state.active ? ' is-active' : ''} `}><strong>Profile</strong></Link>}
+            {Auth.isAuthenticated() && <Link to="/myprofile" className={`navbar-item ${this.state.active ? ' is-active' : ''} `}>Profile</Link>}
             {this.props.location.pathname!=='/' &&
               <SearchBar />
             }
