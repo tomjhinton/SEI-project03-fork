@@ -100,42 +100,38 @@ class Show extends React.Component {
 
               <div className="subtitle is-5">
                 {!!this.state.artist &&
-
                     <div ><strong>Artists:</strong>
                       {this.state.artist.map(artist => {
                         return <span key={artist.label} className="event-show-artist" >{artist.label}
-
                         </span>
-
                       })}
                     </div>
                 }
-
               </div>
-              <div>
-                {this.canModify() &&
-                  <div>
-                    <Link to={`/events/${this.state._id}/edit`} className="button is-primary">Edit</Link>
-                    <button className="button is-danger" onClick={this.handleDelete}>Delete</button>
-                  </div>
-                }
-              </div>
-
 
               {this.state.description && this.state.description.split('\n').map((paragraph, i) =>
                 <p key={i}><br />{paragraph}</p>
               )}
-
             </div>
           </div>
 
           <div className="columns">
             <div className="column">
-              {this.state.createdBy &&
-                <div className="event-meta">
-                  <span>Organised by {this.state.createdBy.username}</span>
-                </div>
-              }
+              <div className="columns">
+                {this.state.createdBy &&
+                  <div className="event-meta column">
+                    <span>Organised by {this.state.createdBy.username}</span>
+                  </div>
+                }
+                {this.canModify() &&
+                  <div className="column">
+                    <div className="columns event-buttons">
+                      <Link to={`/events/${this.state._id}/edit`}><button>Edit</button></Link>
+                      <button onClick={this.handleDelete}>Delete</button>
+                    </div>
+                  </div>
+                }
+              </div>
             </div>
 
             <div className="column">

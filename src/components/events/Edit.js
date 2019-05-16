@@ -184,19 +184,14 @@ class Edit extends React.Component {
               </div>}
 
               <form>
-
                 <div className="field">
                   <label className="label">Artist</label>
-
-
                 </div>
 
                 <CreatableSelect
                   onChange={this.handleSelectChange}
                   isMulti
                   value={this.state.data.artist}
-
-
                 />
               </form>
 
