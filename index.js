@@ -12,6 +12,5 @@ app.use(express.static(`${__dirname}/dist`))
 
 app.use(bodyParser.json())
 app.use('/api', routes)
-app.get('/*', (req, res) => res.sendFile(`${__dirname}/dist/index.html`))
 app.use(errorHandler)
 app.listen(port, () => console.log(`Event is coming on port ${port}`))
