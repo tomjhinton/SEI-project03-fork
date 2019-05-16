@@ -98,16 +98,6 @@ class Show extends React.Component {
 
               <h2>{this.state.description}</h2>
 
-              <div className="subtitle is-5">
-                {!!this.state.artist &&
-                    <div ><strong>Artists:</strong>
-                      {this.state.artist.map(artist => {
-                        return <span key={artist.label} className="event-show-artist" >{artist.label}
-                        </span>
-                      })}
-                    </div>
-                }
-              </div>
 
               {this.state.description && this.state.description.split('\n').map((paragraph, i) =>
                 <p key={i}><br />{paragraph}</p>
