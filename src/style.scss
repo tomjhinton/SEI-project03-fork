@@ -127,16 +127,18 @@ button:focus{
   color: white;
 }
 
-#no-event{
+.zero-result{
   width:60%;
+  font-size: 20px;
+  text-align: center;
 }
 
-#no-event>.columns>.column{
+.zero-result>.columns>.column{
   align-items: center;
   font-size: 20px;
 }
 
-#no-event>.columns>.column>a>button{
+.zero-result>.columns>.column>a>button{
   font-size: 15px;
   padding: 0px;
   width:110px;
