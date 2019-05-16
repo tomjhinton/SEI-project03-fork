@@ -16,6 +16,7 @@ import Profile from './components/common/Profile'
 
 import Home from './components/common/Home'
 import SEventsShow from './components/events/external/Show'
+import ArtistShow from './components/artists/Show'
 import SecureRoute from './components/common/SecureRoute'
 import FlashMessages from './components/common/FlashMessages'
 
@@ -41,6 +42,7 @@ class App extends React.Component {
           <FlashMessages />
 
           <Switch>
+            <Route path="/artists/:id" component={ArtistShow}/>
             <SecureRoute path="/events/new" component={EventsNew} />
             <Route path="/events/external/:id" component={SEventsShow}/>
             <Route path="/events/:id" component={EventsShow} />
