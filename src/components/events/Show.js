@@ -75,11 +75,11 @@ class Show extends React.Component {
 
     return (
       <div className="section">
-        <div className="container box">
+        <div className="container">
 
           <div className="columns ">
             <div className="column">
-              <img className="event-image box" src={this.state.image} />
+              <img className="event-image" src={this.state.image} />
               <div id="map"></div>
             </div>
 

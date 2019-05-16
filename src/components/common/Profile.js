@@ -14,20 +14,12 @@ class Profile extends React.Component{
       data: {}
     }
   }
-  // getUser(data){
-  //
-  //   console.log(data)
-  //   const user =data.filter(userEvent => userEvent.createdBy.includes('5cdadf134e24905611bcaf68'))
-  //   console.log(user, 'user')
-  //
-  // }
-  componentDidMount(){
 
+  componentDidMount(){
     const token = Auth.getToken()
     axios.get('/api/myprofile',{
       headers: { 'Authorization': `Bearer ${token}` }
     })
-
       .then(res =>this.setState({data: res.data}))
       .catch(err => console.error(err))
   }
@@ -36,10 +28,10 @@ class Profile extends React.Component{
     console.log(this.state.data)
     return(
       <section className="section">
-        <div className="container box">
+        <div className="container">
           <div className="columns is-multiline is-full-desktop">
             <div className="column profile-left is-one-quarter ">
-              <figure className="image  box ">
+              <figure className="image">
                 <img src={this.state.data.image} />
               </figure>
               <h2 className="title is-4 has-text-centered">{this.state.data.username}</h2>
@@ -50,13 +42,13 @@ class Profile extends React.Component{
 
               {this.state.data.events && <div>
                 <h2 className="title is-2">My Events</h2>
-                {this.state.data.events.length === 0 && <div className="index-card box wrapper">You have not create new event yet</div>}
+                {this.state.data.events.length === 0 && <div className="index-card">You have not create new event yet</div>}
                 {this.state.data.events.map(event =>
-                  <div key={event._id} className="index-card box wrapper">
+                  <div key={event._id} className="index-card">
                     <Link  to={`/events/${event._id}`}>
                       <div  className="columns event-index-card box-shadow">
                         <div className="column">
-                          <img className="event-image box" src={event.image}></img>
+                          <img className="event-image" src={event.image}></img>
                         </div>
                         <div className="column">
                           <h1  className="title is-5">{event.name}</h1>

@@ -34,19 +34,13 @@ class EventsNew extends React.Component {
     this.handleSelectChange = this.handleSelectChange.bind(this)
     this.handleStartTime = this.handleStartTime.bind(this)
     this.handleFinishTime = this.handleFinishTime.bind(this)
-
-
   }
-
 
   handleChange(e) {
     const data = { ...this.state.data, [e.target.name]: e.target.value }
     console.log(data)
     this.setState({ data })
-
   }
-
-
 
   handleSelectChange(e) {
     console.log(e)
@@ -56,12 +50,8 @@ class EventsNew extends React.Component {
     console.log(this)
   }
 
-
-
-
   handleChangeDate(date) {
     console.log(date)
-
     this.setState({
       data: {
         ...this.state.data,
@@ -144,9 +134,25 @@ class EventsNew extends React.Component {
     return (
       <section className="section">
         <div className="title">Enter Event Details</div>
-        <div className="container box">
-          <div className="columns is-centered">
-            <div className="column is-half-desktop is-two-thirds-tablet">
+
+        <form onSubmit={this.handleSubmit}>
+          <div className="columns">
+            <div className="column">
+              <div className="field">
+                <label className="label">Name</label>
+                <div className="control">
+                  <input
+                    className="input"
+                    name="name"
+                    placeholder="The name of your event!"
+                    onChange={this.handleChange}
+                    value={this.state.data.name || ''}
+                  />
+                </div>
+                {this.state.errors.name && <div className="help is-danger">{this.state.errors.name}</div>}
+              </div>
+            </div>
+            <div className="column">
               <form onSubmit={this.findVenue}>
                 <div className="field">
                   <label className="label">Venue</label>
@@ -162,9 +168,7 @@ class EventsNew extends React.Component {
                   </div>
                   {this.state.errors.name && <div className="help is-danger">{this.state.errors.name}</div>}
                 </div>
-
               </form>
-
               {this.state.data.venue && !this.state.data.skId &&<div className="venue-search-modal">
 
                 {this.state.venues.map(venue =>
@@ -179,58 +183,96 @@ class EventsNew extends React.Component {
                   </div>
                 )}
               </div>}
-
+            </div>
+          </div>
+          <div className="columns">
+            <div className="column">
+              <div className="field">
+                <label className="label">Image</label>
+                <div className="control">
+                  <input
+                    className="input"
+                    name="image"
+                    placeholder="eg: The poster for your event!"
+                    onChange={this.handleChange}
+                    value={this.state.data.image || ''}
+                  />
+                </div>
+                {this.state.errors.image && <div className="help is-danger">{this.state.errors.image}</div>}
+              </div>
               <form>
-
                 <div className="field">
                   <label className="label">Artist</label>
-
-
                 </div>
-
                 <CreatableSelect
+                  className="creatable-select"
                   onChange={this.handleSelectChange}
                   isMulti
-
-
                 />
               </form>
-
-
-              <form onSubmit={this.handleSubmit}>
-                <div className="field">
-                  <label className="label">Name</label>
-                  <div className="control">
-                    <input
-                      className="input"
-                      name="name"
-                      placeholder="The name of your event!"
-                      onChange={this.handleChange}
-                      value={this.state.data.name || ''}
-                    />
-                  </div>
-                  {this.state.errors.name && <div className="help is-danger">{this.state.errors.name}</div>}
+            </div>
+            <div className="column">
+              <div className="field">
+                <label className="label">Description</label>
+                <div className="control">
+                  <textarea
+                    className="textarea"
+                    name="description"
+                    placeholder="A description of your event"
+                    onChange={this.handleChange}
+                    value={this.state.data.description || ''}
+                  />
                 </div>
-                <div className="field">
-                  <label className="label">Image</label>
-                  <div className="control">
-                    <input
-                      className="input"
-                      name="image"
-                      placeholder="eg: The poster for your event!"
-                      onChange={this.handleChange}
-                      value={this.state.data.image || ''}
-                    />
-                  </div>
-                  {this.state.errors.image && <div className="help is-danger">{this.state.errors.image}</div>}
+                {this.state.errors.description && <div className="help is-danger">{this.state.errors.description}</div>}
+              </div>
+            </div>
+          </div>
+          <div className="columns">
+            <div className="column">
+              <div className="field">
+                <label className="label">Price</label>
+                <div className="control">
+                  <input
+                    className="input"
+                    type="number"
+                    name="price"
+                    placeholder="the price of your event"
+                    onChange={this.handleChange}
+                    value={this.state.data.price || ''}
+                  />
                 </div>
-                <div className="field">
+                {this.state.errors.date && <div className="help is-danger">{this.state.errors.price}</div>}
+              </div>
+            </div>
+            <div className="column">
+              <div className="field">
+                <label className="label">Minimum Age</label>
+                <div className="control">
+                  <input
+                    className="input"
+                    type="number"
+                    name="minimumAge"
+                    placeholder="Minimum Age for the event"
+                    onChange={this.handleChange}
+                    value={this.state.data.minimumAge || ''}
+                  />
+                </div>
+                {this.state.errors.minimumAge && <div className="help is-danger">{this.state.errors.minimumAge}</div>}
+              </div>
+            </div>
+          </div>
+          <div className="columns">
+            <div className="column">
+              <div className="field columns">
+                <div className="column">
                   <label className="label">Date</label>
                   {this.state.data.date &&  <h1>{this.state.data.date || ''}</h1>}
                   <DatePicker
                     onChange={this.handleChangeDate}
                     value={this.state.data.date || ''}
                   />
+                </div>
+                <div className="column">
                   <label className="label">Start Time</label>
                   {this.state.data.start && <h1>{this.state.data.start || ''}</h1>}
                   <DatePicker
@@ -239,6 +281,8 @@ class EventsNew extends React.Component {
                     onChange={this.handleStartTime}
                     value={this.state.data.start || ''}
                   />
+                </div>
+                <div className="column">
                   <label className="label">Finish Time</label>
                   {this.state.data.finish && <h1>{this.state.data.finish}</h1>}
                   <DatePicker
@@ -247,63 +291,15 @@ class EventsNew extends React.Component {
                     onChange={this.handleFinishTime}
                     value={this.state.data.finish || ''}
                   />
-                  {this.state.errors.date && <div className="help is-danger">{this.state.errors.date}</div>}
                 </div>
-
-
-                <div className="field">
-                  <label className="label">Price</label>
-                  <div className="control">
-                    <input
-                      className="input"
-                      type="number"
-                      name="price"
-                      placeholder="the price of your event"
-                      onChange={this.handleChange}
-                      value={this.state.data.price || ''}
-                    />
-                  </div>
-                  {this.state.errors.date && <div className="help is-danger">{this.state.errors.price}</div>}
-                </div>
-
-
-                <div className="field">
-                  <label className="label">Description</label>
-                  <div className="control">
-                    <textarea
-                      className="textarea"
-                      name="description"
-                      placeholder="A description of your event"
-                      onChange={this.handleChange}
-                      value={this.state.data.description || ''}
-                    />
-                  </div>
-                  {this.state.errors.description && <div className="help is-danger">{this.state.errors.description}</div>}
-                </div>
-
-                <div className="field">
-                  <label className="label">Minimum Age</label>
-                  <div className="control">
-                    <input
-                      className="input"
-                      type="number"
-                      name="minimumAge"
-                      placeholder="Minimum Age for the event"
-                      onChange={this.handleChange}
-                      value={this.state.data.minimumAge || ''}
-                    />
-                  </div>
-                  {this.state.errors.minimumAge && <div className="help is-danger">{this.state.errors.minimumAge}</div>}
-                </div>
-
-
-
-                <button>Submit</button>
-              </form>
-
+                {this.state.errors.date && <div className="help is-danger">{this.state.errors.date}</div>}
+              </div>
+            </div>
+            <div className="column">
+              <button>Submit</button>
             </div>
           </div>
-        </div>
+        </form>
       </section>
     )
   }
