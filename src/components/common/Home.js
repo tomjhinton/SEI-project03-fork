@@ -78,6 +78,11 @@ class Home extends React.Component{
               <p className="subtitle is-5">Connecting you with music in your area.  </p>
             </div>
             <div className="column is-half">
+<<<<<<< HEAD
+
+          
+=======
+>>>>>>> development
               <SearchBar />
             </div>
           </div>

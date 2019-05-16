@@ -9,6 +9,7 @@ router.post('/events',secureRoute,eventsController.create)
 router.put('/events/:id', secureRoute,eventsController.update)
 router.delete('/events/:id', secureRoute,eventsController.delete)
 
+
 router.post('/login', authController.login)
 router.post('/register', authController.register)
 

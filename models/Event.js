@@ -60,6 +60,7 @@ const eventSchema = new mongoose.Schema({
 
 }, {
   toJSON: {
+    virtuals: true,
     // whenever the user is converted to JSON
     transform(doc, json) {
       delete json.__v

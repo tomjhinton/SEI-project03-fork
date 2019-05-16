@@ -10,6 +10,7 @@ import Register from './components/auth/Register'
 import EventsNew from './components/events/New'
 import VenuesSearch from './components/venues/Search'
 import EventsIndex from './components/events/Index'
+import EventsEdit from './components/events/Edit'
 import VenuesShow from './components/venues/Show'
 import Navbar from './components/common/Navbar'
 import Profile from './components/common/Profile'
@@ -45,6 +46,7 @@ class App extends React.Component {
             <Route path="/artists/:id" component={ArtistShow}/>
             <SecureRoute path="/events/new" component={EventsNew} />
             <Route path="/events/external/:id" component={SEventsShow}/>
+            <SecureRoute path="/events/:id/edit" component={EventsEdit} />
             <Route path="/events/:id" component={EventsShow} />
             <Route path="/events" component={EventsIndex} />
 
