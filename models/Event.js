@@ -1,7 +1,27 @@
 const mongoose = require('mongoose')
 const uniqueValidator = require('mongoose-unique-validator')
 
-
+const commentSchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
+    required: true
+  },
+  content: {
+    type: String,
+    required: true,
+    maxlength: 280
+  }
+}, {
+  timestamps: true, // this adds `createdAt` and `updatedAt` properties
+  toJSON: {
+    // whenever the comment is converted to JSON
+    transform(doc, json) {
+      delete json.__v
+      return json
+    }
+  }
+})
 
 const eventSchema = new mongoose.Schema({
 
@@ -30,7 +50,8 @@ const eventSchema = new mongoose.Schema({
     type: String
   },
   image: {
-    type: String
+    type: String,
+    required: true
   },
   artist: {
     type: Array,
@@ -56,7 +77,8 @@ const eventSchema = new mongoose.Schema({
   createdBy: {
     type: mongoose.Schema.ObjectId,
     ref: 'User'
-  }
+  },
+  comments: [ commentSchema ]
 
 }, {
   toJSON: {

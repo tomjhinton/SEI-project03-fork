@@ -130,14 +130,9 @@ class VenuesShow extends React.Component{
                   <div  className="cards-slider">
                     <div className="cards-slider-wrapper ">
                       {!!this.state.upcoming.resultsPage &&
-
                     <div key={this.state.currentEvent.id} className="column card uevents ">
-
                       <span className="subtitle is-4 has-text-light">{this.state.currentEvent.displayName}</span>
-
                     </div>
-
-
                       }
                     </div>
                   </div>

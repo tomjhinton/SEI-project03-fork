@@ -18,12 +18,7 @@ class EventsIndex extends React.Component{
 
   getMatches(){
     const re = new RegExp(this.props.match.query.search, 'i')
-    const sorted = this.state.events.sort(function(a, b) {
-      const dateA = new Date(a.date), dateB = new Date(b.date)
-      return dateA.getTime() - dateB.getTime()
-    })
-    return  sorted.filter(event => re.test(event.name))
-
+    return this.state.events.filter(event => re.test(event.name))
   }
 
   componentDidMount(){
@@ -39,7 +34,7 @@ class EventsIndex extends React.Component{
       <section className="section">
         <div className="title">Events</div>
         { (this.getMatches().length===0) ? (
-          <div id="no-event" className="container box index-card">
+          <div className="zero-result container box index-card">
             <div className="columns">
               <div className="column">Sorry, we have no events matching that name. Try another search!</div>
               <div className="column is-one-fifth"><Link to="/events"><button>See all events</button></Link></div>
