@@ -55,7 +55,7 @@ class Show extends React.Component {
     axios.post(`/api/events/${this.state.data.id}/comments`, this.state.comment, {
       headers: { 'Authorization': `Bearer ${token}` }
     })
-      .then(res => this.setState({ data: res.data, comment: { content: '' } }))
+      .then(res => this.setState({ data: { ...this.state.data, comments: res.data.comments }, comment: { content: '' } }))
       .catch(err => console.error(err))
   }
 
@@ -127,7 +127,25 @@ class Show extends React.Component {
                 <div className="subtitle is-7">Over {this.state.data.minimumAge}s only</div>
                 {this.state.data.start} - {this.state.data.finish}
               </div>
+
+
+
+
+
+              <div>
+                {this.canModify() &&
+                  <div>
+                    <Link to={`/events/${this.state.data._id}/edit`}> <button className="home-main-form-item edit">Edit</button></Link>
+
+                    <button className="home-main-form-item" onClick={this.handleDelete}>Delete</button>
+                  </div>
+                }
+              </div>
+
               <h2>{this.state.description}</h2>
+
+
+
               {this.state.data.description && this.state.data.description.split('\n').map((paragraph, i) =>
                 <p key={i}><br />{paragraph}</p>
               )}
@@ -135,26 +153,28 @@ class Show extends React.Component {
           </div>
 
           <div className="columns">
-
             <div className="column">
 
-              <div className="columns">
+              {this.state.data.createdBy &&
+                <div className="event-meta">
+                  <span>Organised by {this.state.data.createdBy.username}</span>
+                </div>
+              }
 
-                {this.state.data.createdBy &&
-                  <div className="column is-half event-meta">
-                    <span>Organised by {this.state.data.createdBy.username}</span>
+              <div className="columns">
+                {this.state.createdBy &&
+                  <div className="event-meta column">
+                    <span>Organised by {this.state.createdBy.username}</span>
                   </div>
                 }
-
                 {this.canModify() &&
                   <div className="column">
-                    <div className="columns">
-                      <button className="column event-buttons"><Link to={`/events/${this.state._id}/edit`}>Edit</Link></button>
-                      <button className="column event-buttons" onClick={this.handleDelete}>Delete</button>
+                    <div className="columns event-buttons">
+                      <Link to={`/events/${this.state._id}/edit`}><button>Edit</button></Link>
+                      <button onClick={this.handleDelete}>Delete</button>
                     </div>
                   </div>
                 }
-
               </div>
 
             </div>
@@ -170,9 +190,9 @@ class Show extends React.Component {
                 </div>
               }
             </div>
-
+            <div>
+            </div>
           </div>
-
           <div>
             {Auth.isAuthenticated() &&
           <form className="level is-half search-bar" onSubmit={this.handleSubmit}>
