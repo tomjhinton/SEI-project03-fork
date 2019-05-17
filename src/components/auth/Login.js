@@ -42,16 +42,16 @@ class Login extends React.Component{
           <div className="columns is-centered">
             <div className="column is-half-desktop is-two-thirds-tablet">
               <form onSubmit={this.handleSubmit}>
+
                 <div className="field">
                   <label className="label">Email</label>
-
-                    <input
-                      className="input"
-                      name="email"
-                      placeholder="eg: jack@hotmail.com"
-                      onChange={this.handleChange}
-                    />
-                  </div>
+                  <input
+                    className="input"
+                    name="email"
+                    placeholder="eg: jack@hotmail.com"
+                    onChange={this.handleChange}
+                  />
+                </div>
 
                 <div className="field">
                   <label className="label">Password</label>

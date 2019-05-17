@@ -135,7 +135,7 @@ class EventsNew extends React.Component {
       <section className="section">
         <div className="title">Enter Event Details</div>
 
-        <form onSubmit={this.handleSubmit}>
+        <form className="new-event-form" onSubmit={this.handleSubmit}>
           <div className="columns">
             <div className="column">
               <div className="field">
@@ -295,7 +295,7 @@ class EventsNew extends React.Component {
                 {this.state.errors.date && <div className="help is-danger">{this.state.errors.date}</div>}
               </div>
             </div>
-            <div className="column">
+            <div className="column new-event-submit">
               <button>Submit</button>
             </div>
           </div>
