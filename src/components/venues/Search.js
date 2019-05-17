@@ -39,7 +39,7 @@ class VenuesSearch extends React.Component {
       <div>
         <div className="section">
           <div className="title">Venues</div>
-          <div className="container box-shadow box">
+          <div className="container box-shadow">
             <form onSubmit={this.findVenue}>
               <div className="field">
                 <label className="label title is-4">Search</label>
@@ -59,29 +59,25 @@ class VenuesSearch extends React.Component {
         </div>
 
         {this.state.venues !== null && !this.state.venues &&
-          <div className="zero-result container box index-card">Sorry, we have no venues matching that name. Try another search!</div>
+          <div className="zero-result container index-card">Sorry, we have no venues matching that name. Try another search!</div>
         }
 
 
         {this.state.venues &&
-          <div className="section">
-            <div className="container box">
-              <div className="search-results">
-                <div className="is-5 is-multiline">
-                  {this.state.venues.map(venue => {
-                    return(
-                      <div className="index-card  box" key={venue.id}>
-                        <Link to={`/venues/${venue.id}`}>
-                          <div className="title is-5">{venue.displayName}</div>
-                          <span className="subtitle">{venue.city.displayName}  {venue.city.country.displayName}</span>
-                        </Link>
-                      </div>
-                    )
-                  })}
-                </div>
+            <div className="search-results">
+              <div className="is-5 is-multiline">
+                {this.state.venues.map(venue => {
+                  return(
+                    <div className="index-card" key={venue.id}>
+                      <Link to={`/venues/${venue.id}`}>
+                        <div className="title is-5">{venue.displayName}</div>
+                        <span className="subtitle">{venue.city.displayName}  {venue.city.country.displayName}</span>
+                      </Link>
+                    </div>
+                  )
+                })}
               </div>
             </div>
-          </div>
         }
 
 

@@ -108,7 +108,7 @@ class Show extends React.Component {
 
     return (
       <div className="section">
-        <div className="container box">
+        <div className="container">
 
           <div className="columns ">
             <div className="column">
