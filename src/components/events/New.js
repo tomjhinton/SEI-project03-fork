@@ -136,7 +136,9 @@ class EventsNew extends React.Component {
         <div className="title">Enter Event Details</div>
 
         <form className="new-event-form" onSubmit={this.handleSubmit}>
+
           <div className="columns">
+
             <div className="column">
               <div className="field">
                 <label className="label">Name</label>
@@ -152,6 +154,7 @@ class EventsNew extends React.Component {
                 {this.state.errors.name && <div className="help is-danger">{this.state.errors.name}</div>}
               </div>
             </div>
+
             <div className="column">
               <form onSubmit={this.findVenue}>
                 <div className="field">
@@ -170,7 +173,6 @@ class EventsNew extends React.Component {
                 </div>
               </form>
               {this.state.data.venue && !this.state.data.skId &&<div className="venue-search-modal">
-
                 {this.state.venues.map(venue =>
                   <div key={venue.id}>
                     <div
@@ -185,6 +187,7 @@ class EventsNew extends React.Component {
               </div>}
             </div>
           </div>
+
           <div className="columns">
             <div className="column">
               <div className="field">
@@ -211,6 +214,7 @@ class EventsNew extends React.Component {
                 />
               </form>
             </div>
+
             <div className="column">
               <div className="field">
                 <label className="label">Description</label>
@@ -227,7 +231,9 @@ class EventsNew extends React.Component {
               </div>
             </div>
           </div>
+
           <div className="columns">
+
             <div className="column">
               <div className="field">
                 <label className="label">Price</label>
@@ -244,6 +250,7 @@ class EventsNew extends React.Component {
                 {this.state.errors.date && <div className="help is-danger">{this.state.errors.price}</div>}
               </div>
             </div>
+
             <div className="column">
               <div className="field">
                 <label className="label">Minimum Age</label>
@@ -261,6 +268,7 @@ class EventsNew extends React.Component {
               </div>
             </div>
           </div>
+
           <div className="columns">
             <div className="column">
               <div className="field columns">
@@ -295,10 +303,12 @@ class EventsNew extends React.Component {
                 {this.state.errors.date && <div className="help is-danger">{this.state.errors.date}</div>}
               </div>
             </div>
+
             <div className="column new-event-submit">
               <button>Submit</button>
             </div>
           </div>
+          
         </form>
       </section>
     )
