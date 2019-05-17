@@ -50,8 +50,10 @@ class Show extends React.Component {
 
   handleSubmit(e){
     e.preventDefault()
+    //   this.setState({this.state.data.comments:commentValue})
     const token = Auth.getToken()
 
+    this.setState({content: ''})
     axios.post(`/api/events/${this.state.data.id}/comments`, this.state.comment, {
       headers: { 'Authorization': `Bearer ${token}` }
     })
@@ -120,32 +122,14 @@ class Show extends React.Component {
               <h1  className="title is-1">{this.state.data.name}</h1>
               <div className="event-meta">
                 <div className="subtitle is-7">{this.state.data.date}</div>
-                <Link to={`/venues/${this.state.skId}`}>
+                <Link to={`/venues/${this.state.data.skId}`}>
                   <div className="subtitle is-7">{this.state.data.venue}, {this.state.data.postcode}</div>
                 </Link>
                 <div className="subtitle is-7">£{this.state.data.price}</div>
                 <div className="subtitle is-7">Over {this.state.data.minimumAge}s only</div>
                 {this.state.data.start} - {this.state.data.finish}
               </div>
-
-
-
-
-
-              <div>
-                {this.canModify() &&
-                  <div>
-                    <Link to={`/events/${this.state.data._id}/edit`}> <button className="home-main-form-item edit">Edit</button></Link>
-
-                    <button className="home-main-form-item" onClick={this.handleDelete}>Delete</button>
-                  </div>
-                }
-              </div>
-
               <h2>{this.state.description}</h2>
-
-
-
               {this.state.data.description && this.state.data.description.split('\n').map((paragraph, i) =>
                 <p key={i}><br />{paragraph}</p>
               )}
@@ -153,28 +137,26 @@ class Show extends React.Component {
           </div>
 
           <div className="columns">
+
             <div className="column">
 
-              {this.state.data.createdBy &&
-                <div className="event-meta">
-                  <span>Organised by {this.state.data.createdBy.username}</span>
-                </div>
-              }
-
               <div className="columns">
-                {this.state.createdBy &&
-                  <div className="event-meta column">
-                    <span>Organised by {this.state.createdBy.username}</span>
+
+                {this.state.data.createdBy &&
+                  <div className="column is-half event-meta">
+                    <span>Organised by {this.state.data.createdBy.username}</span>
                   </div>
                 }
+
                 {this.canModify() &&
                   <div className="column">
-                    <div className="columns event-buttons">
-                      <Link to={`/events/${this.state._id}/edit`}><button>Edit</button></Link>
-                      <button onClick={this.handleDelete}>Delete</button>
+                    <div className="columns">
+                      <button className="column event-buttons"><Link to={`/events/${this.state.data._id}/edit`}>Edit</Link></button>
+                      <button className="column event-buttons" onClick={this.handleDelete}>Delete</button>
                     </div>
                   </div>
                 }
+
               </div>
 
             </div>
@@ -189,8 +171,6 @@ class Show extends React.Component {
                   </div>
                 </div>
               }
-            </div>
-            <div>
             </div>
           </div>
           <div>
@@ -215,9 +195,16 @@ class Show extends React.Component {
 
                 <div className="column profile-left is-one-quarter  ">
                   <figure className="image is-96x96 box ">
-                    <img className="event-image" src={comment.user.image} />
+                    {this.state.user._id === this.state.data.createdBy._id
+                      ?  <img className="event-image" src={this.state.data.createdBy.image} />
+                      :  <img className="event-image" src={this.state.user.image} />
+                    }
                   </figure>
-                  <div className="subtitle is-6  has-text-left">{comment.user.username}</div>
+                  {this.state.user._id === this.state.data.createdBy._id
+                    ?   <div className="subtitle is-6  has-text-left">{this.state.data.createdBy.username}</div>
+
+                    :  <div className="subtitle is-6  has-text-left">{this.state.user.username}</div>
+                  }
                 </div>
                 <div className="column  is-three-quarters box mycomment">
 
@@ -225,14 +212,8 @@ class Show extends React.Component {
 
                 </div>
               </div>
-
             ) }
-
-
           </div>
-
-
-
         </div>
       </div>
     )
