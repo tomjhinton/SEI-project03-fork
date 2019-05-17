@@ -8,6 +8,8 @@ const { port, dbUri } = require('./config/environment')
 mongoose.connect(dbUri)
 const app = express()
 
+app.use(express.static(`${__dirname}/dist`))
+
 app.use(bodyParser.json())
 app.use('/api', routes)
 app.use(errorHandler)

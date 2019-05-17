@@ -35,6 +35,7 @@ class VenuesSearch extends React.Component {
 
   render() {
     return (
+
       <div>
         <div className="section">
           <div className="title">Venues</div>
@@ -56,6 +57,10 @@ class VenuesSearch extends React.Component {
             </form>
           </div>
         </div>
+
+        {this.state.venues !== null && !this.state.venues &&
+          <div className="zero-result container box index-card">Sorry, we have no venues matching that name. Try another search!</div>
+        }
 
 
         {this.state.venues &&

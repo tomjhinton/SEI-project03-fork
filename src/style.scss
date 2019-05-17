@@ -72,6 +72,12 @@ button:focus{
   background-image:url('images/hero-0.jpg');
   background-position: center;
   background-size: cover;
+  position: relative;
+  top:-52px;
+}
+
+.event-buttons{
+  justify-content: space-around;
 }
 
 .home-main-overlay{
@@ -109,27 +115,36 @@ button:focus{
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  padding: 5px;
+  // padding: 5px;
   background-color: rgba(0,0,0,0.6);
 }
 
 .home-rec-event{
+  padding: 10px;
   margin: 5px 0;
   color: rgb(255, 255, 153);
   font-weight: bold;
-  width: 28%;
+  width: 32%;
+  text-align: center;
 }
 
-#no-event{
+.home-rec-event:hover{
+  background-color: rgba(0,0,0,0.3);
+  color: white;
+}
+
+.zero-result{
   width:60%;
+  font-size: 20px;
+  text-align: center;
 }
 
-#no-event>.columns>.column{
+.zero-result>.columns>.column{
   align-items: center;
   font-size: 20px;
 }
 
-#no-event>.columns>.column>a>button{
+.zero-result>.columns>.column>a>button{
   font-size: 15px;
   padding: 0px;
   width:110px;
@@ -185,9 +200,13 @@ button:focus{
   height: 200px;
 }
 
-// .show-body{
-//   min-height: 75vh;
-// }
+.flash-message{
+  background-color:rgb(255, 255, 153);
+  color: rgb(51, 0, 51);
+  text-align: center;
+  font-size: 30px;
+  padding: 15px;
+}
 
 .event-image{
   object-fit: cover;

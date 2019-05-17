@@ -135,6 +135,7 @@ class Show extends React.Component {
 
 
 
+
               <div>
                 {this.canModify() &&
                   <div>
@@ -145,21 +146,41 @@ class Show extends React.Component {
                 }
               </div>
 
+              <h2>{this.state.description}</h2>
+
+
 
               {this.state.data.description && this.state.data.description.split('\n').map((paragraph, i) =>
                 <p key={i}><br />{paragraph}</p>
               )}
-
             </div>
           </div>
 
           <div className="columns">
             <div className="column">
+
               {this.state.data.createdBy &&
                 <div className="event-meta">
                   <span>Organised by {this.state.data.createdBy.username}</span>
                 </div>
               }
+
+              <div className="columns">
+                {this.state.createdBy &&
+                  <div className="event-meta column">
+                    <span>Organised by {this.state.createdBy.username}</span>
+                  </div>
+                }
+                {this.canModify() &&
+                  <div className="column">
+                    <div className="columns event-buttons">
+                      <Link to={`/events/${this.state._id}/edit`}><button>Edit</button></Link>
+                      <button onClick={this.handleDelete}>Delete</button>
+                    </div>
+                  </div>
+                }
+              </div>
+
             </div>
 
             <div className="column">

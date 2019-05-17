@@ -80,8 +80,6 @@ class Home extends React.Component{
             <div className="column is-half">
 
 
-
-
               <SearchBar />
             </div>
           </div>
