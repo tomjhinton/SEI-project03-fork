@@ -8,6 +8,20 @@ import 'react-datepicker/dist/react-datepicker.css'
 import CreatableSelect from 'react-select/lib/Creatable'
 import DatePicker from 'react-datepicker'
 
+const selectStyles = {
+  control: (styles, state) => ({
+    ...styles,
+    backgroundColor: '#fafaff',
+    borderRadius: '0',
+    border: state.isFocused ? 0:0,
+    boxShadow: state.isFocused ? 0:0,
+    borderBottom: '0.5px solid rgb(223, 231, 236)',
+    '&:hover': {
+      borderBottom: '0.5px solid rgb(223, 231, 236)'
+    }
+  })
+}
+
 class EventsNew extends React.Component {
 
   constructor() {
@@ -135,7 +149,7 @@ class EventsNew extends React.Component {
       <section className="section">
         <div className="title">Enter Event Details</div>
 
-        <form className="new-event-form" onSubmit={this.handleSubmit}>
+        <form className="event-form" onSubmit={this.handleSubmit}>
 
           <div className="columns">
 
@@ -208,8 +222,8 @@ class EventsNew extends React.Component {
                   <label className="label">Artist</label>
                 </div>
                 <CreatableSelect
-                  className="creatable-select"
                   onChange={this.handleSelectChange}
+                  styles={selectStyles}
                   isMulti
                 />
               </form>
@@ -308,7 +322,7 @@ class EventsNew extends React.Component {
               <button>Submit</button>
             </div>
           </div>
-          
+
         </form>
       </section>
     )

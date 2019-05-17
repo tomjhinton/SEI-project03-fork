@@ -33,81 +33,75 @@ class Register extends React.Component{
 
     return(
 
-      <section className="section">
-        <div className="title">Register</div>
-        <div className="container">
-          <div className="columns is-centered">
-            <div className="column is-half-desktop is-two-thirds-tablet">
-              <form onSubmit={this.handleSubmit}>
-                <div className="field">
-                  <label className="label">Username</label>
-                  <div className="control">
-                    <input
-                      className="input"
-                      name="username"
-                      placeholder="eg: drakeon"
-                      onChange={this.handleChange}
-                    />
-                  </div>
-                  {this.state.errors.username && <div className="help is-danger">{this.state.errors.username}</div>}
-                </div>
-                <div className="field">
-                  <label className="label">Email</label>
-                  <div className="control">
-                    <input   className="input"    name="email"
-                      placeholder="eg: jack@hotmail.com"
-                      onChange={this.handleChange}
-                    />
-                  </div>
-                  {this.state.errors.email && <div className="help is-danger">{this.state.errors.email}</div>}
-                </div>
-                <div className="field">
-                  <label className="label">Profile Image</label>
-                  <div className="control">
-                    <input
-                      className="input"
-                      name="image"
-                      type="text"
-                      placeholder="eg: https:myimages.com"
-                      onChange={this.handleChange}
-                    />
-                  </div>
-                  {this.state.errors.image && <div className="help is-danger">{this.state.errors.image}</div>}
-                </div>
-                <div className="field">
-                  <label className="label">Password</label>
-                  <div className="control">
-                    <input
-                      className="input"
-                      name="password"
-                      type="password"
-                      placeholder="eg: ••••••••"
-                      onChange={this.handleChange}
-                    />
-                  </div>
-                  {this.state.errors.password && <div className="help is-danger">{this.state.errors.password}</div>}
-                </div>
-                <div className="field">
-                  <label className="label">Password Confirmation</label>
-                  <div className="control">
-                    <input
-                      className="input"
-                      name="passwordConfirmation"
-                      type="password"
-                      placeholder="eg: ••••••••"
-                      onChange={this.handleChange}
-                    />
-                  </div>
-                  {this.state.errors.passwordConfirmation && <div className="help is-danger">{this.state.errors.passwordConfirmation}</div>}
-                </div>
-                <button>Submit</button>
-              </form>
+      <section>
+        <div className="title section form-title">Register</div>
+        <div className="user-form">
+          <form onSubmit={this.handleSubmit}>
+            <div className="field">
+              <label className="label">Username</label>
+              <div className="control">
+                <input
+                  className="input"
+                  name="username"
+                  placeholder="eg: drakeon"
+                  onChange={this.handleChange}
+                />
+              </div>
+              {this.state.errors.username && <div className="help is-danger">{this.state.errors.username}</div>}
             </div>
-          </div>
+            <div className="field">
+              <label className="label">Email</label>
+              <div className="control">
+                <input   className="input"    name="email"
+                  placeholder="eg: jack@hotmail.com"
+                  onChange={this.handleChange}
+                />
+              </div>
+              {this.state.errors.email && <div className="help is-danger">{this.state.errors.email}</div>}
+            </div>
+            <div className="field">
+              <label className="label">Profile Image</label>
+              <div className="control">
+                <input
+                  className="input"
+                  name="image"
+                  type="text"
+                  placeholder="eg: https:myimages.com"
+                  onChange={this.handleChange}
+                />
+              </div>
+              {this.state.errors.image && <div className="help is-danger">{this.state.errors.image}</div>}
+            </div>
+            <div className="field">
+              <label className="label">Password</label>
+              <div className="control">
+                <input
+                  className="input"
+                  name="password"
+                  type="password"
+                  placeholder="eg: ••••••••"
+                  onChange={this.handleChange}
+                />
+              </div>
+              {this.state.errors.password && <div className="help is-danger">{this.state.errors.password}</div>}
+            </div>
+            <div className="field">
+              <label className="label">Password Confirmation</label>
+              <div className="control">
+                <input
+                  className="input"
+                  name="passwordConfirmation"
+                  type="password"
+                  placeholder="eg: ••••••••"
+                  onChange={this.handleChange}
+                />
+              </div>
+              {this.state.errors.passwordConfirmation && <div className="help is-danger">{this.state.errors.passwordConfirmation}</div>}
+            </div>
+            <button>Submit</button>
+          </form>
         </div>
-
       </section>
-
     )
   }
 }
