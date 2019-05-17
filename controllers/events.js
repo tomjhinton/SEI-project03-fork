@@ -42,6 +42,7 @@ function commentCreateRoute(req, res, next) {
   req.body.user = req.currentUser // this comes from `secureRoute`
   // find the character we want to add a comment to
   Event.findById(req.params.id)
+    .populate('comments.user')
     .then(event => {
       // add a comment to the character
       event.comments.push(req.body)

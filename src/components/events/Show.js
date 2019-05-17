@@ -50,16 +50,12 @@ class Show extends React.Component {
 
   handleSubmit(e){
     e.preventDefault()
-    //   this.setState({this.state.data.comments:commentValue})
     const token = Auth.getToken()
-    const comments = [...this.state.data.comments]
-    comments.push(this.state.comment)
 
-    this.setState({content: ''})
     axios.post(`/api/events/${this.state.data.id}/comments`, this.state.comment, {
       headers: { 'Authorization': `Bearer ${token}` }
     })
-      .then(() => this.setState({ data: { ...this.state.data, comments } }))
+      .then(res => this.setState({ data: res.data, comment: { content: '' } }))
       .catch(err => console.error(err))
   }
 
@@ -199,20 +195,9 @@ class Show extends React.Component {
 
                 <div className="column profile-left is-one-quarter  ">
                   <figure className="image is-96x96 box ">
-                    {this.state.user._id === this.state.data.createdBy._id
-                      ?  <img className="event-image" src={this.state.data.createdBy.image} />
-                      :  <img className="event-image" src={this.state.user.image} />
-                    }
-
+                    <img className="event-image" src={comment.user.image} />
                   </figure>
-                  {this.state.user._id === this.state.data.createdBy._id
-                    ?   <div className="subtitle is-6  has-text-left">{this.state.data.createdBy.username}</div>
-
-                    :  <div className="subtitle is-6  has-text-left">{this.state.user.username}</div>
-                  }
-
-
-
+                  <div className="subtitle is-6  has-text-left">{comment.user.username}</div>
                 </div>
                 <div className="column  is-three-quarters box mycomment">
 
@@ -225,11 +210,6 @@ class Show extends React.Component {
 
 
           </div>
-
-
-
-
-
 
 
 
