@@ -33,7 +33,7 @@ button{
 }
 
 .find-button{
-  background-color: lighten($base-color, 80%);
+  background-color: rgb(179, 224, 255);
   color:$base-color;
   height: 100%;
   padding: 6px 0;
@@ -82,7 +82,7 @@ button:focus{
 
 .new-event-form>.columns>.new-event-submit{
   align-items: flex-end;
-  
+
 }
 
 .input{
