@@ -5,9 +5,8 @@ import Auth from '../../lib/Auth'
 
 import mapboxgl from 'mapbox-gl'
 
-
-
 mapboxgl.accessToken = process.env.MAPBOX
+
 class Show extends React.Component {
   constructor() {
     super()
@@ -30,16 +29,10 @@ class Show extends React.Component {
   }
 
   getMap(data){
-
-    // SORT IT AAAAAAAAT
-
-    console.log(data,this.state.data,'messi')
-
     axios.get(`https://api.songkick.com/api/3.0/venues/${data.skId}.json?&apikey=${process.env.SONG_KICK_KEY}`)
       .then(res => this.setState({ data: data,
         lat: res.data.resultsPage.results.venue.lat,
         long: res.data.resultsPage.results.venue.lng
-
       }))
       .then(this.makeMap)
   }
@@ -80,11 +73,12 @@ class Show extends React.Component {
     axios.get('/api/myprofile',{
       headers: { 'Authorization': `Bearer ${token}` }
     })
-
       .then(res =>this.setState({user: res.data}))
+
     axios.get(`/api/events/${this.props.match.params.id}`)
       .then(res => this.getMap(res.data))
   }
+
   handleDelete() {
     const token = Auth.getToken()
     axios.delete(`/api/events/${this.props.match.params.id}`, {
