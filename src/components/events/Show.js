@@ -95,8 +95,6 @@ class Show extends React.Component {
     console.log('I am running')
 
     console.log(this.state)
-
-
     // if the user is logged in AND the user's id matches the characters' user's id return true
     return Auth.isAuthenticated() && Auth.getPayload().sub === this.state.data.createdBy._id
   }
@@ -120,7 +118,7 @@ class Show extends React.Component {
               <h1  className="title is-1">{this.state.data.name}</h1>
               <div className="event-meta">
                 <div className="subtitle is-7">{this.state.data.date}</div>
-                <Link to={`/venues/${this.state.skId}`}>
+                <Link to={`/venues/${this.state.data.skId}`}>
                   <div className="subtitle is-7">{this.state.data.venue}, {this.state.data.postcode}</div>
                 </Link>
                 <div className="subtitle is-7">£{this.state.data.price}</div>
@@ -132,15 +130,6 @@ class Show extends React.Component {
 
 
 
-              <div>
-                {this.canModify() &&
-                  <div>
-                    <Link to={`/events/${this.state.data._id}/edit`}> <button className="home-main-form-item edit">Edit</button></Link>
-
-                    <button className="home-main-form-item" onClick={this.handleDelete}>Delete</button>
-                  </div>
-                }
-              </div>
 
               <h2>{this.state.description}</h2>
 
@@ -155,22 +144,17 @@ class Show extends React.Component {
           <div className="columns">
             <div className="column">
 
-              {this.state.data.createdBy &&
-                <div className="event-meta">
-                  <span>Organised by {this.state.data.createdBy.username}</span>
-                </div>
-              }
 
               <div className="columns">
                 {this.state.createdBy &&
                   <div className="event-meta column">
-                    <span>Organised by {this.state.createdBy.username}</span>
+                    <span>Organised by {this.state.data.createdBy.username}</span>
                   </div>
                 }
                 {this.canModify() &&
                   <div className="column">
                     <div className="columns event-buttons">
-                      <Link to={`/events/${this.state._id}/edit`}><button>Edit</button></Link>
+                      <Link to={`/events/${this.state.data ._id}/edit`}><button>Edit</button></Link>
                       <button onClick={this.handleDelete}>Delete</button>
                     </div>
                   </div>
