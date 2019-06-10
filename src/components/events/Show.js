@@ -120,9 +120,9 @@ class Show extends React.Component {
               <h1  className="title is-1">{this.state.data.name}</h1>
               <div className="event-meta">
                 <div className="subtitle is-7">{this.state.data.date}</div>
-                <Link to={`/venues/${this.state.skId}`}>
+                {<Link to={`/venues/${this.state.data.skId}`}>
                   <div className="subtitle is-7">{this.state.data.venue}, {this.state.data.postcode}</div>
-                </Link>
+                </Link>}
                 <div className="subtitle is-7">£{this.state.data.price}</div>
                 <div className="subtitle is-7">Over {this.state.data.minimumAge}s only</div>
                 {this.state.data.start} - {this.state.data.finish}
@@ -164,13 +164,13 @@ class Show extends React.Component {
               <div className="columns">
                 {this.state.createdBy &&
                   <div className="event-meta column">
-                    <span>Organised by {this.state.createdBy.username}</span>
+                    <span>Organised by {this.state.data.createdBy.username}</span>
                   </div>
                 }
                 {this.canModify() &&
                   <div className="column">
                     <div className="columns event-buttons">
-                      <Link to={`/events/${this.state._id}/edit`}><button>Edit</button></Link>
+                      <Link to={`/events/${this.state.data._id}/edit`}><button>Edit</button></Link>
                       <button onClick={this.handleDelete}>Delete</button>
                     </div>
                   </div>
