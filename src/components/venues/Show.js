@@ -82,12 +82,9 @@ class VenuesShow extends React.Component{
         <div className="container box">
           <div className="columns is-multiline">
             <div className="column is-one-quarter">
-
               <div id="map" />
             </div>
             <div className="column is-three-quarters">
-
-
               {!!this.state.venue.resultsPage &&
                 <div className="title is-1"><span> {this.state.venue.resultsPage.results.venue.displayName}</span>
                 </div>

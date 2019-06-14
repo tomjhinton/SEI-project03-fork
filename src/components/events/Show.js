@@ -127,13 +127,7 @@ class Show extends React.Component {
               </div>
 
 
-
-
-
-
               <h2>{this.state.description}</h2>
-
-
 
               {this.state.data.description && this.state.data.description.split('\n').map((paragraph, i) =>
                 <p key={i}><br />{paragraph}</p>
@@ -211,12 +205,7 @@ class Show extends React.Component {
               </div>
 
             ) }
-
-
           </div>
-
-
-
         </div>
       </div>
     )
