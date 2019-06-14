@@ -18,8 +18,8 @@ project-03
 * React Select
 * ReactMapBox-GL
 * OpenCageData - location lookup
-* webpack
-* git/GitHub
+* Webpack
+* Git/GitHub
 
 
 ### Introduction
@@ -170,12 +170,72 @@ The biggest challenges we encountered were in the EventNew component where user 
 
 ![image](https://user-images.githubusercontent.com/35113861/58372027-6b1fe480-7f0f-11e9-91d5-ab57cb4f2d59.png)
 
-This issue arised when using ReactSelect to allow users to input Atrist names to the event and when trying to style description text the user had entered.
+This issue arised when using ReactSelect to allow users to input Artist names to the event and when trying to style description text the user had entered.
 
 
 #### The upcoming events slider in VenueShow component
 <br>
+It was a challenge to find the right slider for React.js. We searched for React.js sliders but we could not find an appropriate one. We decided to make our own slider.
+
 <br>
+We defined two global variables for the movement of the slider. We called index for the current position of the event and eventsLength for the number of the events.
+
+```
+let index=0
+let eventsLength=0
+
+class VenuesShow extends React.Component{
+
+```  
+We created two functions for the movement of the slider. We called previousEvent, nextEvent.When User clicked the right arrow of the slider. It called nextEvent function and increase the index variable to go forward. When User clicked the left arrow of the slider. It called previousEvent function and decrease the index variable to go backward.  
+
+```
+nextEvent(){
+  index++
+  eventsLength=this.state.upcoming.resultsPage.results.event.length
+  this.setState({currentEvent: this.state.upcoming.resultsPage.results.event[index]})
+  console.log(this.state.currentEvent)
+  console.log(this.state)
+}
+
+previousEvent(){
+  index--
+  eventsLength=this.state.upcoming.resultsPage.results.event.length
+  this.setState({currentEvent: this.state.upcoming.resultsPage.results.event[index]})
+}
+```
+```
+<div className="upcoming">
+  <h1 className="title is-3">UpComing Events</h1>
+
+  <div className="columns upVevents is-multiline is-full-desktop ">
+    <div className="column is-one-quarter">
+      <button  onClick={this.previousEvent} disabled={index === 0}> Previous
+      </button>
+    </div>
+    <div className="column is-one-half">
+      <Link to={`/events/external/${this.state.currentEvent.id}`}>
+        <div  className="cards-slider">
+          <div className="cards-slider-wrapper ">
+            {!!this.state.upcoming.resultsPage &&
+          <div key={this.state.currentEvent.id} className="column card uevents ">
+            <span className="subtitle is-4 has-text-light">{this.state.currentEvent.displayName}</span>
+          </div>
+            }
+          </div>
+        </div>
+      </Link>
+    </div>
+    <div className="column is-one-quarter">
+      <button onClick={this.nextEvent} disabled ={index === eventsLength-1}  > Next
+      </button>
+    </div>
+  </div>
+
+```  
+
+
+
 
 
 ## Future features
