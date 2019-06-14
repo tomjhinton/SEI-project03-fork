@@ -7,13 +7,8 @@ import mapboxgl from 'mapbox-gl'
 
 mapboxgl.accessToken = process.env.MAPBOX
 
-
 let index=0
 let eventsLength=0
-
-
-
-
 
 class VenuesShow extends React.Component{
   constructor(props){
@@ -52,7 +47,6 @@ class VenuesShow extends React.Component{
     this.setState({currentEvent: this.state.upcoming.resultsPage.results.event[index]})
     console.log(this.state.currentEvent)
     console.log(this.state)
-
   }
 
   previousEvent(){
