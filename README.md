@@ -47,7 +47,8 @@ From here the team decided who was working on what feature and merged appropriat
 
 A one page app was created that rendered different components depending on the path:
 
-```      <Router>
+```    
+      <Router>
         <main>
           <Navbar />
           <FlashMessages />
@@ -71,17 +72,9 @@ A one page app was created that rendered different components depending on the p
 
         </main>
       </Router>
-    )
-  }
 ```
 
-The Navbar component renders on every route with conditional rendering determining which link in the component to display on the specific route.
-
-The home component:
-
-<img width="1419" alt="Screenshot 2019-05-25 at 16 36 38" src="https://user-images.githubusercontent.com/35113861/58371685-54778e80-7f0b-11e9-8b5e-126fd737396b.png">
-
-Users are able to search the database directly from the Home component. At the bottom it also displays three events from the external Songkick API near the users current location. These are randomly selected each time the page loads.
+The Navbar component renders on every route with conditional rendering determining which links in the component to display on the specific route.
 
 The EventShow component:
 
@@ -106,12 +99,83 @@ _Describe the wins.
   What are you most proud of?
   What did this project help you to understand the most?_
 
+
+#### The Home and SearchBar components
+<br>
+  <img width="1419" alt="Screenshot 2019-05-25 at 16 36 38" src="https://user-images.githubusercontent.com/35113861/58371685-54778e80-7f0b-11e9-8b5e-126fd737396b.png">
+<br>
+<br>
+  Users are able to search the event database directly from the Home component using the SearchBar component which takes the user input and pushes the app to the EventsIndex page with a query string in the URL:
+
+  ```
+  handleChange(e){
+    this.setState( { searchTerm: e.target.value } )
+  }
+
+  handleSubmit(e){
+    e.preventDefault()
+    this.props.history.push('/events?search=' + this.state.searchTerm)
+  }
+  ```
+
+  The EventsIndex component then filters the database based on the search term found in the query string:
+
+  ```
+  getMatches(){
+    const re = new RegExp(this.props.match.query.search, 'i')
+    return this.state.events.filter(event => re.test(event.name))
+  }
+  ```
+  The SearchBar component is also included in the NavBar in all other routes.
+
+  At the bottom of the Home component three events from the external Songkick API near the users current location. These are randomly selected each time the page loads.
+
+  ```
+  getMetroEvents(){
+    axios.get('https://api.songkick.com/api/3.0/search/locations.json', {
+      params: {
+        location: `geo:${this.state.location.lat},${this.state.location.lon}`,
+        apikey: process.env.SONG_KICK_KEY
+      }
+    })
+      .then(res => {
+        const [{ metroArea }] = res.data.resultsPage.results.location
+
+        return axios.get(`https://api.songkick.com/api/3.0/metro_areas/${metroArea.id}/calendar.json`, {
+          params: {
+            apikey: process.env.SONG_KICK_KEY,
+            per_page: 30
+          }
+        })
+      })
+      .then(res => {
+        const { event } = res.data.resultsPage.results
+        const recEvents = []
+
+        const activeEvents = event.filter(event => event.status !== 'cancelled')
+
+        let randomEvent = activeEvents[Math.floor(Math.random() * activeEvents.length)]
+        while(recEvents.length < 3 && !recEvents.includes(randomEvent)) {
+          recEvents.push(randomEvent)
+          randomEvent = activeEvents[Math.floor(Math.random() * activeEvents.length)]
+        }
+
+        this.setState({ recEvents })
+      })
+  }
+  ```
+#### The EventsNew component
+
 The biggest challenges we encountered were in the EventNew component where user could upload new event information:
 
 ![image](https://user-images.githubusercontent.com/35113861/58372027-6b1fe480-7f0f-11e9-91d5-ab57cb4f2d59.png)
 
-This issues arised when using ReactSelect to allow users to imput Atrist names to the event and when trying to style description text the user had entered.
+This issue arised when using ReactSelect to allow users to input Atrist names to the event and when trying to style description text the user had entered.
 
+
+#### The upcoming events slider in VenueShow component
+<br>
+<br>
 
 
 ## Future features

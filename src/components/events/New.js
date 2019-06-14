@@ -1,10 +1,7 @@
-
 import React from 'react'
 import axios from 'axios'
 import Auth from '../../lib/Auth'
-
 import 'react-datepicker/dist/react-datepicker.css'
-
 import CreatableSelect from 'react-select/lib/Creatable'
 import DatePicker from 'react-datepicker'
 
@@ -57,11 +54,8 @@ class EventsNew extends React.Component {
   }
 
   handleSelectChange(e) {
-    console.log(e)
     const data = { ...this.state.data, artist: e }
-    //console.log(data)
     this.setState({ data })
-    console.log(this)
   }
 
   handleChangeDate(date) {
