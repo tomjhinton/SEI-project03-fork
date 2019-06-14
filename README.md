@@ -164,13 +164,57 @@ _Describe the wins.
       })
   }
   ```
-#### The EventsNew component
+  #### The EventsNew component
 
-The biggest challenges we encountered were in the EventNew component where user could upload new event information:
+  The biggest challenges we encountered were in the EventNew component where user could upload new event information:
 
-![image](https://user-images.githubusercontent.com/35113861/58372027-6b1fe480-7f0f-11e9-91d5-ab57cb4f2d59.png)
+  ![image](https://user-images.githubusercontent.com/35113861/58372027-6b1fe480-7f0f-11e9-91d5-ab57cb4f2d59.png)
 
-This issue arised when using ReactSelect to allow users to input Artist names to the event and when trying to style description text the user had entered.
+  We wanted to be able to provide users of the site with accurate information about the venues events were being held at. This meant that we couldn't simply allow users to type a venue name into a textbox as multiple venues exist with the same names in different places. To do this we provided a search tool that made use of the SongKick api so that users could correctly select the venue they meant. This would allow us to provide a map on the event page and for us to be able to direct users to more information about the venue from the event page if they wanted. it.
+
+  ```
+  selectVenue(venue){
+
+    const { displayName: name, zip: postcode, id: skId } = venue
+    const data = { ...this.state.data, venue: name, postcode, skId }
+
+    this.setState({ data })
+  }
+
+  findVenue(e){
+    e.preventDefault()
+
+    if(this.state.data.skId ){
+      this.setState({
+        data: {
+          ...this.state.data,
+          skId: ''
+
+
+        }
+      })
+    }
+
+    axios.get('https://api.songkick.com/api/3.0/search/venues.json', {
+      params: {
+        query: this.state.data.venue,
+        apikey: process.env.SONG_KICK_KEY
+      }
+    })
+      .then(res => this.setState({ venues: res.data.resultsPage.results.venue }))
+
+  }
+  ```
+  We needed a way for users to be able to add as many artists to an event as they required. Firstly we started off trying to write a function that would handle this ourselves but then we discovered React Select's mulit-creatable component which proved to be a much simpler way of handling the issue.
+
+
+  The description portion of the form also proved to be a surprising challenge. A user could submit what they wanted  with no problem but we discovered that when we pulled the information back out of out database and displayed it on the page all line-breaks had been removed. The \n's were being ignored by the JSX. We solved this by splitting the string at the \n's and mapping this onto the page while adding in ```<br/>```'s to preserve the formatting.       
+
+  ```
+  {this.state.data.description && this.state.data.description.split('\n').map((paragraph, i) =>
+    <p key={i}><br />{paragraph}</p>
+  )}
+  ```
 
 
 #### The upcoming events slider in VenueShow component
@@ -245,6 +289,6 @@ This is how to click  the left and right arrows of the slider.
 
 ## Future features
 
-* Currently the SearchBar only filter for a match in the even title. Ideally this should search the event venue and description aswell and would be something to add in the future.
+* Currently the SearchBar only filter for a match in the even title. Ideally this should search the event venue and description as well and would be something to add in the future.
 * We would like to enable users to message each other.
-  * For users to message each other then they would need to sign up. This leads to the requirement of two diferenent types of users, and thus models in the database: event organisers and regular users.
+  * For users to message each other then they would need to sign up. This leads to the requirement of two different types of users, and thus models in the database: event organisers and regular users.
