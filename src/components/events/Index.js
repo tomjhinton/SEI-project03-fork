@@ -26,8 +26,6 @@ class EventsIndex extends React.Component{
       .then(res => this.setState({ events: res.data }))
   }
 
-
-
   render(){
     this.props.match.query = qs.parse(this.props.location.search)
     return(
@@ -50,7 +48,6 @@ class EventsIndex extends React.Component{
           )
         )}
       </section>
-
     )
   }
 

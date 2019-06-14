@@ -10,12 +10,10 @@ class Home extends React.Component{
 
     this.state = {
       recEvents: []
-      // searchTerm: []
     }
 
     this.getMetroCode=this.getMetroEvents.bind(this)
     this.getLocation=this.getLocation.bind(this)
-
   }
 
   getMetroEvents(){
@@ -97,13 +95,3 @@ class Home extends React.Component{
 }
 
 export default Home
-
-
-// <form className="level is-half" onSubmit={this.handleSubmit}>
-//   <input
-//     className="input home-main-form-item"
-//     placeholder="What you looking for?"
-//     onChange={this.handleChange}
-//   />
-//   <button className="home-main-form-item">Find it</button>
-// </form>
