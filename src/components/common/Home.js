@@ -13,7 +13,7 @@ class Home extends React.Component{
     }
 
     this.getMetroCode=this.getMetroEvents.bind(this)
-    this.getLocation=this.getLocation.bind(this)  
+    this.getLocation=this.getLocation.bind(this)
   }
 
   getMetroEvents(){

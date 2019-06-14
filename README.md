@@ -187,8 +187,9 @@ let eventsLength=0
 class VenuesShow extends React.Component{
 
 ```  
-We created two functions for the movement of the slider. We called previousEvent, nextEvent.When User clicked the right arrow of the slider. It called nextEvent function and increase the index variable to go forward. When User clicked the left arrow of the slider. It called previousEvent function and decrease the index variable to go backward.  
+We created two functions for the movement of the slider.
 
+We called nextEvent function.When User clicked the right arrow of the slider. It called nextEvent function and increase the index variable to go forward.
 ```
 nextEvent(){
   index++
@@ -197,13 +198,17 @@ nextEvent(){
   console.log(this.state.currentEvent)
   console.log(this.state)
 }
-
+```
+We called previousEvent. When User clicked the left arrow of the slider. It called previousEvent function and decrease the index variable to go backward.
+```
 previousEvent(){
   index--
   eventsLength=this.state.upcoming.resultsPage.results.event.length
   this.setState({currentEvent: this.state.upcoming.resultsPage.results.event[index]})
 }
 ```
+
+This is how to click  the left and right arrows of the slider.
 ```
 <div className="upcoming">
   <h1 className="title is-3">UpComing Events</h1>
