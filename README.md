@@ -239,4 +239,7 @@ previousEvent(){
 
 
 ## Future features
-_If you were to revisit this project in the future what features would you add?_
+
+* Currently the SearchBar only filter for a match in the even title. Ideally this should search the event venue and description aswell and would be something to add in the future.
+* We would like to enable users to message each other.
+  * For users to message each other then they would need to sign up. This leads to the requirement of two diferenent types of users, and thus models in the database: event organisers and regular users.
