@@ -10,7 +10,7 @@
     "build": "webpack -p",
     "start": "node index"
   },
-  "repository": "git+https://github.com/stuartmees/project-03.git",
+  "repository": "git+https://github.com/tomjhinton/SEI-Project03.git",
   "author": "Ali Kurtulush <alikurtulus-92@hotmail.com>",
   "license": "ISC",
   "bugs": {
